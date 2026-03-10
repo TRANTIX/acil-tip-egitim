@@ -64,11 +64,15 @@
 - [x] Build başarılı (30 sayfa)
 - [x] content_ratings sistemi — useContentRating hook + ContentRatingWidget bileşeni
 - [x] İlk 10 yazılı içerik (seed data) — data/seed/articles.sql
-- [ ] Admin: içerik ekleme formları
+- [x] Admin: içerik ekleme formları — /admin/icerik (makale, podcast, video, atlas tab'lı form)
+- [x] Admin: soru ekleme formu — /admin/soru (dinamik seçenek, doğru cevap seçimi)
+- [x] Build başarılı (34 sayfa)
 
 ## Faz 4: Quiz/Sınav Sistemi
-- [ ] questions + quiz_results tabloları
-- [ ] Admin: soru ekleme formu
+- [x] questions + quiz_results tabloları (migration'da zaten mevcut)
+- [x] Questions API route (GET+POST+PATCH) — /api/questions + /api/questions/[id]
+- [x] Quiz Results API route (GET+POST) — /api/quiz-results
+- [x] Admin: soru ekleme formu — /admin/soru
 - [ ] Pratik modu
 - [ ] Sınav modu (zamanlı)
 - [ ] Sonuç ekranı + açıklamalar
