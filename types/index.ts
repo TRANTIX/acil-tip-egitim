@@ -45,6 +45,39 @@ export interface Article {
   updated_at: string;
 }
 
+export interface Podcast {
+  id: string;
+  title: string;
+  description?: string;
+  category: string;
+  difficulty?: number;
+  audio_url: string;
+  duration: number;
+  episode_number?: number;
+  format?: "konu_anlatimi" | "vaka_tartismasi" | "soylesi" | "kilavuz" | "gunun_sorusu";
+  tags?: string[];
+  status: ContentStatus;
+  author_id?: string;
+  published_at?: string;
+  created_at: string;
+}
+
+export interface Video {
+  id: string;
+  title: string;
+  description?: string;
+  category: string;
+  difficulty?: number;
+  video_url: string;
+  duration?: number;
+  video_type?: "prosedur" | "ders" | "ekg_yorum" | "usg" | "vaka_sunum" | "kisa_ipucu";
+  tags?: string[];
+  status: ContentStatus;
+  author_id?: string;
+  published_at?: string;
+  created_at: string;
+}
+
 export interface Question {
   id: string;
   topic: string;

@@ -48,8 +48,14 @@
 - [x] Yazılı içerikler listesi sayfası başlandı — /icerikler/yazilar
 - [x] ArticleListClient (list-client.tsx) — arama, kategori, tür, zorluk filtreleri
 - [x] Yazılı içerik detay sayfası — /icerikler/yazilar/[slug] + SEO metadata
-- [ ] AudioPlayer bileşeni + /icerikler/podcastler
-- [ ] VideoEmbed bileşeni + /icerikler/videolar
+- [x] AudioPlayer bileşeni — components/content/audio-player.tsx
+- [x] Podcast listesi + detay sayfası — /icerikler/podcastler + /icerikler/podcastler/[id]
+- [x] Podcasts API route (GET+POST+PATCH) — /api/podcasts + /api/podcasts/[id]
+- [x] VideoEmbed bileşeni — components/content/video-embed.tsx (YouTube + native video)
+- [x] Video listesi + detay sayfası — /icerikler/videolar + /icerikler/videolar/[id]
+- [x] Videos API route (GET+POST+PATCH) — /api/videos + /api/videos/[id]
+- [x] Podcast ve Video TypeScript tipleri — types/index.ts
+- [x] Build başarılı (28 sayfa)
 - [ ] AtlasViewer bileşeni + /icerikler/atlas
 - [ ] content_progress takibi (hook)
 - [ ] content_ratings sistemi
