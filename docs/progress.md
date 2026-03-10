@@ -62,9 +62,9 @@
 - [x] AtlasImage ve ContentProgress TypeScript tipleri — types/index.ts
 - [x] useContentProgress hook — hooks/use-content-progress.ts (upsert, markCompleted)
 - [x] Build başarılı (30 sayfa)
-- [ ] content_ratings sistemi
+- [x] content_ratings sistemi — useContentRating hook + ContentRatingWidget bileşeni
+- [x] İlk 10 yazılı içerik (seed data) — data/seed/articles.sql
 - [ ] Admin: içerik ekleme formları
-- [ ] İlk 10 yazılı içerik (seed data)
 
 ## Faz 4: Quiz/Sınav Sistemi
 - [ ] questions + quiz_results tabloları

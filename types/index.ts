@@ -112,6 +112,16 @@ export interface ContentProgress {
   updated_at: string;
 }
 
+export interface ContentRating {
+  id: string;
+  user_id: string;
+  content_type: string;
+  content_id: string;
+  rating: number;
+  comment?: string;
+  created_at: string;
+}
+
 export interface Question {
   id: string;
   topic: string;
