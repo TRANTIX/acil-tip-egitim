@@ -73,9 +73,9 @@
 - [x] Questions API route (GET+POST+PATCH) — /api/questions + /api/questions/[id]
 - [x] Quiz Results API route (GET+POST) — /api/quiz-results
 - [x] Admin: soru ekleme formu — /admin/soru
-- [ ] Pratik modu
-- [ ] Sınav modu (zamanlı)
-- [ ] Sonuç ekranı + açıklamalar
+- [x] Pratik modu — /quiz (soru kartı, anlık açıklama, ilerleme çubuğu)
+- [x] Sınav modu (zamanlı) — 90sn/soru countdown, süre dolunca otomatik geçiş
+- [x] Sonuç ekranı + açıklamalar — skor özeti, soru detayları (expandable), doğru/yanlış gösterimi
 - [ ] Gamification entegrasyonu (XP)
 - [ ] İlk 50 soru (seed data)
 
