@@ -78,6 +78,40 @@ export interface Video {
   created_at: string;
 }
 
+export interface AtlasImage {
+  id: string;
+  title: string;
+  atlas_type: "ekg" | "rontgen" | "bt" | "usg" | "klinik_foto";
+  category: string;
+  image_url: string;
+  annotated_url?: string;
+  normal_url?: string;
+  diagnosis: string;
+  description: string;
+  key_findings?: string[];
+  difficulty?: number;
+  clinical_context?: string;
+  differential?: string[];
+  tags?: string[];
+  status: ContentStatus;
+  author_id?: string;
+  source?: string;
+  created_at: string;
+}
+
+export interface ContentProgress {
+  id: string;
+  user_id: string;
+  content_type: string;
+  content_id: string;
+  progress: number;
+  completed: boolean;
+  last_position: number;
+  completed_at?: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Question {
   id: string;
   topic: string;

@@ -56,8 +56,12 @@
 - [x] Videos API route (GET+POST+PATCH) — /api/videos + /api/videos/[id]
 - [x] Podcast ve Video TypeScript tipleri — types/index.ts
 - [x] Build başarılı (28 sayfa)
-- [ ] AtlasViewer bileşeni + /icerikler/atlas
-- [ ] content_progress takibi (hook)
+- [x] AtlasViewer bileşeni — components/content/atlas-viewer.tsx (zoom, orijinal/işaretli/normal toggle, bulgular paneli)
+- [x] Atlas listesi + detay sayfası — /icerikler/atlas + /icerikler/atlas/[id]
+- [x] Atlas API route (GET+POST+PATCH) — /api/atlas + /api/atlas/[id]
+- [x] AtlasImage ve ContentProgress TypeScript tipleri — types/index.ts
+- [x] useContentProgress hook — hooks/use-content-progress.ts (upsert, markCompleted)
+- [x] Build başarılı (30 sayfa)
 - [ ] content_ratings sistemi
 - [ ] Admin: içerik ekleme formları
 - [ ] İlk 10 yazılı içerik (seed data)
