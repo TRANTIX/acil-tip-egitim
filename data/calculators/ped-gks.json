@@ -1,0 +1,56 @@
+{
+  "id": "ped-gks",
+  "name": "Pediatrik Glasgow Koma Skoru",
+  "shortName": "Ped. GKS",
+  "category": "pediatri",
+  "description": "Konuşma öncesi çocuklarda (<2 yaş) bilinç düzeyini değerlendirmek için uyarlanmış GKS versiyonu.",
+  "fields": [
+    {
+      "id": "eye",
+      "label": "Göz Açma",
+      "type": "select",
+      "options": [
+        { "value": 4, "label": "Spontan (4)" },
+        { "value": 3, "label": "Sesle (3)" },
+        { "value": 2, "label": "Ağrıyla (2)" },
+        { "value": 1, "label": "Yok (1)" }
+      ]
+    },
+    {
+      "id": "verbal",
+      "label": "Sözel Yanıt (<2 yaş)",
+      "type": "select",
+      "options": [
+        { "value": 5, "label": "Bağırma / normal ağlama (5)" },
+        { "value": 4, "label": "Daha az normale göre ağlama (4)" },
+        { "value": 3, "label": "Ağrıyla ağlama (3)" },
+        { "value": 2, "label": "Ağrıyla inleme (2)" },
+        { "value": 1, "label": "Yok (1)" }
+      ]
+    },
+    {
+      "id": "motor",
+      "label": "Motor Yanıt",
+      "type": "select",
+      "options": [
+        { "value": 6, "label": "Spontan normal hareketler (6)" },
+        { "value": 5, "label": "Dokunuşa geri çekme (5)" },
+        { "value": 4, "label": "Ağrıya geri çekme (4)" },
+        { "value": 3, "label": "Anormal fleksiyon (3)" },
+        { "value": 2, "label": "Anormal ekstansiyon (2)" },
+        { "value": 1, "label": "Yok (1)" }
+      ]
+    }
+  ],
+  "calculate": "sum",
+  "minScore": 3,
+  "maxScore": 15,
+  "interpretation": [
+    { "min": 13, "max": 15, "label": "Hafif", "color": "green", "description": "Hafif bilinç bozukluğu. Yakın takip." },
+    { "min": 9, "max": 12, "label": "Orta", "color": "yellow", "description": "Orta bilinç bozukluğu. Nörolog konsültasyonu." },
+    { "min": 3, "max": 8, "label": "Ağır", "color": "red", "description": "Ağır bilinç bozukluğu. Havayolu güvenliği — entübasyon düşün." }
+  ],
+  "clinicalNote": "<2 yaş çocuklarda verbal skoru standart GKS'den farklıdır. GKS ≤8 → entübasyon değerlendir.",
+  "source": "James HE. Neurologic evaluation and support in the child with an acute brain insult. Pediatr Ann. 1986;15(1):16-22.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

@@ -1,0 +1,70 @@
+{
+  "id": "heart",
+  "name": "HEART Skoru",
+  "shortName": "HEART",
+  "category": "kardiyoloji",
+  "description": "Göğüs ağrısı ile başvuran hastalarda majör kardiyak olay (MACE) riskini değerlendiren skor.",
+  "fields": [
+    {
+      "id": "history",
+      "label": "Hikaye",
+      "type": "select",
+      "options": [
+        { "value": 2, "label": "Yüksek şüpheli (2) — tipik göğüs ağrısı" },
+        { "value": 1, "label": "Orta şüpheli (1) — bazı tipik özellikler" },
+        { "value": 0, "label": "Düşük şüpheli (0) — atipik" }
+      ]
+    },
+    {
+      "id": "ecg",
+      "label": "EKG",
+      "type": "select",
+      "options": [
+        { "value": 2, "label": "Belirgin ST deviasyonu (2)" },
+        { "value": 1, "label": "Sol dal bloğu / LVH / repolarizasyon bozukluğu (1)" },
+        { "value": 0, "label": "Normal (0)" }
+      ]
+    },
+    {
+      "id": "age",
+      "label": "Yaş",
+      "type": "select",
+      "options": [
+        { "value": 2, "label": "≥65 yaş (2)" },
+        { "value": 1, "label": "45–64 yaş (1)" },
+        { "value": 0, "label": "<45 yaş (0)" }
+      ]
+    },
+    {
+      "id": "riskFactors",
+      "label": "Risk Faktörleri",
+      "type": "select",
+      "options": [
+        { "value": 2, "label": "Bilinen kardiyovasküler hastalık (2)" },
+        { "value": 1, "label": "≥3 risk faktörü veya DM (1)" },
+        { "value": 0, "label": "Bilinen risk faktörü yok (0)" }
+      ]
+    },
+    {
+      "id": "troponin",
+      "label": "Troponin",
+      "type": "select",
+      "options": [
+        { "value": 2, "label": "≥3× normal üst sınır (2)" },
+        { "value": 1, "label": "1–3× normal üst sınır (1)" },
+        { "value": 0, "label": "Normal sınırlar içinde (0)" }
+      ]
+    }
+  ],
+  "calculate": "sum",
+  "minScore": 0,
+  "maxScore": 10,
+  "interpretation": [
+    { "min": 0, "max": 3, "label": "Düşük Risk", "color": "green", "description": "MACE riski ~1-2%. Taburculuk düşünülebilir; primer bakım takibi önerilir." },
+    { "min": 4, "max": 6, "label": "Orta Risk", "color": "yellow", "description": "MACE riski ~12-17%. Gözlem altında tutma, ek troponin testi." },
+    { "min": 7, "max": 10, "label": "Yüksek Risk", "color": "red", "description": "MACE riski ~50-65%. Erken invazif strateji (kardiyoloji konsültasyonu)." }
+  ],
+  "clinicalNote": "Risk faktörleri: HT, hiperkolesterolemi, DM, obezite (BMI>30), sigara, pozitif aile öyküsü, aterosklerotik hastalık.",
+  "source": "Six AJ, et al. The HEART score for the assessment of patients with chest pain in the emergency department. Neth Heart J. 2008;16(6):191-196.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

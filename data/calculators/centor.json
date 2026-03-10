@@ -1,0 +1,55 @@
+{
+  "id": "centor",
+  "name": "Centor Skoru (McIsaac)",
+  "shortName": "Centor",
+  "category": "enfeksiyon",
+  "description": "Akut faringitte Grup A Streptokokal (GAS) enfeksiyonu olasılığını değerlendiren skor. Antibiyotik ihtiyacını belirlemeye yardımcı olur.",
+  "fields": [
+    {
+      "id": "exudate",
+      "label": "Tonsil eksüdası veya şişme",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "lymphadenopathy",
+      "label": "Hassas anterior servikal lenfadenopati",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "fever",
+      "label": "Ateş öyküsü veya >38°C",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "noCough",
+      "label": "Öksürük YOK",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "age",
+      "label": "Yaş",
+      "type": "select",
+      "options": [
+        { "value": 1, "label": "3-14 yaş (+1)" },
+        { "value": 0, "label": "15-44 yaş (0)" },
+        { "value": -1, "label": "≥45 yaş (-1)" }
+      ]
+    }
+  ],
+  "calculate": "sum",
+  "minScore": -1,
+  "maxScore": 5,
+  "interpretation": [
+    { "min": -1, "max": 0, "label": "Düşük Risk", "color": "green", "description": "GAS olasılığı ~2-6%. Antibiyotik önerilmez. Semptomatik tedavi yeterli." },
+    { "min": 1, "max": 2, "label": "Düşük-Orta Risk", "color": "yellow", "description": "GAS olasılığı ~14-28%. Hızlı antijen testi (RADT) değerlendir." },
+    { "min": 3, "max": 4, "label": "Orta-Yüksek Risk", "color": "orange", "description": "GAS olasılığı ~51-56%. RADT veya kültür, pozitifse antibiyotik başla." },
+    { "min": 5, "max": 5, "label": "Yüksek Risk", "color": "red", "description": "GAS olasılığı ~74%. Ampirik antibiyotik düşünülebilir (penisilin/amoksisilin)." }
+  ],
+  "clinicalNote": "İlk tercih antibiyotik: penisilin V (10 gün) veya amoksisilin. Penisilin alerjisinde: azitromisin. Viral faringitte antibiyotikten kaçın.",
+  "source": "McIsaac WJ, et al. A clinical score to reduce unnecessary antibiotic use in patients with sore throat. CMAJ. 1998;158(1):75-83.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

@@ -1,0 +1,184 @@
+{
+  "id": "nihss",
+  "name": "NIH İnme Skalası",
+  "shortName": "NIHSS",
+  "category": "noroloji",
+  "description": "Akut iskemik inmede nörolojik defisitin ciddiyetini standardize şekilde ölçen skala. tPA kararında ve prognozda kullanılır.",
+  "fields": [
+    {
+      "id": "consciousness",
+      "label": "1a. Bilinç Düzeyi",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Uyanık (0)" },
+        { "value": 1, "label": "Uyarıyla uyanık (1)" },
+        { "value": 2, "label": "Yineleyici uyarıyla yanıt (2)" },
+        { "value": 3, "label": "Yanıtsız (3)" }
+      ]
+    },
+    {
+      "id": "locQuestions",
+      "label": "1b. Bilinç Düzeyi Soruları (ay, yaş)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Her ikisi doğru (0)" },
+        { "value": 1, "label": "Biri doğru (1)" },
+        { "value": 2, "label": "İkisi de yanlış (2)" }
+      ]
+    },
+    {
+      "id": "locCommands",
+      "label": "1c. Bilinç Düzeyi Emirleri (gözleri aç-kapat, yumruk)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Her ikisi doğru (0)" },
+        { "value": 1, "label": "Biri doğru (1)" },
+        { "value": 2, "label": "İkisi de yanlış (2)" }
+      ]
+    },
+    {
+      "id": "gazePalsy",
+      "label": "2. Göz Hareketleri",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Normal (0)" },
+        { "value": 1, "label": "Parsiyel bakış paralizisi (1)" },
+        { "value": 2, "label": "Zorlu deviasyon / tam bakış paralizisi (2)" }
+      ]
+    },
+    {
+      "id": "visualFields",
+      "label": "3. Görme Alanı",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Kayıp yok (0)" },
+        { "value": 1, "label": "Parsiyel hemianopsi (1)" },
+        { "value": 2, "label": "Tam hemianopsi (2)" },
+        { "value": 3, "label": "Bilateral hemianopsi (3)" }
+      ]
+    },
+    {
+      "id": "facialPalsy",
+      "label": "4. Yüz Felci",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Normal (0)" },
+        { "value": 1, "label": "Hafif (1)" },
+        { "value": 2, "label": "Parsiyel (2)" },
+        { "value": 3, "label": "Tam (3)" }
+      ]
+    },
+    {
+      "id": "motorArmLeft",
+      "label": "5a. Motor Kol — Sol",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Düşme yok — 10 sn tutabilir (0)" },
+        { "value": 1, "label": "Düşme var — 10 sn tutamaz (1)" },
+        { "value": 2, "label": "Yerçekimine karşı koyamaz (2)" },
+        { "value": 3, "label": "Yerçekimine karşı koyamaz (3)" },
+        { "value": 4, "label": "Hareket yok (4)" }
+      ]
+    },
+    {
+      "id": "motorArmRight",
+      "label": "5b. Motor Kol — Sağ",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Düşme yok — 10 sn tutabilir (0)" },
+        { "value": 1, "label": "Düşme var — 10 sn tutamaz (1)" },
+        { "value": 2, "label": "Yerçekimine karşı koyamaz (2)" },
+        { "value": 3, "label": "Yalnızca yatay hareket (3)" },
+        { "value": 4, "label": "Hareket yok (4)" }
+      ]
+    },
+    {
+      "id": "motorLegLeft",
+      "label": "6a. Motor Bacak — Sol",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Düşme yok — 5 sn tutabilir (0)" },
+        { "value": 1, "label": "Düşme var (1)" },
+        { "value": 2, "label": "Yerçekimine karşı koyamaz (2)" },
+        { "value": 3, "label": "Yalnızca yatay hareket (3)" },
+        { "value": 4, "label": "Hareket yok (4)" }
+      ]
+    },
+    {
+      "id": "motorLegRight",
+      "label": "6b. Motor Bacak — Sağ",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Düşme yok — 5 sn tutabilir (0)" },
+        { "value": 1, "label": "Düşme var (1)" },
+        { "value": 2, "label": "Yerçekimine karşı koyamaz (2)" },
+        { "value": 3, "label": "Yalnızca yatay hareket (3)" },
+        { "value": 4, "label": "Hareket yok (4)" }
+      ]
+    },
+    {
+      "id": "ataxia",
+      "label": "7. Uzuv Ataksisi",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Yok (0)" },
+        { "value": 1, "label": "Bir uzuvda (1)" },
+        { "value": 2, "label": "İki uzuvda (2)" }
+      ]
+    },
+    {
+      "id": "sensory",
+      "label": "8. Duyu",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Normal (0)" },
+        { "value": 1, "label": "Hafif-orta kayıp (1)" },
+        { "value": 2, "label": "Ağır-tam kayıp (2)" }
+      ]
+    },
+    {
+      "id": "language",
+      "label": "9. En İyi Dil (afazi)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Afazi yok (0)" },
+        { "value": 1, "label": "Hafif-orta afazi (1)" },
+        { "value": 2, "label": "Ağır afazi (2)" },
+        { "value": 3, "label": "Mutizm / global afazi (3)" }
+      ]
+    },
+    {
+      "id": "dysarthria",
+      "label": "10. Dizartri",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Normal (0)" },
+        { "value": 1, "label": "Hafif-orta (1)" },
+        { "value": 2, "label": "Ağır (2)" }
+      ]
+    },
+    {
+      "id": "extinction",
+      "label": "11. İhmal / Dikkat Dağınıklığı",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Yok (0)" },
+        { "value": 1, "label": "Bir modalitede (1)" },
+        { "value": 2, "label": "Birden fazla modalitede (2)" }
+      ]
+    }
+  ],
+  "calculate": "sum",
+  "minScore": 0,
+  "maxScore": 42,
+  "interpretation": [
+    { "min": 0, "max": 0, "label": "Nörolojik Defisit Yok", "color": "green", "description": "Semptomlar olabilir ama muayene normaldir." },
+    { "min": 1, "max": 4, "label": "Hafif", "color": "green", "description": "Hafif defisit. tPA uygunluğu değerlendir." },
+    { "min": 5, "max": 15, "label": "Orta", "color": "yellow", "description": "Orta defisit. tPA endikasyonu değerlendir (≤4.5 saat)." },
+    { "min": 16, "max": 20, "label": "Orta-Ağır", "color": "orange", "description": "Orta-ağır defisit. tPA + trombektomi değerlendir." },
+    { "min": 21, "max": 42, "label": "Ağır", "color": "red", "description": "Ağır defisit. Trombektomi, nörolog ve nöroradyoloji acil." }
+  ],
+  "clinicalNote": "tPA için: NIHSS 4-25, semptom başlangıcından ≤4.5 saat, kontrendikasyon yok. Büyük damar tıkanıklığında NIHSS ≥6 + görüntüleme ile trombektomi değerlendir.",
+  "source": "Brott T, et al. Measurements of acute cerebral infarction: a clinical examination scale. Stroke. 1989;20(7):864-870.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. NIHSS sertifikalı uzman tarafından uygulanmalıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

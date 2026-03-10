@@ -1,0 +1,62 @@
+{
+  "id": "wells-pe",
+  "name": "Wells Kriterleri (Pulmoner Emboli)",
+  "shortName": "Wells PE",
+  "category": "pulmoner",
+  "description": "Pulmoner emboli klinik olasılığını değerlendiren skor sistemi.",
+  "fields": [
+    {
+      "id": "dvtSymptoms",
+      "label": "DVT klinik bulguları (bacak şişliği + palpasyon ile ağrı)",
+      "type": "checkbox",
+      "value": 3
+    },
+    {
+      "id": "altDiagnosis",
+      "label": "PE, diğer tanılardan daha olası görünüyor",
+      "type": "checkbox",
+      "value": 3
+    },
+    {
+      "id": "heartRate",
+      "label": "Kalp hızı >100/dk",
+      "type": "checkbox",
+      "value": 1.5
+    },
+    {
+      "id": "immobilization",
+      "label": "Son 3 günde immobilizasyon veya son 4 haftada cerrahi",
+      "type": "checkbox",
+      "value": 1.5
+    },
+    {
+      "id": "previousDvtPe",
+      "label": "Önceden DVT veya PE öyküsü",
+      "type": "checkbox",
+      "value": 1.5
+    },
+    {
+      "id": "hemoptysis",
+      "label": "Hemoptizi",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "malignancy",
+      "label": "Aktif malignite (tedavi altında veya son 6 ay içinde)",
+      "type": "checkbox",
+      "value": 1
+    }
+  ],
+  "calculate": "sum",
+  "minScore": 0,
+  "maxScore": 12.5,
+  "interpretation": [
+    { "min": 0, "max": 1.5, "label": "Düşük Olasılık", "color": "green", "description": "PE olasılığı ~2%. D-dimer ile değerlendirme yeterli olabilir." },
+    { "min": 2, "max": 6, "label": "Orta Olasılık", "color": "yellow", "description": "PE olasılığı ~18-30%. BT pulmoner anjiyografi (CTPA) değerlendir." },
+    { "min": 6.5, "max": 12.5, "label": "Yüksek Olasılık", "color": "red", "description": "PE olasılığı ~50-67%. CTPA yapılmalı. Antikoagülasyon başlanabilir." }
+  ],
+  "clinicalNote": "D-dimer negatifliği düşük olasılıklı hastalarda PE'yi dışlar. Yüksek olasılıkta D-dimer beklenmeden görüntüleme yapılmalı.",
+  "source": "Wells PS, et al. Derivation of a simple clinical model to categorize patients probability of pulmonary embolism. Thromb Haemost. 2000;83(3):416-420.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

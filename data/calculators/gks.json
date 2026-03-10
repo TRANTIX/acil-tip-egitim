@@ -1,0 +1,56 @@
+{
+  "id": "gks",
+  "name": "Glasgow Koma Skoru",
+  "shortName": "GKS",
+  "category": "noroloji",
+  "description": "Bilinç düzeyini değerlendirmek için kullanılan standart nörolojik skor.",
+  "fields": [
+    {
+      "id": "eye",
+      "label": "Göz Açma",
+      "type": "select",
+      "options": [
+        { "value": 4, "label": "Spontan (4)" },
+        { "value": 3, "label": "Sesli uyaranla (3)" },
+        { "value": 2, "label": "Ağrılı uyaranla (2)" },
+        { "value": 1, "label": "Yok (1)" }
+      ]
+    },
+    {
+      "id": "verbal",
+      "label": "Sözel Yanıt",
+      "type": "select",
+      "options": [
+        { "value": 5, "label": "Oryante (5)" },
+        { "value": 4, "label": "Konfüze (4)" },
+        { "value": 3, "label": "Uygunsuz kelimeler (3)" },
+        { "value": 2, "label": "Anlamsız sesler (2)" },
+        { "value": 1, "label": "Yok (1)" }
+      ]
+    },
+    {
+      "id": "motor",
+      "label": "Motor Yanıt",
+      "type": "select",
+      "options": [
+        { "value": 6, "label": "Emirlere uyar (6)" },
+        { "value": 5, "label": "Ağrıyı lokalize eder (5)" },
+        { "value": 4, "label": "Fleksiyon / çekme (4)" },
+        { "value": 3, "label": "Anormal fleksiyon (3)" },
+        { "value": 2, "label": "Ekstansiyon (2)" },
+        { "value": 1, "label": "Yok (1)" }
+      ]
+    }
+  ],
+  "calculate": "sum",
+  "minScore": 3,
+  "maxScore": 15,
+  "interpretation": [
+    { "min": 13, "max": 15, "label": "Hafif", "color": "green", "description": "Hafif beyin hasarı. Yakın takip önerilir." },
+    { "min": 9, "max": 12, "label": "Orta", "color": "yellow", "description": "Orta düzey beyin hasarı. Nörolog konsültasyonu değerlendir." },
+    { "min": 3, "max": 8, "label": "Ağır", "color": "red", "description": "Ağır beyin hasarı. Havayolu koruması için entübasyon değerlendir (GKS ≤8)." }
+  ],
+  "clinicalNote": "GKS ≤8 havayolu reflekslerinin kaybını gösterebilir — erken entübasyon düşün.",
+  "source": "Teasdale G, Jennett B. Assessment of coma and impaired consciousness. Lancet. 1974;2(7872):81-84.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

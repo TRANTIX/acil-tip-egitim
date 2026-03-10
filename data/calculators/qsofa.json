@@ -1,0 +1,37 @@
+{
+  "id": "qsofa",
+  "name": "qSOFA Skoru",
+  "shortName": "qSOFA",
+  "category": "enfeksiyon",
+  "description": "Sepsis riski taşıyan hastalarda kötü sonucu hızlıca tahmin eden basit skor (acil serviste yatak başı kullanım).",
+  "fields": [
+    {
+      "id": "respiratoryRate",
+      "label": "Solunum sayısı ≥22/dk",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "alteredMentalStatus",
+      "label": "Değişmiş mental durum (GKS <15)",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "systolicBP",
+      "label": "Sistolik kan basıncı ≤100 mmHg",
+      "type": "checkbox",
+      "value": 1
+    }
+  ],
+  "calculate": "sum",
+  "minScore": 0,
+  "maxScore": 3,
+  "interpretation": [
+    { "min": 0, "max": 1, "label": "Düşük Risk", "color": "green", "description": "Sepsis için düşük risk. Klinik değerlendirme sürdürülmeli." },
+    { "min": 2, "max": 3, "label": "Yüksek Risk", "color": "red", "description": "Kötü sonuç için artmış risk. Tam SOFA skoru değerlendir, YBÜ başvurusu düşün." }
+  ],
+  "clinicalNote": "qSOFA ≥2: Sepsis şüphesi yüksek. Kan kültürü, laktat, antibiyotik başlama ve YBÜ konsültasyonu değerlendir. qSOFA, SOFA'nın yerine geçmez — tanı aracı değil, tarama aracıdır.",
+  "source": "Seymour CW, et al. Assessment of Clinical Criteria for Sepsis. JAMA. 2016;315(8):762-774.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

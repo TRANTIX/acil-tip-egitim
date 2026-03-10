@@ -1,0 +1,77 @@
+{
+  "id": "pecarn",
+  "name": "PECARN Kafa Travması Kuralı",
+  "shortName": "PECARN",
+  "category": "pediatri",
+  "description": "Küçük kafa travması olan çocuklarda kliniklerin önemli beyin hasarı (ciBI) riskini değerlendirmesi için geliştirilmiş karar kuralı. BT ışınımını azaltmayı hedefler.",
+  "fields": [
+    {
+      "id": "ageGroup",
+      "label": "Yaş Grubu",
+      "type": "select",
+      "options": [
+        { "value": "under2", "label": "< 2 yaş" },
+        { "value": "2andover", "label": "≥ 2 yaş" }
+      ]
+    },
+    {
+      "id": "gcsUnder2",
+      "label": "GKS <15 (sadece <2 yaş için)",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "statusChange",
+      "label": "Bulguların değişmesi / kötüleşmesi",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "palpableSkull",
+      "label": "Palpe edilebilir kafatası kırığı",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "occipitalSkull",
+      "label": "Oksipital, parietal veya temporal hematom (<2 yaş) / Kafatası kırığı bulgusu (≥2 yaş)",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "lossOfConsciousness",
+      "label": "Bilinç kaybı öyküsü (≥5 sn)",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "severeHeadache",
+      "label": "Şiddetli baş ağrısı (≥2 yaş)",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "vomiting",
+      "label": "Tekrarlayan kusma (≥2 yaş)",
+      "type": "checkbox",
+      "value": 1
+    },
+    {
+      "id": "mechanism",
+      "label": "Yüksek riskli mekanizma (MVC, 1.5m'den düşme, kafa ile vuruş)",
+      "type": "checkbox",
+      "value": 1
+    }
+  ],
+  "calculate": "custom_pecarn",
+  "minScore": 0,
+  "maxScore": 9,
+  "interpretation": [
+    { "min": 0, "max": 0, "label": "Düşük Risk", "color": "green", "description": "ciBI riski çok düşük (<0.02%). BT gerekmeyebilir; klinik gözlem veya taburculuk düşünülebilir." },
+    { "min": 1, "max": 2, "label": "Orta Risk", "color": "yellow", "description": "ciBI riski ~0.9%. Klinik duruma göre BT veya gözlem kararı verilmeli." },
+    { "min": 3, "max": 9, "label": "Yüksek Risk", "color": "red", "description": "ciBI riski yüksek. BT çekilmeli." }
+  ],
+  "clinicalNote": "GKS <14 veya şüpheli kafatası kırığı veya değişmiş mental durum varsa: BT çekilmeli. PECARN sadece küçük kafa travmalarında kullanılır (GKS 14-15).",
+  "source": "Kuppermann N, et al. Identification of children at very low risk of clinically-important brain injuries after head trauma. Lancet. 2009;374(9696):1160-1170.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}
