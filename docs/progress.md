@@ -120,12 +120,16 @@
 - [x] Build başarılı (43 sayfa)
 - [ ] PDF export (sonra)
 
-## Faz 8: Gamification
-- [ ] user_gamification + user_badges + activity_log tabloları
-- [ ] Streak hesaplama
-- [ ] XP ve seviye sistemi
-- [ ] Rozet kontrol ve atama
-- [ ] Profil sayfası + dashboard widget
+## Faz 8: Gamification ✅
+- [x] user_gamification + user_badges + activity_log tabloları (migration'da zaten mevcut)
+- [x] Gamification kütüphanesi — lib/gamification/index.ts (XP tablosu, seviye hesaplama, streak, rozet tanımları)
+- [x] Gamification API (GET) — /api/gamification + Activity API (POST) — /api/gamification/activity
+- [x] Streak hesaplama — ardışık gün takibi, streak kırılma kontrolü
+- [x] XP ve seviye sistemi — 8 aktivite türü, kademeli seviye formülü, seviye isimleri
+- [x] 15 rozet tanımı + otomatik rozet kontrolü ve atama
+- [x] Profil sayfası — /profil (XP ilerleme, seviye, streak, rozetler grid, aktivite geçmişi)
+- [x] Dashboard güncellendi — XP ilerleme çubuğu, seviye başlığı, son rozetler + son aktiviteler
+- [x] Build başarılı (44 sayfa)
 
 ## Faz 9: AI Eğitmen
 - [ ] Kullanıcı performans verisi aggregation
