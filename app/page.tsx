@@ -16,70 +16,88 @@ import {
   Sparkles,
   Shield,
   Zap,
+  ChevronRight,
 } from "lucide-react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { GridBackground, DotPattern } from "@/components/ui/spotlight";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { FadeIn, AnimatedCounter, GradientText, ShimmerButton } from "@/components/ui/animated-text";
+import { FadeIn, AnimatedCounter, GradientText } from "@/components/ui/animated-text";
 import { cn } from "@/lib/utils";
+
+/* ── VERİLER ── */
 
 const modules = [
   {
     icon: Brain,
     title: "AI Vaka Simülasyonları",
-    desc: "Gerçekçi hasta senaryolarıyla interaktif pratik. Claude AI ile adım adım vaka çözümü.",
-    gradient: "bg-gradient-to-br from-blue-500 to-cyan-400",
-    iconBg: "bg-blue-500/10 text-blue-500",
+    desc: "Gerçekçi hasta senaryolarıyla interaktif pratik. Claude AI ile adım adım vaka çözümü ve klinik muhakeme gelişimi.",
+    gradient: "from-blue-600/20 to-cyan-400/20",
+    border: "group-hover:border-blue-500/50",
+    iconColor: "text-blue-500 dark:text-blue-400",
+    span: "md:col-span-2 md:row-span-2",
+    featured: true,
   },
   {
     icon: Calculator,
     title: "Klinik Hesaplayıcılar",
-    desc: "GKS, HEART, Wells, CURB-65, qSOFA ve 10+ skor. Anında hesapla, kanıta dayalı yorum al.",
-    gradient: "bg-gradient-to-br from-emerald-500 to-teal-400",
-    iconBg: "bg-emerald-500/10 text-emerald-500",
+    desc: "GKS, HEART, Wells, CURB-65, qSOFA ve 10+ skor.",
+    gradient: "from-emerald-600/20 to-teal-400/20",
+    border: "group-hover:border-emerald-500/50",
+    iconColor: "text-emerald-500 dark:text-emerald-400",
+    span: "",
   },
   {
     icon: BookOpen,
     title: "Eğitim İçerikleri",
     desc: "Yazılı konu anlatımları, podcastler, videolar ve görsel atlas — tek platformda.",
-    gradient: "bg-gradient-to-br from-violet-500 to-purple-400",
-    iconBg: "bg-violet-500/10 text-violet-500",
+    gradient: "from-violet-600/20 to-purple-400/20",
+    border: "group-hover:border-violet-500/50",
+    iconColor: "text-violet-500 dark:text-violet-400",
+    span: "",
   },
   {
     icon: ClipboardList,
     title: "Quiz Sistemi",
     desc: "Konu bazlı sorularla bilgini test et. Pratik ve zamanlı sınav modları.",
-    gradient: "bg-gradient-to-br from-amber-500 to-orange-400",
-    iconBg: "bg-amber-500/10 text-amber-500",
+    gradient: "from-amber-600/20 to-orange-400/20",
+    border: "group-hover:border-amber-500/50",
+    iconColor: "text-amber-500 dark:text-amber-400",
+    span: "md:col-span-2",
   },
   {
     icon: Stethoscope,
     title: "Prosedür Kılavuzları",
     desc: "Adım adım prosedür rehberleri, algoritmalar ve interaktif checklist'ler.",
-    gradient: "bg-gradient-to-br from-rose-500 to-pink-400",
-    iconBg: "bg-rose-500/10 text-rose-500",
+    gradient: "from-rose-600/20 to-pink-400/20",
+    border: "group-hover:border-rose-500/50",
+    iconColor: "text-rose-500 dark:text-rose-400",
+    span: "",
   },
   {
     icon: Activity,
     title: "Nöbet Debrief",
-    desc: "Her nöbet sonrası vaka analizi yap. AI destekli öğrenme önerileri ve deneyim haritası.",
-    gradient: "bg-gradient-to-br from-sky-500 to-blue-400",
-    iconBg: "bg-sky-500/10 text-sky-500",
+    desc: "AI destekli asistan ile nöbet sonu vaka analizi ve deneyim haritası.",
+    gradient: "from-sky-600/20 to-blue-400/20",
+    border: "group-hover:border-sky-500/50",
+    iconColor: "text-sky-500 dark:text-sky-400",
+    span: "",
   },
   {
     icon: Award,
     title: "Gamification",
     desc: "XP kazan, seviye atla, rozetler topla, streak sürdür.",
-    gradient: "bg-gradient-to-br from-yellow-500 to-amber-400",
-    iconBg: "bg-yellow-500/10 text-yellow-500",
+    gradient: "from-yellow-600/20 to-amber-400/20",
+    border: "group-hover:border-yellow-500/50",
+    iconColor: "text-yellow-500 dark:text-yellow-400",
+    span: "",
   },
   {
     icon: Bot,
     title: "Telegram Bot",
     desc: "Günlük pearl ve quiz soruları Telegram'a gelsin.",
-    gradient: "bg-gradient-to-br from-indigo-500 to-blue-400",
-    iconBg: "bg-indigo-500/10 text-indigo-500",
+    gradient: "from-indigo-600/20 to-blue-400/20",
+    border: "group-hover:border-indigo-500/50",
+    iconColor: "text-indigo-500 dark:text-indigo-400",
+    span: "",
   },
 ];
 
@@ -101,72 +119,117 @@ const stats = [
   { value: 8, suffix: "", label: "Modül" },
 ];
 
+const features = [
+  {
+    icon: Shield,
+    title: "Güvenilir İçerik",
+    desc: "Sadece güncel kılavuzlara dayalı, uzman hekimler tarafından denetimli klinik veriler.",
+    iconColor: "text-cyan-500 dark:text-cyan-400",
+    iconBg: "bg-cyan-500/10",
+    border: "hover:border-cyan-500/30",
+  },
+  {
+    icon: Brain,
+    title: "AI Güdümlü Eğitim",
+    desc: "Claude AI mimarisi ile her asistanın seviyesine göre şekillenen kişiselleştirilmiş vakalar.",
+    iconColor: "text-violet-500 dark:text-purple-400",
+    iconBg: "bg-violet-500/10",
+    border: "hover:border-violet-500/30",
+  },
+  {
+    icon: Zap,
+    title: "Hızlı, Ücretsiz, Reklamsız",
+    desc: "Eğitimin önündeki tüm engelleri kaldırdık. Hiçbir zaman abonelik veya reklam yok.",
+    iconColor: "text-amber-500 dark:text-amber-400",
+    iconBg: "bg-amber-500/10",
+    border: "hover:border-amber-500/30",
+  },
+];
+
+/* ── ANA BİLEŞEN ── */
+
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen flex-col bg-[var(--background)]">
+    <div className="flex min-h-screen flex-col bg-[var(--background)] overflow-x-hidden">
       <Navbar user={null} />
 
-      <main className="flex min-h-0 flex-1 flex-col w-full">
-        {/* ===== HERO ===== */}
-        <section className="relative overflow-hidden pt-24 pb-20 md:pt-36 md:pb-32 lg:pt-44 lg:pb-40">
-          {/* Background decorations — contained by overflow-hidden */}
-          <GridBackground />
-          <div className="pointer-events-none absolute inset-0 spotlight" />
-          <div className="pointer-events-none absolute top-1/4 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[120px]" />
-          <div className="pointer-events-none absolute bottom-0 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-[100px]" />
+      <main className="flex min-h-0 flex-1 flex-col w-full relative">
+        {/* Arka plan efektleri */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent dark:from-blue-900/20 dark:via-[var(--background)] dark:to-[var(--background)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 dark:opacity-100" />
 
-          <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 text-center">
-            {/* Heading */}
+        {/* Dekoratif ışık küreleri */}
+        <div className="pointer-events-none absolute top-20 left-1/4 w-72 h-72 bg-blue-500/10 dark:bg-blue-600/20 rounded-full blur-[100px] animate-pulse-glow" />
+        <div className="pointer-events-none absolute top-40 right-1/4 w-96 h-96 bg-cyan-500/5 dark:bg-cyan-600/10 rounded-full blur-[120px] animate-pulse-glow-delayed" />
+
+        {/* ===== HERO ===== */}
+        <section className="relative z-10 pt-28 pb-20 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40 px-6 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-5xl text-center">
+            {/* Badge */}
             <FadeIn>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[var(--foreground)] leading-[1.08]">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-300 text-sm font-medium mb-8 backdrop-blur-sm">
+                <Sparkles className="w-4 h-4 text-cyan-500 dark:text-cyan-400" />
+                <span className="tracking-wide">Yapay zeka destekli acil tıp eğitim platformu</span>
+              </div>
+            </FadeIn>
+
+            {/* Heading */}
+            <FadeIn delay={0.1}>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5rem] font-extrabold tracking-tight text-[var(--foreground)] leading-[1.1] mb-8">
                 Acil Tıp Asistanları
-                <br className="hidden sm:block" />
-                için <GradientText>AI Destekli</GradientText> Eğitim
+                <br className="hidden md:block" />
+                {" "}için <GradientText>AI Destekli</GradientText> Eğitim
               </h1>
             </FadeIn>
 
             {/* Subtitle */}
-            <FadeIn delay={0.1}>
-              <p className="mt-6 text-lg md:text-xl text-[var(--muted-foreground)] max-w-2xl mx-auto leading-relaxed">
+            <FadeIn delay={0.15}>
+              <p className="text-lg md:text-xl text-[var(--muted-foreground)] max-w-2xl mx-auto mb-12 leading-relaxed">
                 Vaka simülasyonları, klinik hesaplayıcılar, quiz sistemi ve nöbet debrief
-                — hepsi bir arada, ücretsiz, Türkçe.
+                — hepsi bir arada, tamamen{" "}
+                <strong className="text-[var(--foreground)] font-medium">ücretsiz</strong> ve{" "}
+                <strong className="text-[var(--foreground)] font-medium">Türkçe</strong>.
               </p>
             </FadeIn>
 
             {/* CTA */}
             <FadeIn delay={0.2}>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/kayit">
-                  <ShimmerButton>
-                    Ücretsiz Kayıt Ol
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </ShimmerButton>
+              <div className="flex flex-col sm:flex-row gap-5 justify-center">
+                <Link
+                  href="/kayit"
+                  className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold overflow-hidden transition-all duration-300 hover:scale-[1.03] active:scale-95 shadow-[0_0_40px_rgba(37,99,235,0.3)] hover:shadow-[0_0_60px_rgba(34,211,238,0.4)] border border-blue-400/20 text-lg"
+                >
+                  Ücretsiz Kayıt Ol
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
                 </Link>
                 <Link
                   href="/hesaplayicilar"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] hover:bg-[var(--background)] px-8 py-3.5 text-base font-semibold text-[var(--foreground)] transition-all duration-200 hover:border-blue-500/30"
+                  className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-[var(--card)] border border-[var(--border)] text-[var(--foreground)] font-semibold backdrop-blur-md transition-all duration-300 hover:bg-[var(--background)] hover:border-blue-500/30 text-lg"
                 >
-                  <Calculator className="h-4 w-4 text-blue-500" />
+                  <Calculator className="w-5 h-5 text-[var(--muted-foreground)] group-hover:text-emerald-500 transition-colors duration-300" />
                   Hesaplayıcıları Dene
                 </Link>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.25}>
-              <p className="mt-5 text-xs text-[var(--muted-foreground)]">
-                Kayıt ücretsiz · Admin onayıyla aktifleşir · Klinik hesaplayıcılar herkese açık
+              <p className="mt-8 text-sm text-[var(--muted-foreground)] bg-[var(--card)]/50 py-2 px-6 rounded-full border border-[var(--border)] backdrop-blur-sm inline-block">
+                Kayıt ücretsiz · Admin onayıyla aktifleşir ·{" "}
+                <span className="text-[var(--foreground)]">Hesaplayıcılar herkese açık</span>
               </p>
             </FadeIn>
 
             {/* Stats */}
             <FadeIn delay={0.3}>
-              <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-2xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto mt-24 border-t border-[var(--border)] pt-12">
                 {stats.map((s) => (
-                  <div key={s.label} className="text-center">
-                    <div className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">
+                  <div key={s.label} className="flex flex-col items-center group">
+                    <span className="text-4xl md:text-5xl font-black text-[var(--foreground)] mb-2 drop-shadow-sm">
                       <AnimatedCounter target={s.value} suffix={s.suffix} />
-                    </div>
-                    <div className="mt-1.5 text-sm text-[var(--muted-foreground)]">{s.label}</div>
+                    </span>
+                    <span className="text-sm font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
+                      {s.label}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -174,148 +237,172 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== MODULES — BENTO GRID ===== */}
-        <section className="relative py-24 md:py-32 overflow-hidden">
-          <DotPattern className="opacity-50" />
-
-          <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        {/* ===== MODÜLLER — BENTO GRID ===== */}
+        <section className="relative z-10 py-24 md:py-32 px-6 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--card)] px-4 py-1.5 text-sm text-[var(--muted-foreground)] mb-4">
-                  <Zap className="h-3.5 w-3.5 text-blue-500" />
-                  Entegre Platform
-                </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">
-                  Tüm Modüller
+              <div className="text-center mb-20">
+                <h2 className="text-3xl md:text-5xl font-bold text-[var(--foreground)] mb-6 tracking-tight">
+                  Eksiksiz Eğitim Modülleri
                 </h2>
-                <p className="mt-3 text-[var(--muted-foreground)] max-w-xl mx-auto">
-                  Acil tıp eğitiminin her boyutunu kapsayan kapsamlı araç seti
+                <p className="text-[var(--muted-foreground)] text-lg max-w-2xl mx-auto">
+                  Acil tıp asistanlığının ilk gününden uzmanlığa kadar ihtiyacın olan tüm dijital araçlar
+                  tek bir entegre ekosistemde.
                 </p>
               </div>
             </FadeIn>
 
-            <BentoGrid className="lg:grid-cols-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[220px]">
               {modules.map((m, i) => (
-                <BentoGridItem
+                <motion.div
                   key={m.title}
-                  title={m.title}
-                  description={m.desc}
-                  gradient={m.gradient}
-                  index={i}
-                  icon={
-                    <div className={cn("inline-flex h-10 w-10 items-center justify-center rounded-xl", m.iconBg)}>
-                      <m.icon className="h-5 w-5" />
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className={cn(
+                    "group relative rounded-[2rem] p-8 flex flex-col overflow-hidden",
+                    "bg-[var(--card)] border border-[var(--border)] backdrop-blur-md",
+                    "transition-all duration-500 hover:shadow-2xl hover:-translate-y-2",
+                    m.border,
+                    m.span,
+                  )}
+                >
+                  {/* Glow arka plan */}
+                  <div
+                    className={cn(
+                      "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none",
+                      m.gradient,
+                    )}
+                  />
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div
+                      className={cn(
+                        "w-14 h-14 rounded-2xl bg-[var(--background)] flex items-center justify-center border border-[var(--border)] mb-6 shadow-inner transition-transform duration-500 group-hover:scale-110",
+                        m.iconColor,
+                      )}
+                    >
+                      <m.icon className="w-7 h-7" />
                     </div>
-                  }
-                />
+
+                    <h3 className="text-xl font-bold text-[var(--foreground)] mb-3 tracking-tight lg:text-2xl">
+                      {m.title}
+                    </h3>
+                    <p className="text-[var(--muted-foreground)] text-sm leading-relaxed flex-1 group-hover:text-[var(--foreground)]/80 transition-colors duration-300">
+                      {m.desc}
+                    </p>
+
+                    {m.featured && (
+                      <div className="mt-6 pt-4 border-t border-[var(--border)] flex items-center text-sm font-semibold text-blue-500 dark:text-blue-400 group-hover:text-blue-400 dark:group-hover:text-blue-300 transition-colors cursor-pointer w-fit">
+                        Modülü Keşfet
+                        <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-2 transition-transform duration-300" />
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
               ))}
-            </BentoGrid>
+            </div>
           </div>
         </section>
 
-        {/* ===== CALCULATORS ===== */}
-        <section className="py-24 md:py-32">
-          <div className="mx-auto max-w-6xl px-6 sm:px-8 lg:px-12">
+        {/* ===== KLİNİK HESAPLAYICILAR ===== */}
+        <section className="relative z-10 py-24 md:py-32 px-6 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <div className="relative rounded-3xl border border-[var(--border)] bg-[var(--card)] p-8 md:p-12 overflow-hidden">
-                {/* Subtle gradient accent */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+              <div className="relative rounded-[2rem] md:rounded-[3rem] bg-[var(--card)] border border-[var(--border)] p-8 md:p-16 overflow-hidden shadow-xl">
+                {/* Dekoratif çizgiler */}
+                <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+                <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
 
-                <div className="text-center mb-10">
-                  <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 text-xs font-medium text-emerald-500 mb-4">
-                    <CheckCircle className="h-3 w-3" />
-                    Kayıt Gerektirmez — Herkese Açık
-                  </div>
-                  <h2 className="text-2xl md:text-3xl font-bold text-[var(--foreground)]">
-                    Klinik Hesaplayıcılar
-                  </h2>
-                  <p className="mt-2 text-sm text-[var(--muted-foreground)] max-w-lg mx-auto">
-                    10+ klinik hesaplayıcı ücretsiz kullanılabilir. Anında hesaplama, kanıta dayalı yorum ve kaynak referanslarıyla.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-                  {calculators.map((c, i) => (
-                    <motion.div
-                      key={c.id}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: i * 0.04 }}
+                <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+                  {/* Sol taraf — açıklama */}
+                  <div className="lg:w-[45%] text-center lg:text-left">
+                    <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-8 uppercase tracking-wider">
+                      <CheckCircle className="w-4 h-4" />
+                      Herkese Açık · Ücretsiz
+                    </div>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--foreground)] mb-6 tracking-tight">
+                      Saniyeler İçinde
+                      <br className="hidden lg:block" /> Klinik Karar
+                    </h2>
+                    <p className="text-[var(--muted-foreground)] text-lg mb-10 leading-relaxed">
+                      Acil servisin kaosu içinde ihtiyacın olan 10+ klinik skorlama sistemi.
+                      Anında hesaplama yapın,{" "}
+                      <strong className="text-[var(--foreground)]">kanıta dayalı güncel yorum</strong>{" "}
+                      ve kaynak referansları alın.
+                    </p>
+                    <Link
+                      href="/hesaplayicilar"
+                      className="group inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-[var(--background)] hover:bg-[var(--card)] text-emerald-600 dark:text-emerald-400 font-semibold transition-all duration-300 border border-[var(--border)] hover:border-emerald-500/30"
                     >
-                      <Link
-                        href={`/hesaplayicilar/${c.id}`}
-                        className="flex items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--background)] px-3 py-3 text-sm text-[var(--foreground)] transition-all duration-200 hover:border-emerald-500/40 hover:shadow-sm hover:shadow-emerald-500/5"
-                      >
-                        <Calculator className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
-                        <span className="truncate">{c.name}</span>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
+                      Tüm Hesaplayıcıları İncele
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+                    </Link>
+                  </div>
 
-                <div className="text-center">
-                  <Link
-                    href="/hesaplayicilar"
-                    className="group inline-flex items-center gap-2 text-sm font-medium text-emerald-500 hover:text-emerald-400 transition-colors"
-                  >
-                    Tümünü Gör
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </Link>
+                  {/* Sağ taraf — grid */}
+                  <div className="lg:w-[55%] grid grid-cols-2 gap-4 w-full">
+                    {calculators.map((calc, i) => (
+                      <motion.div
+                        key={calc.id}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: i * 0.05 }}
+                      >
+                        <Link
+                          href={`/hesaplayicilar/${calc.id}`}
+                          className="group flex items-center gap-4 p-5 rounded-2xl bg-[var(--background)] border border-[var(--border)] hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300 hover:-translate-y-1"
+                        >
+                          <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 group-hover:scale-110 transition-all duration-300">
+                            <Calculator className="w-5 h-5" />
+                          </div>
+                          <span className="text-sm md:text-base font-medium text-[var(--foreground)] truncate transition-colors duration-300">
+                            {calc.name}
+                          </span>
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </FadeIn>
           </div>
         </section>
 
-        {/* ===== WHY ===== */}
-        <section className="relative py-24 md:py-32 overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
-
-          <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        {/* ===== NEDEN ACİLEM? ===== */}
+        <section className="relative z-10 py-24 md:py-32 px-6 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
             <FadeIn>
-              <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] text-center mb-14">
-                Neden AcilEM?
+              <h2 className="text-3xl md:text-5xl font-bold text-[var(--foreground)] text-center mb-20 tracking-tight">
+                Platformun Avantajları
               </h2>
             </FadeIn>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: Shield,
-                  title: "Güvenilir İçerik",
-                  desc: "Güncel kılavuzlara dayalı, uzman denetimli tıbbi içerik. Kanıta dayalı tıp prensipleriyle.",
-                  gradient: "from-blue-500 to-cyan-400",
-                },
-                {
-                  icon: Sparkles,
-                  title: "AI Destekli",
-                  desc: "Claude AI ile kişiselleştirilmiş öğrenme deneyimi. Vaka simülasyonları ve akıllı öneriler.",
-                  gradient: "from-violet-500 to-purple-400",
-                },
-                {
-                  icon: Zap,
-                  title: "Hızlı ve Ücretsiz",
-                  desc: "Tamamen ücretsiz. Kayıt ol, hemen kullanmaya başla. Reklamsız, aboneliksiz.",
-                  gradient: "from-amber-500 to-orange-400",
-                },
-              ].map((item, i) => (
-                <FadeIn key={item.title} delay={i * 0.1}>
-                  <div className="group relative rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 text-center overflow-hidden transition-all duration-300 hover:border-blue-500/20 hover:shadow-lg hover:shadow-blue-500/5">
-                    {/* Top accent line */}
-                    <div className={cn(
-                      "absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300",
-                      item.gradient
-                    )} />
-
-                    <div className={cn(
-                      "mx-auto mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br",
-                      item.gradient
-                    )}>
-                      <item.icon className="h-7 w-7 text-white" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {features.map((f, i) => (
+                <FadeIn key={f.title} delay={i * 0.1}>
+                  <div
+                    className={cn(
+                      "group flex flex-col items-center text-center p-10 rounded-[2rem]",
+                      "bg-[var(--card)] border border-[var(--border)] backdrop-blur-sm",
+                      "transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl",
+                      f.border,
+                    )}
+                  >
+                    <div
+                      className={cn(
+                        "w-20 h-20 rounded-3xl flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3",
+                        f.iconBg,
+                      )}
+                    >
+                      <f.icon className={cn("w-10 h-10", f.iconColor)} />
                     </div>
-                    <h3 className="text-lg font-semibold text-[var(--foreground)] mb-2">{item.title}</h3>
-                    <p className="text-sm text-[var(--muted-foreground)] leading-relaxed">{item.desc}</p>
+                    <h3 className="text-2xl font-bold text-[var(--foreground)] mb-4 tracking-tight">
+                      {f.title}
+                    </h3>
+                    <p className="text-[var(--muted-foreground)] leading-relaxed">{f.desc}</p>
                   </div>
                 </FadeIn>
               ))}
@@ -324,28 +411,28 @@ export default function HomePage() {
         </section>
 
         {/* ===== CTA ===== */}
-        <section className="py-24 md:py-32">
-          <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+        <section className="relative z-10 py-24 md:py-32 px-6 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-7xl">
             <FadeIn>
               <div className="text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] mb-4">
                   Eğitimine bugün başla
                 </h2>
                 <p className="text-[var(--muted-foreground)] max-w-md mx-auto mb-10">
-                  Ücretsiz kayıt ol, admin onayından sonra tüm modüllere eriş.
-                  Klinik hesaplayıcılar şimdiden kullanıma açık.
+                  Ücretsiz kayıt ol, admin onayından sonra tüm modüllere eriş. Klinik hesaplayıcılar
+                  şimdiden kullanıma açık.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     href="/kayit"
-                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 px-8 py-3.5 text-base font-semibold text-white transition-colors"
+                    className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40"
                   >
                     Ücretsiz Kayıt Ol
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </Link>
                   <Link
                     href="/hesaplayicilar"
-                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--card)] hover:bg-[var(--background)] px-8 py-3.5 text-base font-semibold text-[var(--foreground)] transition-colors"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--card)] hover:bg-[var(--background)] px-8 py-4 text-lg font-semibold text-[var(--foreground)] transition-colors"
                   >
                     Hesaplayıcıları Dene
                   </Link>
