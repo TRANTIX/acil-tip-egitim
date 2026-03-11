@@ -79,11 +79,17 @@
 - [ ] Gamification entegrasyonu (XP)
 - [x] İlk 50 soru (seed data) — data/seed/questions.sql (10 konuda dağılım)
 
-## Faz 5: Prosedür Kılavuzları
-- [ ] procedures + algorithms tabloları
-- [ ] Prosedür sayfası şablonu + checklist
-- [ ] Flowchart render (mermaid.js)
-- [ ] İlk 5 prosedür + 3 algoritma
+## Faz 5: Prosedür Kılavuzları ✅
+- [x] procedures + algorithms tabloları (migration'da zaten mevcut)
+- [x] Procedure + Algorithm TypeScript tipleri — types/index.ts
+- [x] Procedures API route (GET+POST+PATCH) — /api/procedures + /api/procedures/[id]
+- [x] Algorithms API route (GET+POST+PATCH) — /api/algorithms + /api/algorithms/[id]
+- [x] Prosedür listesi sayfası — /prosedurler (tab'lı: prosedürler + algoritmalar, arama, kategori filtresi)
+- [x] Prosedür detay sayfası + checklist — /prosedurler/[id] (adım adım checklist, ilerleme çubuğu, ekipman, endikasyon/kontrendikasyon, ipuçları, komplikasyonlar)
+- [x] Flowchart render (mermaid.js) — components/content/mermaid-chart.tsx (dark theme, async import)
+- [x] Algoritma detay sayfası — /prosedurler/algoritma/[id] (mermaid flowchart + açıklama)
+- [x] İlk 5 prosedür + 3 algoritma seed data — data/seed/procedures.sql
+- [x] Build başarılı (38 sayfa)
 
 ## Faz 6: AI Vaka Simülasyonları
 - [ ] Claude API entegrasyonu (streaming)

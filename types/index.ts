@@ -229,6 +229,35 @@ export interface Debrief {
   created_at: string;
 }
 
+export interface Procedure {
+  id: string;
+  title: string;
+  category: string;
+  indications?: string;
+  contraindications?: string;
+  equipment?: { name: string; optional?: boolean }[];
+  steps: { order: number; title: string; description: string; image_url?: string; warning?: string }[];
+  tips?: string;
+  complications?: string;
+  video_url?: string;
+  references?: string;
+  status: ContentStatus;
+  created_at: string;
+}
+
+export interface Algorithm {
+  id: string;
+  title: string;
+  category: string;
+  flowchart_data: {
+    mermaid: string;
+  };
+  description?: string;
+  references?: string;
+  status: ContentStatus;
+  created_at: string;
+}
+
 export interface DebriefCase {
   id: string;
   debrief_id: string;
