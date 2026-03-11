@@ -153,7 +153,7 @@
 - [x] PWA: Service Worker — offline hesaplayıcılar (10 sayfa precache, network-first strategy, offline fallback)
 - [x] SW kayıt bileşeni — components/ui/sw-register.tsx (sadece production'da aktif)
 - [x] Print CSS — globals.css (@media print, break-inside:avoid, A4 format, renk koruması)
-- [ ] Push notification (sonra)
+- [x] Push notification — web-push (VAPID), SW push/notificationclick handler, /api/push/subscribe + /api/push/send, dashboard toggle bileşeni, push_subscriptions migration
 - [x] Lighthouse optimizasyonu — next.config (image avif/webp, compress, poweredByHeader:false), img lazy loading/decoding async
 - [x] Accessibility kontrolü — skip nav link, aria-expanded/label (navbar, video, quiz, button), focus-visible, prefers-reduced-motion, nav aria-label, aria-busy
-- [x] Build başarılı (52 sayfa)
+- [x] Build başarılı (54 sayfa)

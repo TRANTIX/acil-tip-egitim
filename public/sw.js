@@ -1,4 +1,4 @@
-// AcilEM Service Worker — Offline Hesaplayıcılar ve Kılavuzlar
+// AcilEM Service Worker — Offline Hesaplayıcılar, Kılavuzlar ve Push Notifications
 const CACHE_NAME = "acilem-v1";
 
 // Uygulama kabuğu + offline'da kesinlikle olması gereken sayfalar
@@ -83,5 +83,58 @@ self.addEventListener("fetch", (event) => {
           return new Response("Offline", { status: 503 });
         });
       })
+  );
+});
+
+// Push notification handler
+self.addEventListener("push", (event) => {
+  const defaultData = {
+    title: "AcilEM",
+    body: "Yeni bir bildiriminiz var!",
+    icon: "/icons/icon-192x192.png",
+    badge: "/icons/icon-192x192.png",
+    url: "/dashboard",
+  };
+
+  let data = defaultData;
+  try {
+    if (event.data) {
+      data = { ...defaultData, ...event.data.json() };
+    }
+  } catch {
+    // JSON parse hatası — varsayılan veriyi kullan
+  }
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: data.icon,
+      badge: data.badge,
+      data: { url: data.url },
+      vibrate: [200, 100, 200],
+      tag: data.tag || "acilem-notification",
+      renotify: true,
+    })
+  );
+});
+
+// Bildirime tıklama handler
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+
+  const url = event.notification.data?.url || "/dashboard";
+
+  event.waitUntil(
+    self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((clients) => {
+      // Açık pencere varsa oraya odaklan
+      for (const client of clients) {
+        if (client.url.includes(self.location.origin) && "focus" in client) {
+          client.navigate(url);
+          return client.focus();
+        }
+      }
+      // Yoksa yeni pencere aç
+      return self.clients.openWindow(url);
+    })
   );
 });

@@ -16,6 +16,7 @@ import {
 import { Card } from "@/components/ui/card";
 import { xpProgress, levelTitle, getBadgeByCode } from "@/lib/gamification";
 import { AIMentorWidget } from "./ai-mentor-widget";
+import { PushNotificationToggle } from "@/components/ui/push-notification-toggle";
 import type { Profile } from "@/types";
 
 const modules = [
@@ -72,14 +73,17 @@ export default async function DashboardPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
       {/* Karşılama */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-[var(--foreground)]">
-          Merhaba, {p?.full_name?.split(" ")[0]} 👋
-        </h1>
-        <p className="mt-1 text-[var(--muted-foreground)]">
-          {title && <span className="text-purple-500 font-medium">{title}</span>}
-          {title && " — "}Bugün ne öğrenmek istiyorsun?
-        </p>
+      <div className="mb-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">
+            Merhaba, {p?.full_name?.split(" ")[0]} 👋
+          </h1>
+          <p className="mt-1 text-[var(--muted-foreground)]">
+            {title && <span className="text-purple-500 font-medium">{title}</span>}
+            {title && " — "}Bugün ne öğrenmek istiyorsun?
+          </p>
+        </div>
+        <PushNotificationToggle />
       </div>
 
       {/* Stats */}
