@@ -45,9 +45,18 @@ export async function PATCH(
   }
 
   const body = await request.json();
+  const { title, category, flowchart_data, description, source_references, status } = body;
+  const safeUpdate: Record<string, unknown> = {};
+  if (title !== undefined) safeUpdate.title = title;
+  if (category !== undefined) safeUpdate.category = category;
+  if (flowchart_data !== undefined) safeUpdate.flowchart_data = flowchart_data;
+  if (description !== undefined) safeUpdate.description = description;
+  if (source_references !== undefined) safeUpdate.source_references = source_references;
+  if (status !== undefined && profile.role === "admin") safeUpdate.status = status;
+
   const { data, error } = await supabase
     .from("algorithms")
-    .update(body)
+    .update(safeUpdate)
     .eq("id", id)
     .select()
     .single();

@@ -45,10 +45,20 @@ export async function PATCH(
   }
 
   const body = await request.json();
+  const { topic, difficulty, question_text, question_image, options, explanation, source, status } = body;
+  const safeUpdate: Record<string, unknown> = {};
+  if (topic !== undefined) safeUpdate.topic = topic;
+  if (difficulty !== undefined) safeUpdate.difficulty = difficulty;
+  if (question_text !== undefined) safeUpdate.question_text = question_text;
+  if (question_image !== undefined) safeUpdate.question_image = question_image;
+  if (options !== undefined) safeUpdate.options = options;
+  if (explanation !== undefined) safeUpdate.explanation = explanation;
+  if (source !== undefined) safeUpdate.source = source;
+  if (status !== undefined && profile.role === "admin") safeUpdate.status = status;
 
   const { data, error } = await supabase
     .from("questions")
-    .update(body)
+    .update(safeUpdate)
     .eq("id", id)
     .select()
     .single();

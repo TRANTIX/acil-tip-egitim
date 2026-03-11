@@ -71,9 +71,9 @@ export default async function DashboardPage() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8">
+    <div className="mx-auto max-w-5xl px-4 sm:px-6 py-8 sm:py-12 space-y-8">
       {/* Karşılama */}
-      <div className="mb-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-[var(--foreground)]">
             Merhaba, {p?.full_name?.split(" ")[0]} 👋
@@ -88,8 +88,8 @@ export default async function DashboardPage() {
 
       {/* Stats */}
       {gamification && progress && (
-        <div className="mb-8">
-          <div className="grid grid-cols-3 gap-4 mb-4">
+        <div className="space-y-4">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4">
             <Card padding="sm" className="text-center">
               <div className="flex items-center justify-center gap-1.5 mb-1">
                 <Flame className="h-4 w-4 text-orange-500" />
@@ -129,7 +129,7 @@ export default async function DashboardPage() {
       )}
 
       {/* Rozetler + Son Aktiviteler */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Son Rozetler */}
         <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-4">
           <div className="flex items-center justify-between mb-3">
@@ -197,8 +197,9 @@ export default async function DashboardPage() {
       <AIMentorWidget />
 
       {/* Modüller */}
-      <h2 className="text-lg font-semibold text-[var(--foreground)] mb-4">Modüller</h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <div>
+        <h2 className="text-lg font-semibold text-[var(--foreground)] mb-4">Modüller</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
         {modules.map((m) => (
           <Link key={m.href} href={m.href}>
             <Card padding="md" className="hover:border-blue-800/50 transition-all hover:shadow-md cursor-pointer h-full">
@@ -208,10 +209,11 @@ export default async function DashboardPage() {
             </Card>
           </Link>
         ))}
+        </div>
       </div>
 
       {/* Disclaimer */}
-      <div className="mt-12 rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 text-xs text-[var(--muted-foreground)] text-center">
+      <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 text-xs text-[var(--muted-foreground)] text-center">
         Bu platform yalnızca eğitim amaçlıdır. Klinik kararlar güncel kılavuzlar ve uzman gözetiminde verilmelidir.
       </div>
     </div>

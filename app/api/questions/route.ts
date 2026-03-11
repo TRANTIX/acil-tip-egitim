@@ -7,8 +7,8 @@ export async function GET(request: NextRequest) {
 
   const topic = searchParams.get("topic");
   const difficulty = searchParams.get("difficulty");
-  const limit = parseInt(searchParams.get("limit") || "20");
-  const offset = parseInt(searchParams.get("offset") || "0");
+  const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20") || 20, 1), 100);
+  const offset = Math.max(parseInt(searchParams.get("offset") || "0") || 0, 0);
   const random = searchParams.get("random");
 
   let query = supabase

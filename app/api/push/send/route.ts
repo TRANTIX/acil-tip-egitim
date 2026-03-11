@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { sendPushNotification, type PushPayload } from "@/lib/push";
+import { timingSafeEqual } from "crypto";
+
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
 
 // POST — tüm abonelere veya belirli kullanıcıya bildirim gönder
 // Güvenlik: sadece cron secret veya admin rolü ile çağrılabilir
@@ -10,7 +16,9 @@ export async function POST(request: NextRequest) {
     const cronSecret = process.env.CRON_SECRET;
 
     // Cron secret kontrolü (Vercel cron veya harici tetikleyici)
-    const isCronAuth = cronSecret && authHeader === `Bearer ${cronSecret}`;
+    const isCronAuth = cronSecret && authHeader
+      ? safeCompare(authHeader, `Bearer ${cronSecret}`)
+      : false;
 
     if (!isCronAuth) {
       // Admin kullanıcı kontrolü

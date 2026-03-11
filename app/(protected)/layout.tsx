@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import type { Profile } from "@/types";
@@ -12,7 +13,9 @@ export default async function ProtectedLayout({ children }: { children: React.Re
     redirect("/giris");
   }
 
-  const { data: profile } = await supabase
+  // RLS anon key ile profil okunamıyor olabilir — admin client ile oku
+  const adminSupabase = createAdminClient();
+  const { data: profile } = await adminSupabase
     .from("profiles")
     .select("*")
     .eq("id", user.id)

@@ -47,10 +47,15 @@ export async function PATCH(
   }
 
   const body = await request.json();
+  const { overall_learning, what_would_change, mentor_question } = body;
+  const safeUpdate: Record<string, unknown> = {};
+  if (overall_learning !== undefined) safeUpdate.overall_learning = overall_learning;
+  if (what_would_change !== undefined) safeUpdate.what_would_change = what_would_change;
+  if (mentor_question !== undefined) safeUpdate.mentor_question = mentor_question;
 
   const { data, error } = await supabase
     .from("debriefs")
-    .update(body)
+    .update(safeUpdate)
     .eq("id", id)
     .eq("user_id", user.id)
     .select()

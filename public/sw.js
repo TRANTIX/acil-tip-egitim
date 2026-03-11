@@ -122,19 +122,24 @@ self.addEventListener("push", (event) => {
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
 
-  const url = event.notification.data?.url || "/dashboard";
+  // Güvenlik: sadece aynı origin relative path'lere izin ver
+  const rawUrl = event.notification.data?.url || "/dashboard";
+  const url = (typeof rawUrl === "string" && rawUrl.startsWith("/") && !rawUrl.startsWith("//"))
+    ? rawUrl
+    : "/dashboard";
 
   event.waitUntil(
     self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((clients) => {
       // Açık pencere varsa oraya odaklan
+      const fullUrl = self.location.origin + url;
       for (const client of clients) {
         if (client.url.includes(self.location.origin) && "focus" in client) {
-          client.navigate(url);
+          client.navigate(fullUrl);
           return client.focus();
         }
       }
       // Yoksa yeni pencere aç
-      return self.clients.openWindow(url);
+      return self.clients.openWindow(fullUrl);
     })
   );
 });

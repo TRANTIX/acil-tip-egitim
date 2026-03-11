@@ -42,9 +42,16 @@ export async function PATCH(
   }
 
   const body = await request.json();
+  const { completed, completed_at, score, feedback } = body;
+  const safeUpdate: Record<string, unknown> = {};
+  if (completed !== undefined) safeUpdate.completed = completed;
+  if (completed_at !== undefined) safeUpdate.completed_at = completed_at;
+  if (score !== undefined) safeUpdate.score = score;
+  if (feedback !== undefined) safeUpdate.feedback = feedback;
+
   const { data, error } = await supabase
     .from("simulation_sessions")
-    .update(body)
+    .update(safeUpdate)
     .eq("id", id)
     .eq("user_id", user.id)
     .select()

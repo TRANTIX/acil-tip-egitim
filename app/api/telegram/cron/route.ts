@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { timingSafeEqual } from "crypto";
 import { sendMessage, escapeHtml } from "@/lib/telegram";
 
 // ==========================================
@@ -7,13 +8,22 @@ import { sendMessage, escapeHtml } from "@/lib/telegram";
 // Vercel Cron veya harici cron servisiyle çağrılır
 // ==========================================
 
-export async function GET(request: NextRequest) {
-  // Güvenlik: Authorization header veya secret query param kontrolü
-  const authHeader = request.headers.get("authorization");
-  const secret = request.nextUrl.searchParams.get("secret");
-  const cronSecret = process.env.CRON_SECRET || process.env.TELEGRAM_BOT_TOKEN;
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
 
-  if (authHeader !== `Bearer ${cronSecret}` && secret !== cronSecret) {
+export async function GET(request: NextRequest) {
+  // Güvenlik: Authorization header kontrolü (sadece CRON_SECRET)
+  const cronSecret = process.env.CRON_SECRET;
+  if (!cronSecret) {
+    return NextResponse.json({ error: "CRON_SECRET yapılandırılmamış." }, { status: 500 });
+  }
+
+  const authHeader = request.headers.get("authorization");
+  const bearerToken = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : "";
+
+  if (!bearerToken || !safeCompare(bearerToken, cronSecret)) {
     return NextResponse.json({ error: "Yetkisiz." }, { status: 401 });
   }
 

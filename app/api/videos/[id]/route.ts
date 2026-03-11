@@ -45,10 +45,21 @@ export async function PATCH(
   }
 
   const body = await request.json();
+  const { title, description, category, difficulty, video_url, duration, video_type, tags, status } = body;
+  const safeUpdate: Record<string, unknown> = {};
+  if (title !== undefined) safeUpdate.title = title;
+  if (description !== undefined) safeUpdate.description = description;
+  if (category !== undefined) safeUpdate.category = category;
+  if (difficulty !== undefined) safeUpdate.difficulty = difficulty;
+  if (video_url !== undefined) safeUpdate.video_url = video_url;
+  if (duration !== undefined) safeUpdate.duration = duration;
+  if (video_type !== undefined) safeUpdate.video_type = video_type;
+  if (tags !== undefined) safeUpdate.tags = tags;
+  if (status !== undefined && profile.role === "admin") safeUpdate.status = status;
 
   const { data, error } = await supabase
     .from("videos")
-    .update(body)
+    .update(safeUpdate)
     .eq("id", id)
     .select()
     .single();

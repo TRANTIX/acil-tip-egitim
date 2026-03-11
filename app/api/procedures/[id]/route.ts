@@ -45,9 +45,23 @@ export async function PATCH(
   }
 
   const body = await request.json();
+  const { title, category, indications, contraindications, equipment, steps, tips, complications, video_url, source_references, status } = body;
+  const safeUpdate: Record<string, unknown> = {};
+  if (title !== undefined) safeUpdate.title = title;
+  if (category !== undefined) safeUpdate.category = category;
+  if (indications !== undefined) safeUpdate.indications = indications;
+  if (contraindications !== undefined) safeUpdate.contraindications = contraindications;
+  if (equipment !== undefined) safeUpdate.equipment = equipment;
+  if (steps !== undefined) safeUpdate.steps = steps;
+  if (tips !== undefined) safeUpdate.tips = tips;
+  if (complications !== undefined) safeUpdate.complications = complications;
+  if (video_url !== undefined) safeUpdate.video_url = video_url;
+  if (source_references !== undefined) safeUpdate.source_references = source_references;
+  if (status !== undefined && profile.role === "admin") safeUpdate.status = status;
+
   const { data, error } = await supabase
     .from("procedures")
-    .update(body)
+    .update(safeUpdate)
     .eq("id", id)
     .select()
     .single();

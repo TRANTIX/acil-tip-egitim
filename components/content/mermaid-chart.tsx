@@ -44,7 +44,13 @@ export function MermaidChart({ chart }: MermaidChartProps) {
 
         if (cancelled || !containerRef.current) return;
 
-        containerRef.current.innerHTML = svg;
+        // SVG'yi güvenli şekilde enjekte et — script etiketlerini temizle
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(svg, "image/svg+xml");
+        doc.querySelectorAll("script, foreignObject").forEach((el) => el.remove());
+        containerRef.current.replaceChildren();
+        const svgEl = doc.documentElement;
+        containerRef.current.appendChild(document.importNode(svgEl, true));
         setLoading(false);
       } catch (err) {
         if (!cancelled) {

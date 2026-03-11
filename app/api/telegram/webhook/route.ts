@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { timingSafeEqual } from "crypto";
 import {
   sendMessage,
   parseCommand,
@@ -11,10 +12,16 @@ import {
 // Telegram Webhook Handler
 // ==========================================
 
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
+
 export async function POST(request: NextRequest) {
-  // Basit token doğrulama (URL'de secret)
-  const secret = request.nextUrl.searchParams.get("secret");
-  if (secret !== process.env.TELEGRAM_BOT_TOKEN) {
+  // Token doğrulama (timing-safe)
+  const secret = request.nextUrl.searchParams.get("secret") || "";
+  const token = process.env.TELEGRAM_BOT_TOKEN || "";
+  if (!secret || !token || !safeCompare(secret, token)) {
     return NextResponse.json({ ok: false }, { status: 401 });
   }
 

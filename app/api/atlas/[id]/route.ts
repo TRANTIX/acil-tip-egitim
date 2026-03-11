@@ -45,10 +45,27 @@ export async function PATCH(
   }
 
   const body = await request.json();
+  const { title, atlas_type, category, image_url, annotated_url, normal_url, diagnosis, description, key_findings, difficulty, clinical_context, differential, tags, source, status } = body;
+  const safeUpdate: Record<string, unknown> = {};
+  if (title !== undefined) safeUpdate.title = title;
+  if (atlas_type !== undefined) safeUpdate.atlas_type = atlas_type;
+  if (category !== undefined) safeUpdate.category = category;
+  if (image_url !== undefined) safeUpdate.image_url = image_url;
+  if (annotated_url !== undefined) safeUpdate.annotated_url = annotated_url;
+  if (normal_url !== undefined) safeUpdate.normal_url = normal_url;
+  if (diagnosis !== undefined) safeUpdate.diagnosis = diagnosis;
+  if (description !== undefined) safeUpdate.description = description;
+  if (key_findings !== undefined) safeUpdate.key_findings = key_findings;
+  if (difficulty !== undefined) safeUpdate.difficulty = difficulty;
+  if (clinical_context !== undefined) safeUpdate.clinical_context = clinical_context;
+  if (differential !== undefined) safeUpdate.differential = differential;
+  if (tags !== undefined) safeUpdate.tags = tags;
+  if (source !== undefined) safeUpdate.source = source;
+  if (status !== undefined && profile.role === "admin") safeUpdate.status = status;
 
   const { data, error } = await supabase
     .from("atlas_images")
-    .update(body)
+    .update(safeUpdate)
     .eq("id", id)
     .select()
     .single();

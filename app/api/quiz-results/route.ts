@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   }
 
   const { searchParams } = new URL(request.url);
-  const limit = parseInt(searchParams.get("limit") || "20");
+  const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20") || 20, 1), 100);
 
   const { data, error } = await supabase
     .from("quiz_results")
@@ -34,7 +34,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Yetkisiz erişim." }, { status: 401 });
   }
 
-  const body = await request.json();
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Geçersiz istek gövdesi." }, { status: 400 });
+  }
   const { topic, total_questions, correct_answers, time_spent, question_ids, answers } = body;
 
   if (!total_questions || correct_answers === undefined) {

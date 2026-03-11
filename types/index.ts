@@ -240,7 +240,7 @@ export interface Procedure {
   tips?: string;
   complications?: string;
   video_url?: string;
-  references?: string;
+  source_references?: string;
   status: ContentStatus;
   created_at: string;
 }
@@ -253,7 +253,7 @@ export interface Algorithm {
     mermaid: string;
   };
   description?: string;
-  references?: string;
+  source_references?: string;
   status: ContentStatus;
   created_at: string;
 }

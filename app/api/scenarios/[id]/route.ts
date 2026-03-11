@@ -10,7 +10,7 @@ export async function GET(
 
   const { data, error } = await supabase
     .from("scenarios")
-    .select("*")
+    .select("id, title, category, difficulty, patient_info, initial_vitals, lab_results, imaging_results, tags, status, created_at")
     .eq("id", id)
     .eq("status", "published")
     .single();

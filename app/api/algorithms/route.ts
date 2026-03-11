@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { escapeIlike } from "@/lib/utils";
 
 export async function GET(request: NextRequest) {
   const supabase = await createClient();
@@ -7,8 +8,8 @@ export async function GET(request: NextRequest) {
 
   const category = searchParams.get("category");
   const search = searchParams.get("search");
-  const limit = parseInt(searchParams.get("limit") || "50");
-  const offset = parseInt(searchParams.get("offset") || "0");
+  const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "50") || 50, 1), 100);
+  const offset = Math.max(parseInt(searchParams.get("offset") || "0") || 0, 0);
 
   let query = supabase
     .from("algorithms")
@@ -18,7 +19,7 @@ export async function GET(request: NextRequest) {
     .range(offset, offset + limit - 1);
 
   if (category) query = query.eq("category", category);
-  if (search) query = query.ilike("title", `%${search}%`);
+  if (search) query = query.ilike("title", `%${escapeIlike(search)}%`);
 
   const { data, error } = await query;
 
@@ -48,7 +49,7 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { title, category, flowchart_data, description, references } = body;
+  const { title, category, flowchart_data, description, source_references } = body;
 
   if (!title || !category || !flowchart_data) {
     return NextResponse.json({ error: "Zorunlu alanlar eksik." }, { status: 400 });
@@ -57,7 +58,7 @@ export async function POST(request: NextRequest) {
   const { data, error } = await supabase
     .from("algorithms")
     .insert({
-      title, category, flowchart_data, description, references,
+      title, category, flowchart_data, description, source_references,
       status: profile.role === "admin" ? "published" : "draft",
     })
     .select()

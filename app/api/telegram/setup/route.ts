@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 import { setWebhook, deleteWebhook } from "@/lib/telegram";
 
 // ==========================================
@@ -7,11 +8,17 @@ import { setWebhook, deleteWebhook } from "@/lib/telegram";
 // Silmek için: GET /api/telegram/setup?secret=BOT_TOKEN&action=delete
 // ==========================================
 
-export async function GET(request: NextRequest) {
-  const secret = request.nextUrl.searchParams.get("secret");
-  const action = request.nextUrl.searchParams.get("action");
+function safeCompare(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  return timingSafeEqual(Buffer.from(a), Buffer.from(b));
+}
 
-  if (secret !== process.env.TELEGRAM_BOT_TOKEN) {
+export async function GET(request: NextRequest) {
+  const secret = request.nextUrl.searchParams.get("secret") || "";
+  const action = request.nextUrl.searchParams.get("action");
+  const token = process.env.TELEGRAM_BOT_TOKEN || "";
+
+  if (!secret || !token || !safeCompare(secret, token)) {
     return NextResponse.json({ error: "Yetkisiz." }, { status: 401 });
   }
 

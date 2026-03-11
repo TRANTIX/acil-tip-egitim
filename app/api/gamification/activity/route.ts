@@ -16,7 +16,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Yetkisiz erişim." }, { status: 401 });
   }
 
-  const body = await request.json();
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Geçersiz istek gövdesi." }, { status: 400 });
+  }
   const { activity_type, content_id, metadata } = body as {
     activity_type: ActivityType;
     content_id?: string;

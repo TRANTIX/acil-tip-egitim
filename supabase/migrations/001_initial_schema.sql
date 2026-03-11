@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS public.procedures (
   tips TEXT,
   complications TEXT,
   video_url TEXT,
-  references TEXT,
+  source_references TEXT,
   status TEXT DEFAULT 'published',
   created_at TIMESTAMPTZ DEFAULT now()
 );
@@ -190,7 +190,7 @@ CREATE TABLE IF NOT EXISTS public.algorithms (
   category TEXT NOT NULL,
   flowchart_data JSONB NOT NULL,
   description TEXT,
-  references TEXT,
+  source_references TEXT,
   status TEXT DEFAULT 'published',
   created_at TIMESTAMPTZ DEFAULT now()
 );

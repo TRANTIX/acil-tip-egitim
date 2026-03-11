@@ -5,7 +5,7 @@
 -- PROSEDÜRLER (5 adet)
 -- =====================================================
 
-INSERT INTO public.procedures (title, category, indications, contraindications, equipment, steps, tips, complications, video_url, "references", status)
+INSERT INTO public.procedures (title, category, indications, contraindications, equipment, steps, tips, complications, video_url, source_references, status)
 VALUES
 
 -- 1. Endotrakeal Entübasyon
@@ -165,7 +165,7 @@ Petitpas F, et al. Crit Care 2016',
 -- ALGORİTMALAR (3 adet)
 -- =====================================================
 
-INSERT INTO public.algorithms (title, category, flowchart_data, description, "references", status)
+INSERT INTO public.algorithms (title, category, flowchart_data, description, source_references, status)
 VALUES
 
 -- 1. Kardiyak Arrest Algoritması (ACLS)

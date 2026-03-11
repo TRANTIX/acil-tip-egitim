@@ -10,8 +10,8 @@ export async function GET(request: NextRequest) {
   }
 
   const { searchParams } = new URL(request.url);
-  const limit = parseInt(searchParams.get("limit") || "20");
-  const offset = parseInt(searchParams.get("offset") || "0");
+  const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20") || 20, 1), 100);
+  const offset = Math.max(parseInt(searchParams.get("offset") || "0") || 0, 0);
 
   const { data, error } = await supabase
     .from("debriefs")
@@ -35,7 +35,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Yetkisiz erişim." }, { status: 401 });
   }
 
-  const body = await request.json();
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Geçersiz istek gövdesi." }, { status: 400 });
+  }
   const { shift_date, shift_location, shift_duration, overall_learning, what_would_change, mentor_question, cases } = body;
 
   if (!shift_date || !shift_location) {

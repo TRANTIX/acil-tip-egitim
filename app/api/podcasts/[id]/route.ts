@@ -45,10 +45,22 @@ export async function PATCH(
   }
 
   const body = await request.json();
+  const { title, description, category, difficulty, audio_url, duration, episode_number, format, tags, status } = body;
+  const safeUpdate: Record<string, unknown> = {};
+  if (title !== undefined) safeUpdate.title = title;
+  if (description !== undefined) safeUpdate.description = description;
+  if (category !== undefined) safeUpdate.category = category;
+  if (difficulty !== undefined) safeUpdate.difficulty = difficulty;
+  if (audio_url !== undefined) safeUpdate.audio_url = audio_url;
+  if (duration !== undefined) safeUpdate.duration = duration;
+  if (episode_number !== undefined) safeUpdate.episode_number = episode_number;
+  if (format !== undefined) safeUpdate.format = format;
+  if (tags !== undefined) safeUpdate.tags = tags;
+  if (status !== undefined && profile.role === "admin") safeUpdate.status = status;
 
   const { data, error } = await supabase
     .from("podcasts")
-    .update(body)
+    .update(safeUpdate)
     .eq("id", id)
     .select()
     .single();

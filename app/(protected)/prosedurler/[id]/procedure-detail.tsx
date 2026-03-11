@@ -215,14 +215,14 @@ export function ProcedureDetail({ procedure }: Props) {
       )}
 
       {/* Kaynaklar */}
-      {procedure.references && (
+      {procedure.source_references && (
         <section className="rounded-lg border border-[var(--border)] p-4">
           <h2 className="mb-2 flex items-center gap-2 text-sm font-semibold text-[var(--foreground)]">
             <BookOpen className="h-4 w-4 text-[var(--muted-foreground)]" />
             Kaynaklar
           </h2>
           <p className="text-sm text-[var(--muted-foreground)] whitespace-pre-line">
-            {procedure.references}
+            {procedure.source_references}
           </p>
         </section>
       )}
