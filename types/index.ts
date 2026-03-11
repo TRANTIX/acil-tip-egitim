@@ -270,3 +270,14 @@ export interface DebriefCase {
   ai_recommendations?: unknown;
   created_at: string;
 }
+
+export interface ExperienceMap {
+  id: string;
+  user_id: string;
+  category: string;
+  subcategory?: string;
+  case_count: number;
+  last_seen?: string;
+  confidence_level: "beginner" | "developing" | "competent" | "proficient";
+  updated_at: string;
+}

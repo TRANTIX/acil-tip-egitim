@@ -106,12 +106,19 @@
 - [ ] Performans değerlendirme + geri bildirim (ideal_actions karşılaştırması — sonra)
 - [x] Build başarılı (40 sayfa)
 
-## Faz 7: Nöbet Sonu Debrief
-- [ ] debriefs + debrief_cases + experience_map tabloları
-- [ ] Debrief formu (dinamik vaka ekleme)
-- [ ] AI analiz ve öneri sistemi
-- [ ] Deneyim haritası görselleştirmesi
-- [ ] PDF export
+## Faz 7: Nöbet Sonu Debrief ✅
+- [x] debriefs + debrief_cases + experience_map tabloları (migration'da zaten mevcut)
+- [x] ExperienceMap TypeScript tipi — types/index.ts
+- [x] Debriefs API route (GET+POST) — /api/debriefs (vaka ekleme + deneyim haritası upsert)
+- [x] Debriefs detail API route (GET+PATCH) — /api/debriefs/[id]
+- [x] AI analiz endpoint — /api/debriefs/[id]/analyze (Claude sonnet, JSON analiz)
+- [x] Experience Map API route (GET+POST) — /api/experience-map (upsert mantığı)
+- [x] Debrief listesi + yeni debrief formu — /debrief (dinamik vaka ekleme/çıkarma, duygu + zorluk alanı)
+- [x] Debrief detay sayfası + AI analiz — /debrief/[id] (vaka detayları, genel değerlendirme, AI analiz butonu)
+- [x] AI analiz: özet, güçlü yönler, gelişim alanları, çalışma konuları, mentör yanıtı, motivasyon
+- [x] Deneyim haritası görselleştirmesi — /debrief/deneyim-haritasi (kategori filtresi, güven seviyeleri, istatistikler)
+- [x] Build başarılı (43 sayfa)
+- [ ] PDF export (sonra)
 
 ## Faz 8: Gamification
 - [ ] user_gamification + user_badges + activity_log tabloları
