@@ -134,9 +134,17 @@ export default function AcilEMApp() {
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300 group-hover:scale-105">
-              <Activity className="w-6 h-6 text-white" />
-            </div>
+            <svg className="w-10 h-10 transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_15px_rgba(37,99,235,0.3)] group-hover:drop-shadow-[0_0_20px_rgba(34,211,238,0.5)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="100" rx="24" fill="url(#pulse-grad-nav)" />
+              <path d="M15 55 H30 L40 25 L55 80 L65 50 H75" stroke="white" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M85 40 C85 45.5228 89.4772 50 95 50 C89.4772 50 85 54.4772 85 60 C85 54.4772 80.5228 50 75 50 C80.5228 50 85 45.5228 85 40 Z" fill="white"/>
+              <defs>
+                <linearGradient id="pulse-grad-nav" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#2563EB" />
+                  <stop offset="1" stopColor="#22D3EE" />
+                </linearGradient>
+              </defs>
+            </svg>
             <span className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
               AcilEM
             </span>
@@ -367,9 +375,17 @@ export default function AcilEMApp() {
       <footer className="border-t border-slate-800/50 bg-[#020617] pt-20 pb-10 px-6 relative z-10 w-full shrink-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-               <Activity className="w-5 h-5 text-white" />
-            </div>
+            <svg className="w-8 h-8 transition-transform group-hover:scale-110" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="100" height="100" rx="24" fill="url(#pulse-grad-footer)" />
+              <path d="M15 55 H30 L40 25 L55 80 L65 50 H75" stroke="white" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M85 40 C85 45.5228 89.4772 50 95 50 C89.4772 50 85 54.4772 85 60 C85 54.4772 80.5228 50 75 50 C80.5228 50 85 45.5228 85 40 Z" fill="white"/>
+              <defs>
+                <linearGradient id="pulse-grad-footer" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#2563EB" />
+                  <stop offset="1" stopColor="#22D3EE" />
+                </linearGradient>
+              </defs>
+            </svg>
             <span className="font-bold text-xl tracking-tight">AcilEM</span>
           </div>
           <p className="text-sm text-slate-500 text-center md:text-left font-light max-w-md">

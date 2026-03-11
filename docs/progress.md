@@ -22,7 +22,7 @@
 - [x] API route: auth callback — /api/auth/callback
 - [x] Supabase SQL migration — supabase/migrations/001_initial_schema.sql
 - [x] PWA manifest — public/manifest.json
-- [ ] Vercel'e deploy (kullanıcı yapacak)
+- [x] Vercel'e deploy (kullanıcı yapacak)
 - [ ] public/icons/ klasörüne PWA ikonları ekle (kullanıcı yapacak)
 
 **NOT (Next.js 16):** middleware.ts → proxy.ts, fonksiyon adı `proxy` olmalı
