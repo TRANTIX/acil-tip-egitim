@@ -77,7 +77,7 @@
 - [x] Sınav modu (zamanlı) — 90sn/soru countdown, süre dolunca otomatik geçiş
 - [x] Sonuç ekranı + açıklamalar — skor özeti, soru detayları (expandable), doğru/yanlış gösterimi
 - [ ] Gamification entegrasyonu (XP)
-- [ ] İlk 50 soru (seed data)
+- [x] İlk 50 soru (seed data) — data/seed/questions.sql (10 konuda dağılım)
 
 ## Faz 5: Prosedür Kılavuzları
 - [ ] procedures + algorithms tabloları
