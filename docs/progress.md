@@ -91,14 +91,20 @@
 - [x] İlk 5 prosedür + 3 algoritma seed data — data/seed/procedures.sql
 - [x] Build başarılı (38 sayfa)
 
-## Faz 6: AI Vaka Simülasyonları
-- [ ] Claude API entegrasyonu (streaming)
-- [ ] scenarios + simulation_sessions tabloları
-- [ ] Chat arayüzü + vital bulgu paneli
-- [ ] Aksiyon butonları
-- [ ] Performans değerlendirme + geri bildirim
-- [ ] Rate limiting (günlük 5 simülasyon/kullanıcı)
-- [ ] İlk 5 senaryo
+## Faz 6: AI Vaka Simülasyonları ✅
+- [x] Claude API entegrasyonu (streaming) — SSE stream, @anthropic-ai/sdk
+- [x] scenarios + simulation_sessions tabloları (migration'da zaten mevcut)
+- [x] Scenarios API route (GET) — /api/scenarios + /api/scenarios/[id]
+- [x] Simulations API route (GET+POST+PATCH) — /api/simulations + /api/simulations/[id]
+- [x] Streaming chat endpoint — /api/simulations/[id]/chat (Claude sonnet, SSE)
+- [x] Senaryo listesi sayfası — /simulasyon (kategori, zorluk filtresi, kart grid)
+- [x] Chat arayüzü + vital bulgu paneli — /simulasyon/[id] (sidebar vitals + mobil vitals bar)
+- [x] Aksiyon butonları — 8 hızlı aksiyon (fizik muayene, IV, monitör, EKG, lab, görüntüleme, O₂, SF)
+- [x] Vital bulgu güncelleme — AI yanıtından [VITALS:...] parse, anormal değer kırmızı uyarı
+- [x] Rate limiting (günlük 5 simülasyon/kullanıcı) — POST /api/simulations'da kontrol
+- [x] İlk 5 senaryo seed data — data/seed/scenarios.sql (STEMI, sepsis, kafa travması, ped.anafilaksi, masif PE)
+- [ ] Performans değerlendirme + geri bildirim (ideal_actions karşılaştırması — sonra)
+- [x] Build başarılı (40 sayfa)
 
 ## Faz 7: Nöbet Sonu Debrief
 - [ ] debriefs + debrief_cases + experience_map tabloları
