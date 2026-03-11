@@ -131,10 +131,11 @@
 - [x] Dashboard güncellendi — XP ilerleme çubuğu, seviye başlığı, son rozetler + son aktiviteler
 - [x] Build başarılı (44 sayfa)
 
-## Faz 9: AI Eğitmen
-- [ ] Kullanıcı performans verisi aggregation
-- [ ] Claude API kişiselleştirilmiş analiz
-- [ ] Dashboard widget + haftalık plan
+## Faz 9: AI Eğitmen ✅
+- [x] Kullanıcı performans verisi aggregation — quiz sonuçları, aktivite dağılımı, deneyim haritası, debriefler
+- [x] Claude API kişiselleştirilmiş analiz — /api/ai-mentor (güçlü yönler, odak alanları, haftalık plan, ipucu, motivasyon)
+- [x] Dashboard widget — ai-mentor-widget.tsx (butonla tetiklenen, haftalık 7 günlük plan, güçlü yönler, odak alanları)
+- [x] Build başarılı (44 sayfa)
 
 ## Faz 10: Telegram Bot
 - [ ] bot_subscribers tablosu

@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { xpProgress, levelTitle, getBadgeByCode } from "@/lib/gamification";
+import { AIMentorWidget } from "./ai-mentor-widget";
 import type { Profile } from "@/types";
 
 const modules = [
@@ -187,6 +188,9 @@ export default async function DashboardPage() {
           )}
         </div>
       </div>
+
+      {/* AI Eğitmen */}
+      <AIMentorWidget />
 
       {/* Modüller */}
       <h2 className="text-lg font-semibold text-[var(--foreground)] mb-4">Modüller</h2>
