@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { Spotlight, GridBackground, DotPattern } from "@/components/ui/spotlight";
+import { GridBackground, DotPattern } from "@/components/ui/spotlight";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { FadeIn, AnimatedCounter, GradientText, ShimmerButton } from "@/components/ui/animated-text";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,6 @@ const modules = [
     desc: "Gerçekçi hasta senaryolarıyla interaktif pratik. Claude AI ile adım adım vaka çözümü.",
     gradient: "bg-gradient-to-br from-blue-500 to-cyan-400",
     iconBg: "bg-blue-500/10 text-blue-500",
-    span: "",
   },
   {
     icon: Calculator,
@@ -39,7 +38,6 @@ const modules = [
     desc: "GKS, HEART, Wells, CURB-65, qSOFA ve 10+ skor. Anında hesapla, kanıta dayalı yorum al.",
     gradient: "bg-gradient-to-br from-emerald-500 to-teal-400",
     iconBg: "bg-emerald-500/10 text-emerald-500",
-    span: "",
   },
   {
     icon: BookOpen,
@@ -47,7 +45,6 @@ const modules = [
     desc: "Yazılı konu anlatımları, podcastler, videolar ve görsel atlas — tek platformda.",
     gradient: "bg-gradient-to-br from-violet-500 to-purple-400",
     iconBg: "bg-violet-500/10 text-violet-500",
-    span: "",
   },
   {
     icon: ClipboardList,
@@ -55,7 +52,6 @@ const modules = [
     desc: "Konu bazlı sorularla bilgini test et. Pratik ve zamanlı sınav modları.",
     gradient: "bg-gradient-to-br from-amber-500 to-orange-400",
     iconBg: "bg-amber-500/10 text-amber-500",
-    span: "",
   },
   {
     icon: Stethoscope,
@@ -63,7 +59,6 @@ const modules = [
     desc: "Adım adım prosedür rehberleri, algoritmalar ve interaktif checklist'ler.",
     gradient: "bg-gradient-to-br from-rose-500 to-pink-400",
     iconBg: "bg-rose-500/10 text-rose-500",
-    span: "",
   },
   {
     icon: Activity,
@@ -71,7 +66,6 @@ const modules = [
     desc: "Her nöbet sonrası vaka analizi yap. AI destekli öğrenme önerileri ve deneyim haritası.",
     gradient: "bg-gradient-to-br from-sky-500 to-blue-400",
     iconBg: "bg-sky-500/10 text-sky-500",
-    span: "",
   },
   {
     icon: Award,
@@ -79,7 +73,6 @@ const modules = [
     desc: "XP kazan, seviye atla, rozetler topla, streak sürdür.",
     gradient: "bg-gradient-to-br from-yellow-500 to-amber-400",
     iconBg: "bg-yellow-500/10 text-yellow-500",
-    span: "",
   },
   {
     icon: Bot,
@@ -87,7 +80,6 @@ const modules = [
     desc: "Günlük pearl ve quiz soruları Telegram'a gelsin.",
     gradient: "bg-gradient-to-br from-indigo-500 to-blue-400",
     iconBg: "bg-indigo-500/10 text-indigo-500",
-    span: "",
   },
 ];
 
@@ -114,14 +106,14 @@ export default function HomePage() {
     <div className="flex min-h-screen flex-col bg-[var(--background)]">
       <Navbar user={null} />
 
-      <main className="flex-1">
+      <main className="flex min-h-0 flex-1 flex-col w-full">
         {/* ===== HERO ===== */}
         <section className="relative overflow-hidden pt-24 pb-20 md:pt-36 md:pb-32 lg:pt-44 lg:pb-40">
-          {/* Background */}
+          {/* Background decorations — contained by overflow-hidden */}
           <GridBackground />
-          <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="rgba(59,130,246,0.6)" />
-          <div className="absolute top-1/4 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="pointer-events-none absolute inset-0 spotlight" />
+          <div className="pointer-events-none absolute top-1/4 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-[120px]" />
+          <div className="pointer-events-none absolute bottom-0 left-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-[100px]" />
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12 text-center">
             {/* Heading */}
@@ -210,7 +202,6 @@ export default function HomePage() {
                   description={m.desc}
                   gradient={m.gradient}
                   index={i}
-                  className={m.span}
                   icon={
                     <div className={cn("inline-flex h-10 w-10 items-center justify-center rounded-xl", m.iconBg)}>
                       <m.icon className="h-5 w-5" />
@@ -279,7 +270,7 @@ export default function HomePage() {
 
         {/* ===== WHY ===== */}
         <section className="relative py-24 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
 
           <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
             <FadeIn>
