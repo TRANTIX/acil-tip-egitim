@@ -42,7 +42,7 @@ export function Navbar({ user }: NavbarProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--card)]/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--card)]/80 backdrop-blur-sm print:hidden">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
         {/* Logo */}
         <Link href={user ? "/dashboard" : "/"} className="flex items-center gap-2 font-bold text-xl">
@@ -53,7 +53,7 @@ export function Navbar({ user }: NavbarProps) {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-1" aria-label="Ana menü">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -113,6 +113,9 @@ export function Navbar({ user }: NavbarProps) {
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden rounded-lg p-2 text-[var(--muted-foreground)] hover:bg-[var(--border)] transition-colors"
+            aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -121,7 +124,7 @@ export function Navbar({ user }: NavbarProps) {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-[var(--border)] bg-[var(--card)] px-4 pb-4 pt-2">
+        <div id="mobile-menu" className="md:hidden border-t border-[var(--border)] bg-[var(--card)] px-4 pb-4 pt-2" role="navigation" aria-label="Mobil menü">
           <nav className="flex flex-col gap-1">
             {links.map((link) => (
               <Link

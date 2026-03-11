@@ -56,6 +56,24 @@ a {
   text-decoration: none;
 }
 
+/* Focus visible — klavye navigasyonu için belirgin focus ring */
+:focus-visible {
+  outline: 2px solid #3B82F6;
+  outline-offset: 2px;
+}
+
+/* Hareket hassasiyeti — vestibüler bozukluk için animasyonları azalt */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -65,4 +83,35 @@ a {
 ::-webkit-scrollbar-thumb {
   background: var(--muted);
   border-radius: 3px;
+}
+
+/* Print styles — PDF export */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Kart ve border renklerini basım için ayarla */
+  [class*="rounded-xl"] {
+    border-color: #d1d5db !important;
+    break-inside: avoid;
+  }
+
+  [class*="bg-purple"],
+  [class*="bg-green"],
+  [class*="bg-yellow"],
+  [class*="bg-blue"] {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Sayfa kenar boşlukları */
+  @page {
+    margin: 1.5cm;
+    size: A4;
+  }
 }

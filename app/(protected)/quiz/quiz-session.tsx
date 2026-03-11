@@ -6,6 +6,14 @@ import { QuestionCard } from "./question-card";
 import { QuizResults } from "./quiz-results";
 import { Loader2, ArrowLeft } from "lucide-react";
 
+interface GamificationResult {
+  xp_earned: number;
+  xp_total: number;
+  level: number;
+  streak: number;
+  new_badges: string[];
+}
+
 interface QuizSessionProps {
   mode: "pratik" | "sinav";
   topic: string;
@@ -27,6 +35,7 @@ export function QuizSession({ mode, topic, count, onExit }: QuizSessionProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
   const [finished, setFinished] = useState(false);
+  const [gamificationResult, setGamificationResult] = useState<GamificationResult | null>(null);
   const [startTime] = useState(Date.now());
 
   useEffect(() => {
@@ -125,6 +134,7 @@ export function QuizSession({ mode, topic, count, onExit }: QuizSessionProps) {
     const correctCount = finalAnswers.filter((a) => a.is_correct).length;
 
     try {
+      // Quiz sonucunu kaydet
       await fetch("/api/quiz-results", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -137,6 +147,25 @@ export function QuizSession({ mode, topic, count, onExit }: QuizSessionProps) {
           answers: finalAnswers,
         }),
       });
+
+      // Gamification: XP kazan
+      const gamRes = await fetch("/api/gamification/activity", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          activity_type: "quiz",
+          metadata: {
+            score: correctCount,
+            total: questions.length,
+            topic: topic || null,
+          },
+        }),
+      });
+
+      if (gamRes.ok) {
+        const gamJson = await gamRes.json();
+        setGamificationResult(gamJson.data);
+      }
     } catch {
       // Sonuç kaydedilemese bile kullanıcıya göster
     }
@@ -174,6 +203,7 @@ export function QuizSession({ mode, topic, count, onExit }: QuizSessionProps) {
         answers={answers}
         totalTime={Math.round((Date.now() - startTime) / 1000)}
         onRestart={onExit}
+        gamification={gamificationResult}
       />
     );
   }

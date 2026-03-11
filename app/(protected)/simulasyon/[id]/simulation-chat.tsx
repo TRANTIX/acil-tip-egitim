@@ -6,6 +6,7 @@ import {
   ArrowLeft, Send, Loader2, Heart, Thermometer,
   Activity, Brain, Wind, Gauge, Stethoscope,
   Syringe, Pill, TestTube, ImageIcon, Clipboard,
+  BarChart3, CheckCircle2, AlertTriangle, Lightbulb, Trophy,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -44,6 +45,18 @@ export function SimulationChat({ scenario }: { scenario: Scenario }) {
   const [error, setError] = useState("");
   const [vitals, setVitals] = useState<Vitals>(scenario.initial_vitals);
   const [completed, setCompleted] = useState(false);
+  const [evaluation, setEvaluation] = useState<{
+    score: number;
+    feedback: {
+      score: number;
+      summary: string;
+      strengths: string[];
+      improvements: string[];
+      missed_critical: string[];
+      tips: string;
+    };
+  } | null>(null);
+  const [evaluating, setEvaluating] = useState(false);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -206,6 +219,24 @@ export function SimulationChat({ scenario }: { scenario: Scenario }) {
     sendMessage(action, true);
   };
 
+  const handleEvaluate = async () => {
+    if (!sessionId || evaluating) return;
+    setEvaluating(true);
+    try {
+      const res = await fetch(`/api/simulations/${sessionId}/evaluate`, {
+        method: "POST",
+      });
+      if (res.ok) {
+        const json = await res.json();
+        setEvaluation(json.data);
+      }
+    } catch {
+      // Hata durumunda sessizce devam et
+    } finally {
+      setEvaluating(false);
+    }
+  };
+
   const cleanContent = (text: string) => {
     return text
       .replace(/\[VITALS:[^\]]+\]/g, "")
@@ -318,13 +349,37 @@ export function SimulationChat({ scenario }: { scenario: Scenario }) {
               </div>
             </form>
           ) : (
-            <div className="border-t border-[var(--border)] p-4 text-center">
-              <Link
-                href="/simulasyon"
-                className="text-sm text-violet-500 hover:underline"
-              >
-                ← Senaryo listesine dön
-              </Link>
+            <div className="border-t border-[var(--border)] p-4">
+              {/* Değerlendirme sonucu */}
+              {evaluation ? (
+                <EvaluationPanel evaluation={evaluation} />
+              ) : (
+                <div className="flex flex-col items-center gap-3">
+                  <button
+                    onClick={handleEvaluate}
+                    disabled={evaluating}
+                    className="flex items-center gap-2 rounded-lg bg-violet-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-violet-700 disabled:opacity-50"
+                  >
+                    {evaluating ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Değerlendiriliyor...
+                      </>
+                    ) : (
+                      <>
+                        <BarChart3 className="h-4 w-4" />
+                        Performansımı Değerlendir
+                      </>
+                    )}
+                  </button>
+                  <Link
+                    href="/simulasyon"
+                    className="text-xs text-[var(--muted-foreground)] hover:text-[var(--foreground)]"
+                  >
+                    ← Senaryo listesine dön
+                  </Link>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -442,6 +497,96 @@ function MobileVital({
       <p className={`text-xs font-mono font-bold ${alert ? "text-red-500" : "text-[var(--foreground)]"}`}>
         {value}{unit || ""}
       </p>
+    </div>
+  );
+}
+
+function EvaluationPanel({ evaluation }: {
+  evaluation: {
+    score: number;
+    feedback: {
+      summary: string;
+      strengths: string[];
+      improvements: string[];
+      missed_critical: string[];
+      tips: string;
+    };
+  };
+}) {
+  const { score, feedback } = evaluation;
+
+  const scoreColor = score >= 80 ? "text-green-500" : score >= 60 ? "text-yellow-500" : "text-red-500";
+  const scoreBg = score >= 80 ? "bg-green-500/10" : score >= 60 ? "bg-yellow-500/10" : "bg-red-500/10";
+
+  return (
+    <div className="space-y-4 max-h-[60vh] overflow-y-auto">
+      {/* Puan */}
+      <div className="flex items-center gap-4">
+        <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full ${scoreBg}`}>
+          <span className={`text-2xl font-bold ${scoreColor}`}>{score}</span>
+        </div>
+        <div className="flex-1">
+          <div className="flex items-center gap-2">
+            <Trophy className={`h-4 w-4 ${scoreColor}`} />
+            <span className="text-sm font-semibold text-[var(--foreground)]">Performans Değerlendirmesi</span>
+          </div>
+          <p className="mt-1 text-xs text-[var(--muted-foreground)]">{feedback.summary}</p>
+        </div>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        {/* Güçlü yönler */}
+        {feedback.strengths.length > 0 && (
+          <div className="rounded-lg border border-green-500/20 bg-green-500/5 p-3">
+            <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-green-500">
+              <CheckCircle2 className="h-3.5 w-3.5" />
+              Güçlü Yönler
+            </div>
+            <ul className="space-y-1">
+              {feedback.strengths.map((s, i) => (
+                <li key={i} className="text-xs text-[var(--foreground)]">• {s}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Gelişim alanları */}
+        {feedback.improvements.length > 0 && (
+          <div className="rounded-lg border border-yellow-500/20 bg-yellow-500/5 p-3">
+            <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-yellow-500">
+              <Lightbulb className="h-3.5 w-3.5" />
+              Gelişim Alanları
+            </div>
+            <ul className="space-y-1">
+              {feedback.improvements.map((s, i) => (
+                <li key={i} className="text-xs text-[var(--foreground)]">• {s}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+
+      {/* Atlanmış kritik adımlar */}
+      {feedback.missed_critical.length > 0 && (
+        <div className="rounded-lg border border-red-500/20 bg-red-500/5 p-3">
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-red-500">
+            <AlertTriangle className="h-3.5 w-3.5" />
+            Atlanmış Kritik Adımlar
+          </div>
+          <ul className="space-y-1">
+            {feedback.missed_critical.map((s, i) => (
+              <li key={i} className="text-xs text-[var(--foreground)]">• {s}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* İpucu */}
+      {feedback.tips && (
+        <p className="text-xs text-[var(--muted-foreground)]">
+          💡 <span className="font-medium">İpucu:</span> {feedback.tips}
+        </p>
+      )}
     </div>
   );
 }

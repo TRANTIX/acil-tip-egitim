@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Question } from "@/types";
-import { Trophy, Clock, Target, RotateCcw, ChevronDown, ChevronUp, Check, X } from "lucide-react";
+import { Trophy, Clock, Target, RotateCcw, ChevronDown, ChevronUp, Check, X, Zap, Flame, Award } from "lucide-react";
 
 interface UserAnswer {
   question_id: string;
@@ -11,17 +11,26 @@ interface UserAnswer {
   time_spent: number;
 }
 
+interface GamificationResult {
+  xp_earned: number;
+  xp_total: number;
+  level: number;
+  streak: number;
+  new_badges: string[];
+}
+
 interface QuizResultsProps {
   mode: "pratik" | "sinav";
   questions: Question[];
   answers: UserAnswer[];
   totalTime: number;
   onRestart: () => void;
+  gamification?: GamificationResult | null;
 }
 
 const OPTION_LETTERS = ["A", "B", "C", "D", "E", "F"];
 
-export function QuizResults({ mode, questions, answers, totalTime, onRestart }: QuizResultsProps) {
+export function QuizResults({ questions, answers, totalTime, onRestart, gamification }: QuizResultsProps) {
   const [expandedQuestion, setExpandedQuestion] = useState<string | null>(null);
 
   const correctCount = answers.filter((a) => a.is_correct).length;
@@ -100,6 +109,39 @@ export function QuizResults({ mode, questions, answers, totalTime, onRestart }: 
           </div>
         </div>
       </div>
+
+      {/* XP ve rozet bilgisi */}
+      {gamification && (
+        <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-4">
+          <div className="flex items-center gap-6 flex-wrap">
+            <div className="flex items-center gap-2">
+              <Zap className="h-5 w-5 text-yellow-500" />
+              <span className="text-sm text-[var(--foreground)]">
+                <span className="font-bold text-yellow-500">+{gamification.xp_earned} XP</span> kazandın
+              </span>
+            </div>
+            {gamification.streak > 0 && (
+              <div className="flex items-center gap-2">
+                <Flame className="h-5 w-5 text-orange-500" />
+                <span className="text-sm text-[var(--foreground)]">
+                  <span className="font-bold text-orange-500">{gamification.streak} gün</span> streak
+                </span>
+              </div>
+            )}
+            <div className="text-sm text-[var(--muted-foreground)]">
+              Seviye {gamification.level} · Toplam {gamification.xp_total} XP
+            </div>
+          </div>
+          {gamification.new_badges.length > 0 && (
+            <div className="mt-3 flex items-center gap-2 border-t border-cyan-500/20 pt-3">
+              <Award className="h-5 w-5 text-purple-500" />
+              <span className="text-sm font-medium text-purple-400">
+                Yeni rozet: {gamification.new_badges.join(", ")}
+              </span>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Soru detayları — sınav modunda her sorunun açıklamasını göster */}
       <div>

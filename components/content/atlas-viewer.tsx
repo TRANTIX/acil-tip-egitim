@@ -128,6 +128,8 @@ export function AtlasViewer({
             alt={title}
             className="max-w-full h-auto"
             draggable={false}
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>

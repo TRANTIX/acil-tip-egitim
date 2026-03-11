@@ -76,7 +76,7 @@
 - [x] Pratik modu — /quiz (soru kartı, anlık açıklama, ilerleme çubuğu)
 - [x] Sınav modu (zamanlı) — 90sn/soru countdown, süre dolunca otomatik geçiş
 - [x] Sonuç ekranı + açıklamalar — skor özeti, soru detayları (expandable), doğru/yanlış gösterimi
-- [ ] Gamification entegrasyonu (XP)
+- [x] Gamification entegrasyonu (XP) — quiz bitişinde /api/gamification/activity çağrısı, sonuç ekranında XP/streak/rozet gösterimi
 - [x] İlk 50 soru (seed data) — data/seed/questions.sql (10 konuda dağılım)
 
 ## Faz 5: Prosedür Kılavuzları ✅
@@ -103,7 +103,7 @@
 - [x] Vital bulgu güncelleme — AI yanıtından [VITALS:...] parse, anormal değer kırmızı uyarı
 - [x] Rate limiting (günlük 5 simülasyon/kullanıcı) — POST /api/simulations'da kontrol
 - [x] İlk 5 senaryo seed data — data/seed/scenarios.sql (STEMI, sepsis, kafa travması, ped.anafilaksi, masif PE)
-- [ ] Performans değerlendirme + geri bildirim (ideal_actions karşılaştırması — sonra)
+- [x] Performans değerlendirme + geri bildirim — /api/simulations/[id]/evaluate (Claude ile ideal_actions karşılaştırması, puan, güçlü yönler, gelişim alanları, atlanmış kritik adımlar, ipucu + gamification XP)
 - [x] Build başarılı (40 sayfa)
 
 ## Faz 7: Nöbet Sonu Debrief ✅
@@ -118,7 +118,7 @@
 - [x] AI analiz: özet, güçlü yönler, gelişim alanları, çalışma konuları, mentör yanıtı, motivasyon
 - [x] Deneyim haritası görselleştirmesi — /debrief/deneyim-haritasi (kategori filtresi, güven seviyeleri, istatistikler)
 - [x] Build başarılı (43 sayfa)
-- [ ] PDF export (sonra)
+- [x] PDF export — debrief detay sayfasında "PDF İndir" butonu (window.print + print CSS, navbar/footer gizleme, A4 format)
 
 ## Faz 8: Gamification ✅
 - [x] user_gamification + user_badges + activity_log tabloları (migration'da zaten mevcut)
@@ -137,14 +137,23 @@
 - [x] Dashboard widget — ai-mentor-widget.tsx (butonla tetiklenen, haftalık 7 günlük plan, güçlü yönler, odak alanları)
 - [x] Build başarılı (44 sayfa)
 
-## Faz 10: Telegram Bot
-- [ ] bot_subscribers tablosu
-- [ ] Telegraf.js kurulumu
-- [ ] Komutlar: /pearl, /soru, /streak, /yardim
-- [ ] Günlük otomatik gönderim (cron)
+## Faz 10: Telegram Bot ✅
+- [x] bot_subscribers tablosu (migration'da zaten mevcut)
+- [x] BotSubscriber TypeScript tipi — types/index.ts
+- [x] Telegram Bot API helper kütüphanesi — lib/telegram/index.ts (sendMessage, setWebhook, parseCommand, escapeHtml)
+- [x] Webhook API route — /api/telegram/webhook (token doğrulama, komut işleme)
+- [x] Komutlar: /start (abone kaydı), /pearl, /soru, /streak, /ayarlar, /yardim
+- [x] /ayarlar komutu — bildirim tercihleri toggle (pearl, soru, içerik), abonelik iptali
+- [x] Günlük otomatik gönderim — /api/telegram/cron (deterministik pearl + quiz seçimi, flood korumalı)
+- [x] Vercel cron config — vercel.json (her gün 05:00 UTC / 08:00 TR)
+- [x] Webhook setup endpoint — /api/telegram/setup (tek seferlik webhook kaydı/silme)
+- [x] Build başarılı
 
 ## Faz 11: Optimizasyon ve PWA
-- [ ] PWA: offline hesaplayıcılar ve kılavuzlar
-- [ ] Push notification
-- [ ] Lighthouse skoru >90
-- [ ] Accessibility kontrolü
+- [x] PWA: Service Worker — offline hesaplayıcılar (10 sayfa precache, network-first strategy, offline fallback)
+- [x] SW kayıt bileşeni — components/ui/sw-register.tsx (sadece production'da aktif)
+- [x] Print CSS — globals.css (@media print, break-inside:avoid, A4 format, renk koruması)
+- [ ] Push notification (sonra)
+- [x] Lighthouse optimizasyonu — next.config (image avif/webp, compress, poweredByHeader:false), img lazy loading/decoding async
+- [x] Accessibility kontrolü — skip nav link, aria-expanded/label (navbar, video, quiz, button), focus-visible, prefers-reduced-motion, nav aria-label, aria-busy
+- [x] Build başarılı (52 sayfa)

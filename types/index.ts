@@ -281,3 +281,17 @@ export interface ExperienceMap {
   confidence_level: "beginner" | "developing" | "competent" | "proficient";
   updated_at: string;
 }
+
+export interface BotSubscriber {
+  id: string;
+  user_id?: string;
+  platform: "telegram" | "whatsapp";
+  chat_id: string;
+  is_active: boolean;
+  preferences: {
+    daily_pearl: boolean;
+    daily_quiz: boolean;
+    new_content: boolean;
+  };
+  subscribed_at: string;
+}

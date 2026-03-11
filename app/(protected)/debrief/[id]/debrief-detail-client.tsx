@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   ArrowLeft, Calendar, MapPin, Clock, Brain, Loader2,
   CheckCircle, AlertTriangle, BookOpen, Sparkles, MessageCircle,
-  ThumbsUp, Frown, Meh, Smile
+  ThumbsUp, Frown, Meh, Smile, FileDown
 } from "lucide-react";
 import type { Debrief, DebriefCase } from "@/types";
 
@@ -121,7 +121,7 @@ export function DebriefDetailClient({ debriefId }: { debriefId: string }) {
       {/* Header */}
       <Link
         href="/debrief"
-        className="mb-6 inline-flex items-center gap-1 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+        className="mb-6 inline-flex items-center gap-1 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors print:hidden"
       >
         <ArrowLeft className="h-4 w-4" />
         Tüm Debriefler
@@ -153,6 +153,13 @@ export function DebriefDetailClient({ debriefId }: { debriefId: string }) {
             </span>
           </div>
         </div>
+        <button
+          onClick={() => window.print()}
+          className="print:hidden inline-flex items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--card)] px-4 py-2 text-sm text-[var(--foreground)] transition-colors hover:bg-[var(--muted)]"
+        >
+          <FileDown className="h-4 w-4" />
+          PDF İndir
+        </button>
       </div>
 
       {/* Vakalar */}
@@ -229,7 +236,7 @@ export function DebriefDetailClient({ debriefId }: { debriefId: string }) {
 
       {/* AI Analiz */}
       {!analysis ? (
-        <div className="rounded-xl border border-dashed border-[var(--border)] bg-[var(--card)] p-8 text-center">
+        <div className="rounded-xl border border-dashed border-[var(--border)] bg-[var(--card)] p-8 text-center print:hidden">
           <Brain className="mx-auto h-10 w-10 text-purple-500" />
           <h3 className="mt-3 text-lg font-semibold text-[var(--foreground)]">AI Analiz</h3>
           <p className="mt-1 text-sm text-[var(--muted-foreground)]">

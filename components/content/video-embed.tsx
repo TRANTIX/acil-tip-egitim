@@ -24,11 +24,14 @@ export function VideoEmbed({ url, title }: VideoEmbedProps) {
           <button
             onClick={() => setShowPlayer(true)}
             className="relative w-full aspect-video bg-black/80 group cursor-pointer"
+            aria-label={`Videoyu oynat: ${title}`}
           >
             <img
               src={`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`}
               alt={title}
               className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-600/90 text-white group-hover:bg-green-500 transition-colors">

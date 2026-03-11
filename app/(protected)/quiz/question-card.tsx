@@ -133,6 +133,8 @@ export function QuestionCard({
               src={question.question_image}
               alt="Soru görseli"
               className="w-full"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         )}
@@ -145,6 +147,7 @@ export function QuestionCard({
             key={index}
             onClick={() => handleSelect(index)}
             disabled={isAnswered}
+            aria-label={`${OPTION_LETTERS[index]} seçeneği: ${option.text}`}
             className={`flex w-full items-start gap-3 rounded-lg border p-3 text-left transition-colors ${getOptionStyle(index)}`}
           >
             <span
