@@ -38,9 +38,9 @@ export function CalculatorListClient({ calculators, categories, categoryLabels }
           placeholder="Hesaplayıcı ara (GKS, HEART, Wells...)"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full rounded-xl border border-[var(--border)] bg-[var(--card)] pl-9 pr-4 py-2.5 text-sm
-            text-[var(--card-foreground)] placeholder:text-[var(--muted-foreground)]
-            focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-xl border border-white/10 bg-[var(--background)] pl-9 pr-4 py-2.5 text-sm
+            text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]
+            focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all duration-200"
         />
       </div>
 
@@ -51,7 +51,7 @@ export function CalculatorListClient({ calculators, categories, categoryLabels }
           className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
             activeCategory === "hepsi"
               ? "bg-blue-600 text-white"
-              : "border border-[var(--border)] text-[var(--muted-foreground)] hover:border-blue-600/50 hover:text-[var(--foreground)]"
+              : "border border-white/10 text-[var(--muted-foreground)] hover:border-blue-600/50 hover:text-[var(--foreground)]"
           }`}
         >
           Hepsi ({calculators.length})
@@ -65,7 +65,7 @@ export function CalculatorListClient({ calculators, categories, categoryLabels }
               className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
                 activeCategory === cat
                   ? "bg-blue-600 text-white"
-                  : "border border-[var(--border)] text-[var(--muted-foreground)] hover:border-blue-600/50 hover:text-[var(--foreground)]"
+                  : "border border-white/10 text-[var(--muted-foreground)] hover:border-blue-600/50 hover:text-[var(--foreground)]"
               }`}
             >
               {categoryLabels[cat] || cat} ({count})
@@ -76,19 +76,19 @@ export function CalculatorListClient({ calculators, categories, categoryLabels }
 
       {/* Sonuçlar */}
       {filtered.length === 0 ? (
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-10 text-center text-[var(--muted-foreground)]">
+        <div className="rounded-xl border border-white/10 bg-[var(--card)] p-10 text-center text-[var(--muted-foreground)]">
           Sonuç bulunamadı.
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((calc) => (
             <Link key={calc.id} href={`/hesaplayicilar/${calc.id}`}>
-              <div className="group flex flex-col h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 hover:border-blue-700/60 hover:shadow-md transition-all cursor-pointer">
+              <div className="group flex flex-col h-full rounded-2xl border border-white/5 bg-[var(--card)] p-5 hover:border-blue-500/30 hover:shadow-[0_0_30px_rgba(59,130,246,0.08)] hover:-translate-y-1 transition-all duration-300 cursor-pointer">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-950/40 border border-blue-900/40">
                     <Calculator className="h-5 w-5 text-blue-400" />
                   </div>
-                  <span className="rounded-full border border-[var(--border)] px-2 py-0.5 text-xs text-[var(--muted-foreground)]">
+                  <span className="rounded-full border border-white/10 px-2 py-0.5 text-xs text-[var(--muted-foreground)]">
                     {categoryLabels[calc.category] || calc.category}
                   </span>
                 </div>

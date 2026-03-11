@@ -113,12 +113,12 @@ export default async function DashboardPage() {
             </Card>
           </div>
           {/* XP ilerleme çubuğu */}
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 py-3">
+          <div className="rounded-xl border border-white/5 bg-[var(--card)] px-4 py-3">
             <div className="flex items-center justify-between mb-1.5">
               <span className="text-xs text-[var(--muted-foreground)]">Seviye {progress.level} &rarr; {progress.level + 1}</span>
               <span className="text-xs text-[var(--muted-foreground)]">{progress.currentXP}/{progress.nextLevelXP} XP</span>
             </div>
-            <div className="h-2 w-full rounded-full bg-[var(--border)] overflow-hidden">
+            <div className="h-2 w-full rounded-full bg-white/5 overflow-hidden">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
                 style={{ width: `${progress.percent}%` }}
@@ -131,7 +131,7 @@ export default async function DashboardPage() {
       {/* Rozetler + Son Aktiviteler */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Son Rozetler */}
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-4">
+        <div className="rounded-xl border border-white/5 bg-[var(--card)] p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-semibold text-[var(--foreground)] flex items-center gap-1.5">
               <Award className="h-4 w-4 text-yellow-500" />
@@ -163,7 +163,7 @@ export default async function DashboardPage() {
         </div>
 
         {/* Son Aktiviteler */}
-        <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-4">
+        <div className="rounded-xl border border-white/5 bg-[var(--card)] p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="text-sm font-semibold text-[var(--foreground)] flex items-center gap-1.5">
               <Activity className="h-4 w-4 text-green-500" />
@@ -202,7 +202,7 @@ export default async function DashboardPage() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
         {modules.map((m) => (
           <Link key={m.href} href={m.href}>
-            <Card padding="md" className="hover:border-blue-800/50 transition-all hover:shadow-md cursor-pointer h-full">
+            <Card padding="md" className="hover:border-blue-500/20 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] hover:-translate-y-1 cursor-pointer h-full">
               <m.icon className={`h-7 w-7 ${m.color} mb-3`} />
               <h3 className="font-semibold text-[var(--foreground)] text-sm">{m.label}</h3>
               <p className="text-xs text-[var(--muted-foreground)] mt-0.5">{m.desc}</p>
@@ -213,7 +213,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Disclaimer */}
-      <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] px-4 py-3 text-xs text-[var(--muted-foreground)] text-center">
+      <div className="rounded-xl border border-white/5 bg-[var(--card)] px-4 py-3 text-xs text-[var(--muted-foreground)] text-center">
         Bu platform yalnızca eğitim amaçlıdır. Klinik kararlar güncel kılavuzlar ve uzman gözetiminde verilmelidir.
       </div>
     </div>

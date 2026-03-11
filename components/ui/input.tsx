@@ -17,11 +17,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           id={id}
-          className={`w-full rounded-xl border px-3 py-2 text-sm
-            bg-[var(--card)] text-[var(--card-foreground)]
-            border-[var(--border)] placeholder:text-[var(--muted-foreground)]
-            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
+          className={`w-full rounded-xl border px-3 py-2.5 text-sm
+            bg-[var(--background)] text-[var(--foreground)]
+            border-white/10 placeholder:text-[var(--muted-foreground)]
+            focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50
             disabled:opacity-50 disabled:cursor-not-allowed
+            transition-all duration-200
             ${error ? "border-red-500" : ""}
             ${className}`}
           {...props}

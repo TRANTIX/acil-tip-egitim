@@ -28,19 +28,21 @@
 }
 
 .dark {
-  --background: #0F172A;
+  --background: #020617;
   --foreground: #F1F5F9;
-  --card: #1E293B;
+  --card: #0F172A;
   --card-foreground: #F1F5F9;
-  --border: #334155;
-  --muted: #475569;
+  --border: #1E293B;
+  --muted: #334155;
   --muted-foreground: #94A3B8;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
 }
 
 html {
@@ -171,6 +173,24 @@ a {
 .animate-pulse-glow-delayed {
   animation: pulse-glow 8s ease-in-out 3s infinite;
 }
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Static animation delays */
+.delay-0 { animation-delay: 0ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
 
 /* Spotlight animation (Aceternity-style) */
 @keyframes spotlight {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Activity,
@@ -9,8 +9,6 @@ import {
   BookOpen,
   ClipboardList,
   Stethoscope,
-  Award,
-  Bot,
   ArrowRight,
   CheckCircle,
   Sparkles,
@@ -18,7 +16,7 @@ import {
   Zap,
   Menu,
   X,
-  ChevronRight,
+  ChevronRight
 } from "lucide-react";
 
 // --- VERİLER ---
@@ -97,15 +95,12 @@ const stats = [
   { value: "8", label: "Modül" },
 ];
 
-// --- ANA BİLEŞEN ---
-export default function HomePage() {
+export default function AcilEMApp() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
 
     const observer = new IntersectionObserver(
@@ -128,51 +123,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-50 font-sans selection:bg-blue-500/30 overflow-x-hidden">
-      {/* Özel Animasyon Stilleri */}
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-          100% { transform: translateY(0px); }
-        }
-        @keyframes pulseGlow {
-          0% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 0.6; transform: scale(1.05); }
-          100% { opacity: 0.4; transform: scale(1); }
-        }
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          opacity: 0;
-        }
-        .animate-float {
-          animation: float 6s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-          animation: float 6s ease-in-out 3s infinite;
-        }
-        .animate-pulse-glow-hero {
-          animation: pulseGlow 8s ease-in-out infinite;
-        }
-        .delay-100 { animation-delay: 100ms; transition-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; transition-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; transition-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; transition-delay: 400ms; }
-        .reveal {
-          opacity: 0;
-          transform: translateY(40px);
-          transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      `}</style>
-
+    <div className="min-h-[100vh] w-full bg-[#020617] text-slate-50 font-sans selection:bg-blue-500/30 overflow-x-hidden block">
       {/* --- NAVBAR --- */}
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
@@ -182,27 +133,27 @@ export default function HomePage() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
+          <div className="flex items-center gap-3 cursor-pointer group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300 group-hover:scale-105">
               <Activity className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-300">
               AcilEM
             </span>
-          </Link>
+          </div>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
             <Link href="/hesaplayicilar" className="hover:text-white transition-colors relative group">
               Hesaplayıcılar
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full rounded-full" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
             </Link>
             <Link href="/prosedurler" className="hover:text-white transition-colors relative group">
               Algoritmalar
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full rounded-full" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
             </Link>
-            <Link href="/icerikler" className="hover:text-white transition-colors relative group">
-              İçerikler
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full rounded-full" />
+            <Link href="/hakkinda" className="hover:text-white transition-colors relative group">
+              Hakkında
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full rounded-full"></span>
             </Link>
           </nav>
 
@@ -224,47 +175,25 @@ export default function HomePage() {
           <button
             className="md:hidden p-2 text-slate-300 hover:text-white transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Menüyü aç/kapat"
-            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-
-        {/* Mobil menü */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-[#020617]/95 backdrop-blur-xl border-t border-white/5 px-6 py-6 space-y-4">
-            <Link href="/hesaplayicilar" className="block text-slate-300 hover:text-white transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-              Hesaplayıcılar
-            </Link>
-            <Link href="/prosedurler" className="block text-slate-300 hover:text-white transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-              Algoritmalar
-            </Link>
-            <Link href="/icerikler" className="block text-slate-300 hover:text-white transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-              İçerikler
-            </Link>
-            <hr className="border-white/10" />
-            <Link href="/giris" className="block text-slate-300 hover:text-white transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-              Giriş Yap
-            </Link>
-            <Link href="/kayit" className="block text-blue-400 hover:text-blue-300 font-semibold transition-colors py-2" onClick={() => setMobileMenuOpen(false)}>
-              Kayıt Ol
-            </Link>
-          </div>
-        )}
       </header>
 
-      <main className="flex-1 flex flex-col w-full relative pt-20">
-        {/* Arka Plan Efektleri */}
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-[#020617] to-[#020617] pointer-events-none" />
-        <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+      <main className="relative w-full pt-28 pb-12 block">
+
+        {/* Profesyonel Arka Plan Efektleri */}
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-[#020617] to-[#020617] pointer-events-none"></div>
+        <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none"></div>
 
         {/* Dekoratif Işık Küreleri */}
-        <div className="absolute top-20 left-10 md:left-1/4 w-72 h-72 bg-blue-600/20 rounded-full blur-[100px] animate-pulse-glow-hero pointer-events-none" />
-        <div className="absolute top-40 right-10 md:right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px] animate-pulse-glow-hero delay-300 pointer-events-none" />
+        <div className="absolute top-20 left-10 md:left-1/4 w-72 h-72 bg-blue-600/20 rounded-full blur-[100px] animate-pulse-glow pointer-events-none"></div>
+        <div className="absolute top-40 right-10 md:right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px] animate-pulse-glow delay-300 pointer-events-none"></div>
 
-        {/* --- HERO --- */}
-        <section className="relative z-10 py-24 lg:py-36 px-6 flex flex-col items-center justify-center text-center">
+        {/* --- HERO BÖLÜMÜ --- */}
+        <section className="relative z-10 py-24 lg:py-36 px-6 flex flex-col items-center justify-center text-center w-full shrink-0">
+
           <div className="animate-fade-in-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium mb-8 backdrop-blur-sm shadow-[0_0_20px_rgba(59,130,246,0.15)]">
             <Sparkles className="w-4 h-4 text-cyan-400" />
             <span className="tracking-wide">Türkiye&apos;nin ilk yapay zeka destekli acil tıp platformu</span>
@@ -273,7 +202,7 @@ export default function HomePage() {
           <h1 className="animate-fade-in-up delay-100 text-5xl md:text-6xl lg:text-[5rem] font-extrabold tracking-tight max-w-5xl leading-[1.1] mb-8">
             Acil Tıp Asistanları için <br className="hidden md:block" />
             <span className="relative">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 animate-pulse-glow">
                 AI Destekli Eğitim
               </span>
               <svg className="absolute w-full h-3 -bottom-2 left-0 text-blue-500/50" viewBox="0 0 100 10" preserveAspectRatio="none">
@@ -287,20 +216,14 @@ export default function HomePage() {
           </p>
 
           <div className="animate-fade-in-up delay-300 flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
-            <Link
-              href="/kayit"
-              className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold overflow-hidden transition-all duration-300 hover:scale-[1.03] active:scale-95 shadow-[0_0_40px_rgba(37,99,235,0.3)] hover:shadow-[0_0_60px_rgba(34,211,238,0.4)] border border-blue-400/20"
-            >
-              <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none" />
+            <Link href="/kayit" className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold overflow-hidden transition-all duration-300 hover:scale-[1.03] active:scale-95 shadow-[0_0_40px_rgba(37,99,235,0.3)] hover:shadow-[0_0_60px_rgba(34,211,238,0.4)] border border-blue-400/20">
+              <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black pointer-events-none"></span>
               <span className="relative z-10 flex items-center gap-2 text-lg">
                 Ücretsiz Kayıt Ol
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
               </span>
             </Link>
-            <Link
-              href="/hesaplayicilar"
-              className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-slate-900/40 border border-slate-700 text-slate-200 font-semibold backdrop-blur-md transition-all duration-300 hover:bg-slate-800 hover:border-slate-500 hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
-            >
+            <Link href="/hesaplayicilar" className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl bg-slate-900/40 border border-slate-700 text-slate-200 font-semibold backdrop-blur-md transition-all duration-300 hover:bg-slate-800 hover:border-slate-500 hover:text-white hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]">
               <Calculator className="w-5 h-5 text-slate-400 group-hover:text-emerald-400 transition-colors duration-300" />
               <span className="text-lg">Hesaplayıcıları Dene</span>
             </Link>
@@ -323,8 +246,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* --- MODÜLLER (BENTO GRID) --- */}
-        <section className="relative z-10 py-32 px-6">
+        {/* --- MODÜLLER (BENTO GRID - REVEAL) --- */}
+        <section className="relative z-10 py-32 px-6 w-full shrink-0">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-20 reveal">
               <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Eksiksiz Eğitim Modülleri</h2>
@@ -334,13 +257,13 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[220px]">
-              {modules.map((m, i) => (
+              {modules.map((m, i) => {
+                const delayClass = ["delay-0", "delay-100", "delay-200", "delay-300"][i % 4];
+                return (
                 <div
                   key={i}
-                  className={`reveal group relative rounded-[2rem] p-8 flex flex-col overflow-hidden bg-slate-900/40 border border-white/5 backdrop-blur-md transition-all duration-500 hover:bg-slate-800/60 hover:shadow-2xl hover:-translate-y-2 ${m.border} ${m.className}`}
-                  style={{ transitionDelay: `${(i % 4) * 100}ms` }}
+                  className={`reveal ${delayClass} group relative rounded-[2rem] p-8 flex flex-col overflow-hidden bg-slate-900/40 border border-white/5 backdrop-blur-md transition-all duration-500 hover:bg-slate-800/60 hover:shadow-2xl hover:-translate-y-2 ${m.border} ${m.className}`}
                 >
-                  {/* Glow Arka Plan */}
                   <div className={`absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none ${m.gradient}`} />
 
                   <div className="relative z-10 flex flex-col h-full">
@@ -360,35 +283,32 @@ export default function HomePage() {
                     )}
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* --- KLİNİK HESAPLAYICILAR --- */}
-        <section className="relative z-10 py-32 px-6">
+        {/* --- KLİNİK HESAPLAYICILAR (REVEAL) --- */}
+        <section className="relative z-10 py-32 px-6 w-full shrink-0">
           <div className="max-w-7xl mx-auto reveal">
             <div className="relative rounded-[3rem] bg-gradient-to-br from-slate-900 to-[#020617] border border-slate-800 p-10 md:p-20 overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-              {/* Dekoratif Çizgiler */}
-              <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
-              <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
+              <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent"></div>
+              <div className="absolute bottom-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
 
               <div className="flex flex-col lg:flex-row gap-16 items-center">
                 <div className="lg:w-[45%] text-center lg:text-left">
                   <div className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 text-xs font-semibold text-emerald-400 mb-8 uppercase tracking-wider">
                     <CheckCircle className="w-4 h-4" />
-                    Herkese Açık · Ücretsiz
+                    Herkese Açık • Ücretsiz
                   </div>
                   <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-                    Saniyeler İçinde <br className="hidden lg:block" /> Klinik Karar
+                    Saniyeler İçinde <br className="hidden lg:block"/> Klinik Karar
                   </h2>
                   <p className="text-slate-400 text-lg mb-10 leading-relaxed font-light">
                     Acil servisin kaosu içinde ihtiyacın olan 10+ klinik skorlama sistemi. Anında hesaplama yapın, <strong className="text-slate-200">kanıta dayalı güncel yorum</strong> ve kaynak referansları alın.
                   </p>
-                  <Link
-                    href="/hesaplayicilar"
-                    className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 font-semibold transition-all duration-300 group border border-slate-700 hover:border-emerald-500/30"
-                  >
+                  <Link href="/hesaplayicilar" className="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 font-semibold transition-all duration-300 group border border-slate-700 hover:border-emerald-500/30">
                     Tüm Hesaplayıcıları İncele
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
                   </Link>
@@ -415,8 +335,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* --- NEDEN ACİLEM? --- */}
-        <section className="relative z-10 py-32 px-6">
+        {/* --- NEDEN ACİLEM? (REVEAL) --- */}
+        <section className="relative z-10 py-32 px-6 w-full shrink-0">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-bold text-center mb-20 tracking-tight reveal">Platformun Avantajları</h2>
 
@@ -424,42 +344,37 @@ export default function HomePage() {
               {[
                 { icon: Shield, title: "Güvenilir İçerik", desc: "Sadece güncel kılavuzlara dayalı, uzman hekimler tarafından denetimli klinik veriler.", color: "text-cyan-400", bg: "bg-cyan-500/10", border: "hover:border-cyan-500/30" },
                 { icon: Brain, title: "AI Güdümlü Eğitim", desc: "Claude AI mimarisi ile her asistanın seviyesine göre şekillenen kişiselleştirilmiş vakalar.", color: "text-purple-400", bg: "bg-purple-500/10", border: "hover:border-purple-500/30" },
-                { icon: Zap, title: "Hızlı, Ücretsiz, Reklamsız", desc: "Eğitimin önündeki tüm engelleri kaldırdık. Hiçbir zaman abonelik veya reklam yok.", color: "text-amber-400", bg: "bg-amber-500/10", border: "hover:border-amber-500/30" },
-              ].map((feature, i) => (
-                <div
-                  key={i}
-                  className={`reveal flex flex-col items-center text-center p-10 rounded-[2rem] bg-slate-900/30 border border-white/5 backdrop-blur-sm transition-all duration-500 hover:bg-slate-900/80 hover:-translate-y-2 hover:shadow-2xl ${feature.border} group`}
-                  style={{ transitionDelay: `${i * 100}ms` }}
-                >
+                { icon: Zap, title: "Hızlı, Ücretsiz, Reklamsız", desc: "Eğitimin önündeki tüm engelleri kaldırdık. Hiçbir zaman abonelik veya reklam yok.", color: "text-amber-400", bg: "bg-amber-500/10", border: "hover:border-amber-500/30" }
+              ].map((feature, i) => {
+                const delayClass = ["delay-0", "delay-100", "delay-200"][i];
+                return (
+                <div key={i} className={`reveal ${delayClass} flex flex-col items-center text-center p-10 rounded-[2rem] bg-slate-900/30 border border-white/5 backdrop-blur-sm transition-all duration-500 hover:bg-slate-900/80 hover:-translate-y-2 hover:shadow-2xl ${feature.border} group`}>
                   <div className={`w-20 h-20 rounded-3xl ${feature.bg} flex items-center justify-center mb-8 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
                     <feature.icon className={`w-10 h-10 ${feature.color}`} />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{feature.title}</h3>
                   <p className="text-slate-400 leading-relaxed font-light">{feature.desc}</p>
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
+
       </main>
 
       {/* --- FOOTER --- */}
-      <footer className="border-t border-slate-800/50 bg-[#020617] pt-20 pb-10 px-6 relative z-10">
+      <footer className="border-t border-slate-800/50 bg-[#020617] pt-20 pb-10 px-6 relative z-10 w-full shrink-0">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <Link href="/" className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
+          <div className="flex items-center gap-3 opacity-80 hover:opacity-100 transition-opacity">
             <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-              <Activity className="w-5 h-5 text-white" />
+               <Activity className="w-5 h-5 text-white" />
             </div>
             <span className="font-bold text-xl tracking-tight">AcilEM</span>
-          </Link>
-          <p className="text-sm text-slate-500 text-center md:text-left font-light max-w-md">
-            Bu platform yalnızca eğitim amaçlıdır. Klinik kararlar hekim inisiyatifindedir. Tıbbi acil durumlarda 112&apos;yi arayın.
-          </p>
-          <div className="flex gap-6">
-            <Link href="/hesaplayicilar" className="text-sm font-medium text-slate-500 hover:text-white transition-colors">Hesaplayıcılar</Link>
-            <Link href="/icerikler" className="text-sm font-medium text-slate-500 hover:text-white transition-colors">İçerikler</Link>
-            <Link href="/giris" className="text-sm font-medium text-slate-500 hover:text-white transition-colors">Giriş</Link>
           </div>
+          <p className="text-sm text-slate-500 text-center md:text-left font-light max-w-md">
+            © 2026 AcilEM. Tüm hakları saklıdır. Bu platform yalnızca eğitim amaçlıdır. Klinik kararlar hekim inisiyatifindedir.
+          </p>
         </div>
       </footer>
     </div>

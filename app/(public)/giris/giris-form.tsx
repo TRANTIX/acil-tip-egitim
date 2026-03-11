@@ -41,9 +41,11 @@ export function GirisForm() {
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <div className="flex justify-center mb-4">
-            <div className="flex items-center gap-2">
-              <Activity className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold">Acil<span className="text-blue-600">EM</span></span>
+            <div className="flex items-center gap-2.5">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/20">
+                <Activity className="h-5 w-5 text-white" />
+              </div>
+              <span className="text-2xl font-bold text-[var(--foreground)]">Acil<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">EM</span></span>
             </div>
           </div>
           <h1 className="text-2xl font-bold text-[var(--foreground)]">Giriş Yap</h1>
@@ -52,7 +54,7 @@ export function GirisForm() {
           </p>
         </div>
 
-        <div className="rounded-2xl border border-[var(--border)] bg-[var(--card)] p-8 shadow-sm">
+        <div className="rounded-2xl border border-white/5 bg-[var(--card)] p-8 shadow-[0_0_50px_rgba(0,0,0,0.3)] backdrop-blur-sm">
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <Input
               id="email"

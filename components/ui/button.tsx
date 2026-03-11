@@ -13,15 +13,15 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    "bg-blue-700 hover:bg-blue-800 text-white dark:bg-blue-600 dark:hover:bg-blue-700",
+    "bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30",
   secondary:
-    "bg-slate-200 hover:bg-slate-300 text-slate-800 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100",
+    "bg-slate-800 hover:bg-slate-700 text-slate-100 border border-white/5",
   ghost:
-    "bg-transparent hover:bg-slate-100 text-slate-700 dark:hover:bg-slate-800 dark:text-slate-300",
+    "bg-transparent hover:bg-white/5 text-[var(--muted-foreground)] hover:text-[var(--foreground)]",
   danger:
-    "bg-red-600 hover:bg-red-700 text-white",
+    "bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-500/20",
   outline:
-    "border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300",
+    "border border-white/10 hover:border-white/20 hover:bg-white/5 text-[var(--foreground)]",
 };
 
 const sizeClasses: Record<Size, string> = {
@@ -37,8 +37,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled || loading}
         aria-busy={loading || undefined}
-        className={`inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-colors
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+        className={`inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-300
+          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[var(--background)]
           disabled:opacity-50 disabled:cursor-not-allowed
           ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
         {...props}

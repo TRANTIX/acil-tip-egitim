@@ -12,9 +12,9 @@ export default function HesaplayicilarPage() {
   const categories = Array.from(new Set(calculators.map((c) => c.category)));
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[var(--foreground)]">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-16">
+      <div className="mb-10">
+        <h1 className="text-3xl md:text-4xl font-bold text-[var(--foreground)] tracking-tight">
           Klinik Hesaplayıcılar
         </h1>
         <p className="mt-2 text-[var(--muted-foreground)]">

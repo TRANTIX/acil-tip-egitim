@@ -53,30 +53,33 @@ export function Navbar({ user }: NavbarProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 print:hidden ${
+      className={`sticky top-0 z-50 transition-all duration-500 print:hidden ${
         scrolled
-          ? "bg-[var(--background)]/80 backdrop-blur-xl border-b border-[var(--border)]"
-          : "bg-transparent"
+          ? "bg-[var(--background)]/80 backdrop-blur-xl border-b border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+          : "bg-transparent border-b border-transparent"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-12 h-16">
         {/* Logo */}
-        <Link href={user ? "/dashboard" : "/"} className="flex items-center gap-2 font-bold text-lg">
-          <Activity className="h-5 w-5 text-blue-500" />
-          <span className="text-[var(--foreground)]">
-            Acil<span className="text-blue-500">EM</span>
+        <Link href={user ? "/dashboard" : "/"} className="flex items-center gap-2.5 group">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300 group-hover:scale-105">
+            <Activity className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-xl font-bold tracking-tight text-[var(--foreground)]">
+            Acil<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">EM</span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6" aria-label="Ana menü">
+        <nav className="hidden md:flex items-center gap-1" aria-label="Ana menü">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+              className="relative px-3 py-2 text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors group"
             >
               {link.label}
+              <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-blue-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
             </Link>
           ))}
         </nav>
@@ -85,7 +88,7 @@ export function Navbar({ user }: NavbarProps) {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-            className="rounded-lg p-2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors"
+            className="rounded-lg p-2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5 transition-colors"
             aria-label="Tema değiştir"
           >
             {mounted && resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
@@ -95,7 +98,7 @@ export function Navbar({ user }: NavbarProps) {
             <div className="hidden md:flex items-center gap-2">
               <Link
                 href="/profil"
-                className="flex items-center gap-1.5 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+                className="flex items-center gap-1.5 text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
               >
                 <User className="h-4 w-4" />
                 {user.full_name.split(" ")[0]}
@@ -112,15 +115,18 @@ export function Navbar({ user }: NavbarProps) {
             <div className="hidden md:flex items-center gap-3">
               <Link
                 href="/giris"
-                className="text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
+                className="text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors"
               >
                 Giriş Yap
               </Link>
               <Link
                 href="/kayit"
-                className="rounded-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 text-sm font-medium text-white transition-colors"
+                className="relative inline-flex h-9 overflow-hidden rounded-full p-[1px] group hover:scale-105 transition-transform duration-300"
               >
-                Kayıt Ol
+                <span className="absolute inset-[-1000%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#3B82F6_0%,#06B6D4_50%,#3B82F6_100%)]" />
+                <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[var(--background)] px-5 text-sm font-medium text-[var(--foreground)] backdrop-blur-3xl group-hover:bg-[var(--card)] transition-colors">
+                  Kayıt Ol
+                </span>
               </Link>
             </div>
           )}
@@ -128,7 +134,7 @@ export function Navbar({ user }: NavbarProps) {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden rounded-lg p-2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors"
+            className="md:hidden rounded-lg p-2 text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5 transition-colors"
             aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
@@ -140,33 +146,33 @@ export function Navbar({ user }: NavbarProps) {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div id="mobile-menu" className="md:hidden border-t border-[var(--border)] bg-[var(--background)] px-4 pb-4 pt-2" role="navigation" aria-label="Mobil menü">
+        <div id="mobile-menu" className="md:hidden border-t border-white/5 bg-[var(--background)]/95 backdrop-blur-xl px-4 pb-4 pt-2" role="navigation" aria-label="Mobil menü">
           <nav className="flex flex-col gap-1">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-[var(--card)] transition-colors"
+                className="rounded-xl px-3 py-2.5 text-sm font-medium text-[var(--muted-foreground)] hover:text-[var(--foreground)] hover:bg-white/5 transition-colors"
               >
                 {link.label}
               </Link>
             ))}
             {user ? (
               <>
-                <Link href="/profil" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--card)]">
+                <Link href="/profil" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-2.5 text-sm font-medium text-[var(--muted-foreground)] hover:bg-white/5">
                   Profil
                 </Link>
-                <button onClick={handleLogout} className="rounded-lg px-3 py-2.5 text-sm text-red-400 hover:bg-red-500/10 text-left">
+                <button onClick={handleLogout} className="rounded-xl px-3 py-2.5 text-sm font-medium text-red-400 hover:bg-red-500/10 text-left">
                   Çıkış Yap
                 </button>
               </>
             ) : (
               <>
-                <Link href="/giris" onClick={() => setMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-sm text-[var(--muted-foreground)] hover:bg-[var(--card)]">
+                <Link href="/giris" onClick={() => setMenuOpen(false)} className="rounded-xl px-3 py-2.5 text-sm font-medium text-[var(--muted-foreground)] hover:bg-white/5">
                   Giriş Yap
                 </Link>
-                <Link href="/kayit" onClick={() => setMenuOpen(false)} className="mt-1 rounded-lg bg-blue-600 px-3 py-2.5 text-sm text-white text-center font-medium">
+                <Link href="/kayit" onClick={() => setMenuOpen(false)} className="mt-1 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 px-3 py-2.5 text-sm text-white text-center font-medium">
                   Kayıt Ol
                 </Link>
               </>
