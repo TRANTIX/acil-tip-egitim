@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { redirect } from "next/navigation";
 import { QuestionForm } from "./question-form";
 
@@ -10,7 +11,8 @@ export default async function AdminSoruPage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect("/giris");
 
-  const { data: profile } = await supabase
+  const admin = createAdminClient();
+  const { data: profile } = await admin
     .from("profiles")
     .select("role")
     .eq("id", user.id)
