@@ -50,6 +50,11 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* iOS safe area — bottom bar home indicator ustune binmesin */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 body {
   max-width: 100%;
   overflow-x: hidden;
