@@ -1,0 +1,56 @@
+{
+  "id": "psi-port",
+  "name": "PSI/PORT Skoru (Pnömoni Şiddeti İndeksi)",
+  "shortName": "PSI/PORT",
+  "category": "pulmoner",
+  "description": "Toplum kökenli pnömonide mortalite riskini ve yatış kararını yönlendiren kapsamlı skor.",
+  "fields": [
+    {
+      "id": "sex",
+      "label": "Cinsiyet",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "Erkek (yaş puanı = yaş)" },
+        { "value": -10, "label": "Kadın (yaş puanı = yaş − 10)" }
+      ]
+    },
+    {
+      "id": "age",
+      "label": "Yaş",
+      "type": "number",
+      "min": 0,
+      "max": 120,
+      "unit": "yıl"
+    },
+    { "id": "nursing", "label": "Bakım evinde yaşama (+10)", "type": "checkbox", "value": 10 },
+    { "id": "cancer", "label": "Neoplazi (+30)", "type": "checkbox", "value": 30 },
+    { "id": "liver", "label": "Karaciğer hastalığı (+20)", "type": "checkbox", "value": 20 },
+    { "id": "chf", "label": "Konjestif kalp yetmezliği (+10)", "type": "checkbox", "value": 10 },
+    { "id": "cvd", "label": "Serebrovasküler hastalık (+10)", "type": "checkbox", "value": 10 },
+    { "id": "renal", "label": "Böbrek hastalığı (+10)", "type": "checkbox", "value": 10 },
+    { "id": "mentalStatus", "label": "Bilinç değişikliği (+20)", "type": "checkbox", "value": 20 },
+    { "id": "rr30", "label": "Solunum hızı ≥30/dk (+20)", "type": "checkbox", "value": 20 },
+    { "id": "sbp90", "label": "SKB <90 mmHg (+20)", "type": "checkbox", "value": 20 },
+    { "id": "temp", "label": "Ateş <35°C veya ≥40°C (+15)", "type": "checkbox", "value": 15 },
+    { "id": "hr125", "label": "Kalp hızı ≥125/dk (+10)", "type": "checkbox", "value": 10 },
+    { "id": "ph", "label": "Arteriyel pH <7.35 (+30)", "type": "checkbox", "value": 30 },
+    { "id": "bun30", "label": "BUN ≥30 mg/dL (+20)", "type": "checkbox", "value": 20 },
+    { "id": "na130", "label": "Sodyum <130 mEq/L (+20)", "type": "checkbox", "value": 20 },
+    { "id": "glucose250", "label": "Glukoz ≥250 mg/dL (+10)", "type": "checkbox", "value": 10 },
+    { "id": "hct30", "label": "Hematokrit <%30 (+10)", "type": "checkbox", "value": 10 },
+    { "id": "po2", "label": "PO₂ <60 mmHg veya SaO₂ <%90 (+10)", "type": "checkbox", "value": 10 },
+    { "id": "effusion", "label": "Plevral efüzyon (+10)", "type": "checkbox", "value": 10 }
+  ],
+  "calculate": "sum",
+  "minScore": 0,
+  "maxScore": 395,
+  "interpretation": [
+    { "min": 0, "max": 70, "label": "Sınıf I–II (Düşük Risk)", "color": "green", "description": "30 günlük mortalite %0.1–0.6. Ayaktan tedavi uygun." },
+    { "min": 71, "max": 90, "label": "Sınıf III (Orta Risk)", "color": "yellow", "description": "30 günlük mortalite %0.9–2.8. Kısa yatış veya yakın takipli ayaktan tedavi." },
+    { "min": 91, "max": 130, "label": "Sınıf IV (Yüksek Risk)", "color": "orange", "description": "30 günlük mortalite %8.2–9.3. Hastane yatışı önerilir." },
+    { "min": 131, "max": 395, "label": "Sınıf V (Çok Yüksek Risk)", "color": "red", "description": "30 günlük mortalite %27–31. Yoğun bakım değerlendirmesi gerektirir." }
+  ],
+  "clinicalNote": "PSI/PORT yaş ağırlıklıdır; genç hastalarda riski hafife alabilir. CURB-65 ile birlikte değerlendirin. Erkeklerde yaş puanı = yaş, kadınlarda yaş puanı = yaş − 10.",
+  "source": "Fine MJ, et al. A prediction rule to identify low-risk patients with community-acquired pneumonia. N Engl J Med. 1997;336(4):243-250.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

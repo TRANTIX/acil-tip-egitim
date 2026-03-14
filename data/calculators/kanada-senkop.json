@@ -1,0 +1,29 @@
+{
+  "id": "kanada-senkop",
+  "name": "Kanada Senkop Risk Skoru",
+  "shortName": "Kanada Senkop",
+  "category": "kardiyoloji",
+  "description": "Acil serviste senkop hastalarında 30 günlük ciddi advers olay riskini değerlendiren skor.",
+  "fields": [
+    { "id": "vasovagal", "label": "Vazovagal predispozisyon (sıcak/kalabalık, uzun ayakta durma, korku, ağrı)", "type": "checkbox", "value": -1 },
+    { "id": "heartDisease", "label": "Kardiyak hastalık öyküsü (KAH, AF, KKY, kapak hastalığı)", "type": "checkbox", "value": 1 },
+    { "id": "sbp", "label": "SKB <90 veya >180 mmHg (herhangi bir ölçümde)", "type": "checkbox", "value": 2 },
+    { "id": "troponin", "label": "Yükselmiş troponin (>99. persentil)", "type": "checkbox", "value": 2 },
+    { "id": "axis", "label": "Anormal QRS aksı (<−30° veya >100°)", "type": "checkbox", "value": 1 },
+    { "id": "qrs", "label": "QRS süresi >130 ms", "type": "checkbox", "value": 1 },
+    { "id": "qt", "label": "Düzeltilmiş QT >480 ms", "type": "checkbox", "value": 2 },
+    { "id": "cardiacDx", "label": "AS tanısı: Kardiyak senkop", "type": "checkbox", "value": 2 },
+    { "id": "vasovagalDx", "label": "AS tanısı: Vazovagal senkop", "type": "checkbox", "value": -2 }
+  ],
+  "calculate": "sum",
+  "minScore": -3,
+  "maxScore": 11,
+  "interpretation": [
+    { "min": -3, "max": -1, "label": "Çok Düşük Risk", "color": "green", "description": "30 günlük ciddi advers olay riski ~%0.7. Güvenle taburculuk düşünülebilir." },
+    { "min": 0, "max": 0, "label": "Düşük Risk", "color": "green", "description": "Düşük risk. Dikkatli taburculuk düşünülebilir, hasta bilgilendirilmeli." },
+    { "min": 1, "max": 11, "label": "Orta/Yüksek Risk", "color": "red", "description": "Ciddi advers olay riski artmış. Kardiyak neden araştır, yatış ve monitörizasyon düşün." }
+  ],
+  "clinicalNote": "≥16 yaş, ≤24 saat içinde senkop. Dışlama: >5 dk bilinç kaybı, nöbet, major travma, intoksikasyon.",
+  "source": "Thiruganasambandamoorthy V, et al. Derivation of the Canadian Syncope Risk Score. Ann Emerg Med. 2016;67(6):757-763.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

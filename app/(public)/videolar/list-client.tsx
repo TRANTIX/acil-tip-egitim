@@ -8,7 +8,6 @@ import {
   ChevronRight,
   Clock,
   Tag,
-  Crown,
 } from "lucide-react";
 import type { Video as VideoType } from "@/types";
 
@@ -61,7 +60,7 @@ function formatDuration(seconds: number): string {
   return `${h} sa ${remainMin > 0 ? `${remainMin} dk` : ""}`.trim();
 }
 
-export function VideoListClient({ videos, categories, videoTypes }: Props) {
+export function PublicVideoListClient({ videos, categories, videoTypes }: Props) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("hepsi");
   const [activeType, setActiveType] = useState("hepsi");
@@ -170,7 +169,7 @@ export function VideoListClient({ videos, categories, videoTypes }: Props) {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((video) => (
-            <Link key={video.id} href={`/icerikler/videolar/${video.id}`}>
+            <Link key={video.id} href={`/videolar/${video.id}`}>
               <div className="group flex flex-col h-full rounded-2xl border border-[var(--border)] bg-[var(--card)] p-5 hover:border-green-700/60 hover:shadow-md transition-all cursor-pointer">
                 {/* Üst bölüm */}
                 <div className="flex items-start justify-between mb-3">
@@ -178,12 +177,6 @@ export function VideoListClient({ videos, categories, videoTypes }: Props) {
                     {VIDEO_TYPE_ICONS[video.video_type || ""] || <Video className="h-5 w-5 text-green-400" />}
                   </div>
                   <div className="flex items-center gap-2">
-                    {video.is_premium && (
-                      <span className="inline-flex items-center gap-1 rounded-full border border-amber-700/50 bg-amber-950/40 px-2 py-0.5 text-[10px] font-medium text-amber-400">
-                        <Crown className="h-2.5 w-2.5" />
-                        Premium
-                      </span>
-                    )}
                     {video.difficulty && (
                       <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${DIFFICULTY_COLORS[video.difficulty] || ""}`}>
                         {DIFFICULTY_LABELS[video.difficulty]}

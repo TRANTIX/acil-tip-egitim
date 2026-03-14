@@ -1,0 +1,29 @@
+{
+  "id": "hasbled",
+  "name": "HAS-BLED Kanama Risk Skoru",
+  "shortName": "HAS-BLED",
+  "category": "vaskuler",
+  "description": "Atriyal fibrilasyonda antikoagülan kullanan hastalarda major kanama riskini değerlendiren skor.",
+  "fields": [
+    { "id": "htn", "label": "H — Kontrolsüz hipertansiyon (SKB >160 mmHg)", "type": "checkbox", "value": 1 },
+    { "id": "renal", "label": "A — Renal yetmezlik (diyaliz / transplant / Kre >2.26 mg/dL)", "type": "checkbox", "value": 1 },
+    { "id": "liver", "label": "A — Karaciğer yetmezliği (siroz / Bili >2×, AST/ALT/AP >3×)", "type": "checkbox", "value": 1 },
+    { "id": "stroke", "label": "S — İnme öyküsü", "type": "checkbox", "value": 1 },
+    { "id": "bleeding", "label": "B — Kanama öyküsü veya yatkınlık", "type": "checkbox", "value": 1 },
+    { "id": "labile", "label": "L — Labil INR (terapötik aralıkta <%60 zaman)", "type": "checkbox", "value": 1 },
+    { "id": "elderly", "label": "E — Yaş >65", "type": "checkbox", "value": 1 },
+    { "id": "drugs", "label": "D — İlaç (antiplatelet / NSAİD)", "type": "checkbox", "value": 1 },
+    { "id": "alcohol", "label": "D — Alkol (≥8 drink/hafta)", "type": "checkbox", "value": 1 }
+  ],
+  "calculate": "sum",
+  "minScore": 0,
+  "maxScore": 9,
+  "interpretation": [
+    { "min": 0, "max": 1, "label": "Düşük Risk", "color": "green", "description": "Düşük kanama riski. Antikoagülan uygulanabilir." },
+    { "min": 2, "max": 3, "label": "Orta Risk", "color": "yellow", "description": "Orta kanama riski. Yakın izlem önerilir, düzeltilebilir faktörlere odaklanın." },
+    { "min": 4, "max": 9, "label": "Yüksek Risk", "color": "red", "description": "Yüksek kanama riski. Düzeltilebilir risk faktörlerini giderin. Antikoagülanı durdurmayın — risk-fayda analizini bireyselleştirin." }
+  ],
+  "clinicalNote": "Yüksek HAS-BLED skoru antikoagülanı durdurmak için tek başına gerekçe değildir. Düzeltilebilir faktörleri (HT, labil INR, ilaç, alkol) yönetin.",
+  "source": "Pisters R, et al. A novel user-friendly score (HAS-BLED) to assess 1-year risk of major bleeding in patients with atrial fibrillation. Chest. 2010;138(5):1093-1100.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

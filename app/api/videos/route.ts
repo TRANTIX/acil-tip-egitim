@@ -9,13 +9,14 @@ export async function GET(request: NextRequest) {
   const category = searchParams.get("category");
   const difficulty = searchParams.get("difficulty");
   const video_type = searchParams.get("video_type");
+  const premium = searchParams.get("premium");
   const search = searchParams.get("search");
   const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "20") || 20, 1), 100);
   const offset = Math.max(parseInt(searchParams.get("offset") || "0") || 0, 0);
 
   let query = supabase
     .from("videos")
-    .select("id, title, description, category, difficulty, video_url, duration, video_type, tags, published_at")
+    .select("id, title, description, category, difficulty, video_url, duration, video_type, is_premium, tags, published_at")
     .eq("status", "published")
     .order("published_at", { ascending: false })
     .range(offset, offset + limit - 1);
@@ -23,6 +24,8 @@ export async function GET(request: NextRequest) {
   if (category) query = query.eq("category", category);
   if (difficulty) query = query.eq("difficulty", parseInt(difficulty));
   if (video_type) query = query.eq("video_type", video_type);
+  if (premium === "true") query = query.eq("is_premium", true);
+  if (premium === "false") query = query.eq("is_premium", false);
   if (search) query = query.ilike("title", `%${escapeIlike(search)}%`);
 
   const { data, error } = await query;
@@ -53,7 +56,7 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  const { title, description, category, difficulty, video_url, duration, video_type, tags } = body;
+  const { title, description, category, difficulty, video_url, duration, video_type, is_premium, tags } = body;
 
   if (!title || !category || !video_url) {
     return NextResponse.json({ error: "Zorunlu alanlar eksik." }, { status: 400 });
@@ -69,6 +72,7 @@ export async function POST(request: NextRequest) {
       video_url,
       duration,
       video_type,
+      is_premium: is_premium ?? false,
       tags,
       status: profile.role === "admin" ? "published" : "draft",
       author_id: user.id,

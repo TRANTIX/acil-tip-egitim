@@ -1,0 +1,28 @@
+{
+  "id": "rsi-doz",
+  "name": "RSI İlaç Dozları (Hızlı Seri Entübasyon)",
+  "shortName": "RSI Doz",
+  "category": "havayolu",
+  "description": "Hızlı seri entübasyon için indüksiyon, paralitik ve premedikasyon ilaç dozlarını kiloya göre hesaplama.",
+  "fields": [
+    { "id": "weight", "label": "Hasta ağırlığı", "type": "number", "min": 1, "max": 200, "unit": "kg" }
+  ],
+  "calculate": "drug_table",
+  "minScore": 0,
+  "maxScore": 0,
+  "resultLabel": "RSI İlaç Dozları",
+  "interpretation": [],
+  "drugs": [
+    { "name": "Ketamin", "factor": 1.5, "unit": "mg", "concentration": "50 mg/mL", "category": "İNDÜKSİYON", "note": "Hemodinamik instabil, analjezi sağlar" },
+    { "name": "Propofol", "factor": 1.5, "unit": "mg", "concentration": "10 mg/mL", "category": "İNDÜKSİYON", "note": "Hemodinamik dikkat — hipotansiyon yapabilir" },
+    { "name": "Etomidat", "factor": 0.3, "unit": "mg", "concentration": "2 mg/mL", "category": "İNDÜKSİYON", "note": "Hemodinamik stabil seçenek" },
+    { "name": "Midazolam", "factor": 0.1, "unit": "mg", "concentration": "5 mg/mL", "category": "İNDÜKSİYON", "note": "Yaşlı/instabil hastada düşük doz" },
+    { "name": "Rokuronyum", "factor": 1.2, "unit": "mg", "concentration": "10 mg/mL", "category": "PARALİTİK", "note": "Sugammadeks ile reversal mümkün" },
+    { "name": "Suksinilkolin", "factor": 1.5, "unit": "mg", "concentration": "20 mg/mL", "category": "PARALİTİK", "note": "Kontrendikasyonları kontrol et! (Hiperkalemi, yanık >48s, nöromusküler hastalık)" },
+    { "name": "Fentanil", "factor": 0.003, "unit": "mg", "concentration": "0.05 mg/mL", "category": "PREMEDİKASYON", "note": "3 mcg/kg — opioid baskılama" },
+    { "name": "Atropin", "factor": 0.02, "unit": "mg", "concentration": "0.5 mg/mL", "category": "PREMEDİKASYON", "note": "Bradikardi önleme (özellikle pediatri)" }
+  ],
+  "clinicalNote": "RSI sırası: Preoksijenasyon → Premedikasyon (gerekirse) → İndüksiyon → Paralitik → Entübasyon. Obez hastalarda ideal vücut ağırlığı kullanılmalıdır.",
+  "source": "Walls RM, Murphy MF. Manual of Emergency Airway Management, 5th Ed. 2023. Brown CA, et al. The Walls Manual of Emergency Airway Management.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir. Dozlar onay öncesi iki kez kontrol edilmelidir."
+}

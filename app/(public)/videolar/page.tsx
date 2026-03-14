@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { createClient } from "@/lib/supabase/server";
-import { VideoListClient } from "./list-client";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { PublicVideoListClient } from "./list-client";
 
-export const metadata: Metadata = { title: "Videolar" };
+export const metadata: Metadata = {
+  title: "Ücretsiz Videolar",
+  description: "Acil tıp eğitim videoları — ücretsiz erişim",
+};
 
 const CATEGORIES = [
   "kardiyoloji", "pulmoner", "noroloji", "enfeksiyon",
@@ -18,25 +21,26 @@ const VIDEO_TYPES = [
   { value: "kisa_ipucu", label: "Kısa İpucu" },
 ];
 
-export default async function VideolarPage() {
-  const supabase = await createClient();
+export default async function PublicVideolarPage() {
+  const supabase = createAdminClient();
 
   const { data: videos } = await supabase
     .from("videos")
     .select("id, title, description, category, difficulty, video_url, duration, video_type, is_premium, tags, published_at")
     .eq("status", "published")
+    .eq("is_premium", false)
     .order("published_at", { ascending: false })
     .limit(50);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-[var(--foreground)]">Videolar</h1>
+        <h1 className="text-2xl font-bold text-[var(--foreground)]">Eğitim Videoları</h1>
         <p className="mt-1 text-[var(--muted-foreground)] text-sm">
-          {videos?.length || 0} video
+          Ücretsiz erişimli acil tıp eğitim videoları — {videos?.length || 0} video
         </p>
       </div>
-      <VideoListClient
+      <PublicVideoListClient
         videos={videos || []}
         categories={CATEGORIES}
         videoTypes={VIDEO_TYPES}

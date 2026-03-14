@@ -1,0 +1,30 @@
+{
+  "id": "wells-dvt",
+  "name": "Wells Kriterleri (Derin Ven Trombozu)",
+  "shortName": "Wells DVT",
+  "category": "vaskuler",
+  "description": "Derin ven trombozu klinik olasılığını değerlendiren skor sistemi.",
+  "fields": [
+    { "id": "cancer", "label": "Aktif kanser (tedavi altında veya son 6 ay)", "type": "checkbox", "value": 1 },
+    { "id": "paralysis", "label": "Alt ekstremite paralizisi / parezi / alçı", "type": "checkbox", "value": 1 },
+    { "id": "bedrest", "label": "≥3 gün yatak istirahati veya son 12 haftada cerrahi", "type": "checkbox", "value": 1 },
+    { "id": "tenderness", "label": "Derin ven boyunca hassasiyet", "type": "checkbox", "value": 1 },
+    { "id": "swelling", "label": "Tüm bacakta şişlik", "type": "checkbox", "value": 1 },
+    { "id": "calf", "label": "Baldır çevresinde >3 cm asimetri", "type": "checkbox", "value": 1 },
+    { "id": "pitting", "label": "Semptomatik bacakta çukurlaşan ödem", "type": "checkbox", "value": 1 },
+    { "id": "collateral", "label": "Yüzeyel kollateral venler (varis değil)", "type": "checkbox", "value": 1 },
+    { "id": "previousDvt", "label": "Önceden DVT tanısı", "type": "checkbox", "value": 1 },
+    { "id": "altDiagnosis", "label": "DVT'den eşit veya daha olası alternatif tanı", "type": "checkbox", "value": -2 }
+  ],
+  "calculate": "sum",
+  "minScore": -2,
+  "maxScore": 9,
+  "interpretation": [
+    { "min": -2, "max": 0, "label": "Düşük Olasılık", "color": "green", "description": "DVT prevalansı ~%5. D-dimer ile değerlendirme yeterli olabilir." },
+    { "min": 1, "max": 2, "label": "Orta Olasılık", "color": "yellow", "description": "DVT prevalansı ~%17. Yüksek duyarlı D-dimer ile değerlendir." },
+    { "min": 3, "max": 9, "label": "Yüksek Olasılık", "color": "red", "description": "DVT prevalansı %17–53. Kompresyon ultrasonografi önerilir." }
+  ],
+  "clinicalNote": "Düşük olasılıkta negatif D-dimer DVT'yi güvenle dışlar. Yüksek olasılıkta D-dimer beklenmeden USG yapılmalıdır.",
+  "source": "Wells PS, et al. Value of assessment of pretest probability of deep-vein thrombosis in clinical management. Lancet. 1997;350(9094):1795-1798.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

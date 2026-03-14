@@ -71,6 +71,7 @@ export interface Video {
   video_url: string;
   duration?: number;
   video_type?: "prosedur" | "ders" | "ekg_yorum" | "usg" | "vaka_sunum" | "kisa_ipucu";
+  is_premium: boolean;
   tags?: string[];
   status: ContentStatus;
   author_id?: string;

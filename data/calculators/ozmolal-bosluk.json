@@ -1,0 +1,25 @@
+{
+  "id": "ozmolal-bosluk",
+  "name": "Ozmolal Boşluk Hesaplayıcı",
+  "shortName": "Ozmolal Boşluk",
+  "category": "metabolik",
+  "description": "Toksik alkol zehirlenmesi şüphesinde ölçülen ve hesaplanan ozmolalite farkını değerlendirme.",
+  "fields": [
+    { "id": "na", "label": "Sodyum", "type": "number", "min": 100, "max": 180, "unit": "mEq/L" },
+    { "id": "glucose", "label": "Glukoz", "type": "number", "min": 10, "max": 1000, "unit": "mg/dL" },
+    { "id": "bun", "label": "BUN", "type": "number", "min": 1, "max": 200, "unit": "mg/dL" },
+    { "id": "measuredOsm", "label": "Ölçülen Osmolalite", "type": "number", "min": 200, "max": 500, "unit": "mOsm/kg" }
+  ],
+  "calculate": "custom_ozmolal",
+  "minScore": -20,
+  "maxScore": 100,
+  "resultUnit": "mOsm/kg",
+  "resultLabel": "Ozmolal Boşluk",
+  "interpretation": [
+    { "min": -20, "max": 10, "label": "Normal", "color": "green", "description": "Normal ozmolal boşluk (≤10 mOsm/kg). Toksik alkol zehirlenmesi olası değil." },
+    { "min": 11, "max": 100, "label": "Yüksek", "color": "red", "description": "Yüksek ozmolal boşluk (>10 mOsm/kg). Metanol, etilen glikol veya isopropanol zehirlenmesi düşünülmeli. Fomepizol başlanması değerlendirilmeli." }
+  ],
+  "clinicalNote": "Hesaplanan Osm = 2×Na + Glukoz/18 + BUN/2.8. Boşluk = Ölçülen − Hesaplanan. Normal <10 mOsm/kg. Dikkat: Metabolizma ilerledikçe ozmolal boşluk düşer, anyon açığı artar.",
+  "source": "Kraut JA, Kurtz I. Toxic alcohol ingestions: clinical features, diagnosis, and management. Clin J Am Soc Nephrol. 2008;3(1):208-225.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

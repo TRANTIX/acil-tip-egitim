@@ -2,8 +2,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronLeft, Calculator } from "lucide-react";
-import { getCalculator, calculators, categoryLabels } from "@/lib/calculators";
+import { getCalculator, calculators, categoryLabels, isFormulaCalculator } from "@/lib/calculators";
 import { CalculatorWidget } from "@/components/calculators/calculator-widget";
+import { FormulaCalculatorWidget } from "@/components/calculators/formula-calculator-widget";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -61,7 +62,11 @@ export default async function CalculatorPage({ params }: PageProps) {
       </div>
 
       {/* Hesaplayıcı */}
-      <CalculatorWidget calc={calc} />
+      {isFormulaCalculator(calc) ? (
+        <FormulaCalculatorWidget calc={calc} />
+      ) : (
+        <CalculatorWidget calc={calc} />
+      )}
 
       {/* İlgili Hesaplayıcılar */}
       {related.length > 0 && (

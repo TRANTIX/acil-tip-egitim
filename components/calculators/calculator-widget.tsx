@@ -105,8 +105,8 @@ export function CalculatorWidget({ calc }: CalculatorWidgetProps) {
                   <span className="text-sm text-[var(--foreground)] group-hover:text-blue-400 transition-colors leading-snug">
                     {field.label}
                     {field.value !== undefined && field.value !== 1 && (
-                      <span className="ml-1.5 text-xs text-[var(--muted-foreground)]">
-                        (+{field.value})
+                      <span className={`ml-1.5 text-xs ${field.value < 0 ? "text-red-400" : "text-[var(--muted-foreground)]"}`}>
+                        ({field.value > 0 ? `+${field.value}` : field.value})
                       </span>
                     )}
                   </span>

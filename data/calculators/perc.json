@@ -1,0 +1,27 @@
+{
+  "id": "perc",
+  "name": "PERC Kuralı (PE Dışlama Kriterleri)",
+  "shortName": "PERC",
+  "category": "vaskuler",
+  "description": "Düşük klinik olasılıklı hastalarda pulmoner emboliyi D-dimer olmadan güvenle dışlama kuralı.",
+  "fields": [
+    { "id": "age50", "label": "Yaş ≥50", "type": "checkbox", "value": 1 },
+    { "id": "hr100", "label": "Kalp hızı ≥100/dk", "type": "checkbox", "value": 1 },
+    { "id": "spo2", "label": "SpO₂ <95% (oda havasında)", "type": "checkbox", "value": 1 },
+    { "id": "hemoptysis", "label": "Hemoptizi", "type": "checkbox", "value": 1 },
+    { "id": "estrogen", "label": "Östrojen kullanımı", "type": "checkbox", "value": 1 },
+    { "id": "previousDvtPe", "label": "Önceden DVT veya PE", "type": "checkbox", "value": 1 },
+    { "id": "legEdema", "label": "Tek taraflı bacak ödemi", "type": "checkbox", "value": 1 },
+    { "id": "surgery", "label": "Son 4 haftada cerrahi veya travma", "type": "checkbox", "value": 1 }
+  ],
+  "calculate": "sum",
+  "minScore": 0,
+  "maxScore": 8,
+  "interpretation": [
+    { "min": 0, "max": 0, "label": "PERC Negatif", "color": "green", "description": "Tüm kriterler negatif — PE güvenle dışlanabilir. D-dimer veya görüntüleme gerekmez." },
+    { "min": 1, "max": 8, "label": "PERC Pozitif", "color": "yellow", "description": "En az 1 kriter pozitif — D-dimer veya görüntüleme ile ileri değerlendirme gerekli." }
+  ],
+  "clinicalNote": "PERC kuralı yalnızca düşük klinik PE olasılığında (Wells ≤1) uygulanır. Orta-yüksek olasılıkta PERC kullanmayın.",
+  "source": "Kline JA, et al. Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism. J Thromb Haemost. 2004;2(8):1247-1255.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

@@ -1,0 +1,24 @@
+{
+  "id": "anyon-acigi",
+  "name": "Anyon Açığı Hesaplayıcı",
+  "shortName": "Anyon Açığı",
+  "category": "metabolik",
+  "description": "Metabolik asidoz nedenlerini ayırt etmek için serum anyon açığı ve delta-delta oranı hesaplama.",
+  "fields": [
+    { "id": "na", "label": "Sodyum", "type": "number", "min": 100, "max": 180, "unit": "mEq/L" },
+    { "id": "cl", "label": "Klor", "type": "number", "min": 70, "max": 140, "unit": "mEq/L" },
+    { "id": "hco3", "label": "Bikarbonat", "type": "number", "min": 1, "max": 45, "unit": "mEq/L" }
+  ],
+  "calculate": "custom_anyon",
+  "minScore": 0,
+  "maxScore": 40,
+  "resultUnit": "mEq/L",
+  "resultLabel": "Anyon Açığı",
+  "interpretation": [
+    { "min": 0, "max": 12, "label": "Normal Anyon Açığı", "color": "green", "description": "Normal AG (8–12 mEq/L). Normal AG metabolik asidozda hiperkoloremik nedenler düşünülür (RTA, diyare, NS infüzyonu)." },
+    { "min": 13, "max": 40, "label": "Yüksek Anyon Açığı", "color": "red", "description": "Yüksek AG metabolik asidoz. MUDPILES mnemoniği: Metanol, Üremi, DKA, Propilen glikol, İzoniazid/İNH, Laktat, Etilen glikol, Salisilat." }
+  ],
+  "clinicalNote": "AG = Na − Cl − HCO₃. Yüksek AG'de Delta-Delta oranı hesaplanır: (AG−12)/(24−HCO₃). <1: Karışık AG + normal AG asidoz; 1–2: Saf yüksek AG asidoz; >2: AG asidoz + metabolik alkaloz.",
+  "source": "Emmett M, Narins RG. Clinical use of the anion gap. Medicine (Baltimore). 1977;56(1):38-54.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

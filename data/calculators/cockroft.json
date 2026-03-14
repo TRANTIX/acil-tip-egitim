@@ -1,0 +1,36 @@
+{
+  "id": "cockroft",
+  "name": "Cockcroft-Gault Kreatinin Klerensi",
+  "shortName": "CrCl (C-G)",
+  "category": "bobrek",
+  "description": "Kreatinin klerensi hesaplayarak böbrek fonksiyonunu değerlendiren ve ilaç doz ayarlamasında kullanılan formül.",
+  "fields": [
+    {
+      "id": "sex",
+      "label": "Cinsiyet",
+      "type": "select",
+      "options": [
+        { "value": 1, "label": "Erkek" },
+        { "value": 0.85, "label": "Kadın (×0.85)" }
+      ]
+    },
+    { "id": "age", "label": "Yaş", "type": "number", "min": 1, "max": 120, "unit": "yıl" },
+    { "id": "weight", "label": "Ağırlık", "type": "number", "min": 1, "max": 300, "unit": "kg" },
+    { "id": "creatinine", "label": "Kreatinin", "type": "number", "min": 0.1, "max": 30, "unit": "mg/dL" }
+  ],
+  "calculate": "custom_cockroft",
+  "minScore": 0,
+  "maxScore": 200,
+  "resultUnit": "mL/dk",
+  "resultLabel": "Kreatinin Klerensi",
+  "interpretation": [
+    { "min": 90, "max": 200, "label": "G1 — Normal", "color": "green", "description": "Normal böbrek fonksiyonu (≥90 mL/dk). İlaç doz ayarlaması gerekmez." },
+    { "min": 60, "max": 89, "label": "G2 — Hafif Azalma", "color": "green", "description": "Hafif böbrek fonksiyon kaybı (60–89 mL/dk). Çoğu ilaçta doz ayarı gerekmez." },
+    { "min": 30, "max": 59, "label": "G3 — Orta Azalma", "color": "yellow", "description": "Orta böbrek fonksiyon kaybı (30–59 mL/dk). Birçok ilacın dozu azaltılmalı." },
+    { "min": 15, "max": 29, "label": "G4 — Ağır Azalma", "color": "orange", "description": "Ağır böbrek yetmezliği (15–29 mL/dk). Nefroloji konsültasyonu, doz ayarı kritik." },
+    { "min": 0, "max": 14, "label": "G5 — Böbrek Yetmezliği", "color": "red", "description": "Son dönem böbrek yetmezliği (<15 mL/dk). Diyaliz endikasyonu değerlendirilmeli." }
+  ],
+  "clinicalNote": "CrCl = [(140−Yaş) × Ağırlık] / (72 × Kreatinin) × (kadınlarda ×0.85). Obez hastalarda ideal vücut ağırlığı kullanılmalı. eGFR (CKD-EPI) daha güncel bir formüldür.",
+  "source": "Cockcroft DW, Gault MH. Prediction of creatinine clearance from serum creatinine. Nephron. 1976;16(1):31-41.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

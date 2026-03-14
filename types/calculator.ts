@@ -1,5 +1,15 @@
 export type FieldType = "select" | "checkbox" | "number";
 
+export type CalculateType =
+  | "sum"
+  | "custom_pecarn"
+  | "custom_rts"
+  | "custom_cockroft"
+  | "custom_anyon"
+  | "custom_ozmolal"
+  | "custom_parkland"
+  | "drug_table";
+
 export interface SelectOption {
   value: number;
   label: string;
@@ -24,6 +34,17 @@ export interface Interpretation {
   description: string;
 }
 
+export interface DrugDose {
+  name: string;
+  factor: number;
+  unit: string;
+  concentration: string;
+  maxDose?: number;
+  minDose?: number;
+  category?: string;
+  note?: string;
+}
+
 export interface CalculatorDefinition {
   id: string;
   name: string;
@@ -31,13 +52,16 @@ export interface CalculatorDefinition {
   category: string;
   description: string;
   fields: CalculatorField[];
-  calculate: "sum" | "custom_pecarn";
+  calculate: CalculateType;
   minScore: number;
   maxScore: number;
   interpretation: Interpretation[];
   clinicalNote?: string;
   source: string;
   disclaimer: string;
+  drugs?: DrugDose[];
+  resultUnit?: string;
+  resultLabel?: string;
 }
 
 export type CalculatorValues = Record<string, number | boolean | string>;

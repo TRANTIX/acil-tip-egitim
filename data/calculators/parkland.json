@@ -1,0 +1,20 @@
+{
+  "id": "parkland",
+  "name": "Parkland Formülü (Yanık Sıvı Resüsitasyonu)",
+  "shortName": "Parkland",
+  "category": "travma",
+  "description": "Yanık hastalarında ilk 24 saatte gereken Ringer Laktat sıvı miktarını hesaplayan formül.",
+  "fields": [
+    { "id": "weight", "label": "Ağırlık", "type": "number", "min": 1, "max": 300, "unit": "kg" },
+    { "id": "tbsa", "label": "VÜYA (Yanık Yüzey Alanı)", "type": "number", "min": 1, "max": 100, "unit": "%" }
+  ],
+  "calculate": "custom_parkland",
+  "minScore": 0,
+  "maxScore": 100000,
+  "resultUnit": "mL",
+  "resultLabel": "24 Saat Toplam Sıvı",
+  "interpretation": [],
+  "clinicalNote": "Formül: 4 mL × Ağırlık (kg) × VÜYA (%). İlk yarısı yanık anından itibaren ilk 8 saatte, ikinci yarısı sonraki 16 saatte verilir. Pediatrik hastalarda idame sıvısı eklenmeli. İdrar çıkışı takibi ile titre edilmeli (erişkin: 0.5–1 mL/kg/saat).",
+  "source": "Baxter CR, Shires T. Physiological response to crystalloid resuscitation of severe burns. Ann N Y Acad Sci. 1968;150(3):874-894.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

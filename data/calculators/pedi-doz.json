@@ -1,0 +1,32 @@
+{
+  "id": "pedi-doz",
+  "name": "Pediyatrik Acil İlaç Dozları",
+  "shortName": "Pedi Doz",
+  "category": "pediatri",
+  "description": "Pediyatrik acil hastalarda kiloya göre ilaç dozları ve ETT boyutu hesaplama.",
+  "fields": [
+    { "id": "weight", "label": "Hasta ağırlığı", "type": "number", "min": 1, "max": 100, "unit": "kg" }
+  ],
+  "calculate": "drug_table",
+  "minScore": 0,
+  "maxScore": 0,
+  "resultLabel": "Pediyatrik Dozlar",
+  "interpretation": [],
+  "drugs": [
+    { "name": "Epinefrin — Anafilaksi", "factor": 0.01, "unit": "mg", "concentration": "1:1000 (1 mg/mL)", "maxDose": 0.5, "category": "ACİL" },
+    { "name": "Epinefrin — KPR", "factor": 0.01, "unit": "mg", "concentration": "1:10000 (0.1 mg/mL)", "maxDose": 1, "category": "ACİL" },
+    { "name": "Atropin", "factor": 0.02, "unit": "mg", "concentration": "0.5 mg/mL", "maxDose": 0.5, "minDose": 0.1, "category": "ACİL" },
+    { "name": "Adenozin (1. doz)", "factor": 0.1, "unit": "mg", "concentration": "3 mg/mL", "maxDose": 6, "category": "ACİL" },
+    { "name": "Midazolam IV", "factor": 0.1, "unit": "mg", "concentration": "5 mg/mL", "maxDose": 5, "category": "SEDASYON" },
+    { "name": "Ketamin IV", "factor": 1.5, "unit": "mg", "concentration": "50 mg/mL", "maxDose": 100, "category": "SEDASYON" },
+    { "name": "Propofol", "factor": 1.5, "unit": "mg", "concentration": "10 mg/mL", "maxDose": 100, "category": "SEDASYON" },
+    { "name": "Rokuronyum", "factor": 1.2, "unit": "mg", "concentration": "10 mg/mL", "maxDose": 50, "category": "PARALİTİK" },
+    { "name": "Suksinilkolin", "factor": 1.5, "unit": "mg", "concentration": "20 mg/mL", "maxDose": 150, "category": "PARALİTİK" },
+    { "name": "Morfin", "factor": 0.1, "unit": "mg", "concentration": "10 mg/mL", "maxDose": 5, "category": "ANALJEZİ" },
+    { "name": "Parasetamol IV", "factor": 15, "unit": "mg", "concentration": "10 mg/mL", "maxDose": 1000, "category": "ANALJEZİ" },
+    { "name": "Dekstroz %10", "factor": 2, "unit": "mL", "concentration": "0.2 g/kg", "maxDose": 100, "category": "METABOLİK" }
+  ],
+  "clinicalNote": "ETT boyutu: (Ağırlık/4) + 4 mm. ETT derinliği: ETT boyutu × 3 cm. Tüm dozlar ideal vücut ağırlığına göre hesaplanmalıdır.",
+  "source": "PALS (Pediatric Advanced Life Support) Guidelines. American Heart Association 2020. Behrman RE, et al. Nelson Textbook of Pediatrics.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir. Dozlar onay öncesi iki kez kontrol edilmelidir."
+}

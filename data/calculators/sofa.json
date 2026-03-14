@@ -1,0 +1,93 @@
+{
+  "id": "sofa",
+  "name": "SOFA Skoru (Sıralı Organ Yetmezliği Değerlendirmesi)",
+  "shortName": "SOFA",
+  "category": "enfeksiyon",
+  "description": "Yoğun bakım hastalarında organ disfonksiyonunu ve mortalite riskini değerlendiren skor.",
+  "fields": [
+    {
+      "id": "respiration",
+      "label": "Solunum (PaO₂/FiO₂)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "≥400 (0)" },
+        { "value": 1, "label": "300–399 (1)" },
+        { "value": 2, "label": "200–299 (2)" },
+        { "value": 3, "label": "100–199 + MV (3)" },
+        { "value": 4, "label": "<100 + MV (4)" }
+      ]
+    },
+    {
+      "id": "coagulation",
+      "label": "Koagülasyon (Trombosit ×10³/µL)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "≥150 (0)" },
+        { "value": 1, "label": "100–149 (1)" },
+        { "value": 2, "label": "50–99 (2)" },
+        { "value": 3, "label": "20–49 (3)" },
+        { "value": 4, "label": "<20 (4)" }
+      ]
+    },
+    {
+      "id": "liver",
+      "label": "Karaciğer (Bilirubin mg/dL)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "<1.2 (0)" },
+        { "value": 1, "label": "1.2–1.9 (1)" },
+        { "value": 2, "label": "2.0–5.9 (2)" },
+        { "value": 3, "label": "6.0–11.9 (3)" },
+        { "value": 4, "label": "≥12 (4)" }
+      ]
+    },
+    {
+      "id": "cardiovascular",
+      "label": "Kardiyovasküler",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "MAP ≥70 mmHg (0)" },
+        { "value": 1, "label": "MAP <70 mmHg (1)" },
+        { "value": 2, "label": "Dopamin ≤5 / Dobutamin (2)" },
+        { "value": 3, "label": "Dopamin >5 / Epi ≤0.1 (3)" },
+        { "value": 4, "label": "Dopamin >15 / Epi >0.1 (4)" }
+      ]
+    },
+    {
+      "id": "cns",
+      "label": "MSS (GKS)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "15 (0)" },
+        { "value": 1, "label": "13–14 (1)" },
+        { "value": 2, "label": "10–12 (2)" },
+        { "value": 3, "label": "6–9 (3)" },
+        { "value": 4, "label": "<6 (4)" }
+      ]
+    },
+    {
+      "id": "renal",
+      "label": "Böbrek (Kreatinin mg/dL)",
+      "type": "select",
+      "options": [
+        { "value": 0, "label": "<1.2 (0)" },
+        { "value": 1, "label": "1.2–1.9 (1)" },
+        { "value": 2, "label": "2.0–3.4 (2)" },
+        { "value": 3, "label": "3.5–4.9 (3)" },
+        { "value": 4, "label": "≥5 veya <200 mL/gün (4)" }
+      ]
+    }
+  ],
+  "calculate": "sum",
+  "minScore": 0,
+  "maxScore": 24,
+  "interpretation": [
+    { "min": 0, "max": 1, "label": "Düşük Mortalite", "color": "green", "description": "Tahmini mortalite <%10. Organ disfonksiyonu minimal." },
+    { "min": 2, "max": 7, "label": "Orta Mortalite", "color": "yellow", "description": "Tahmini mortalite %15–20. Organ disfonksiyonu mevcut, yakın izlem." },
+    { "min": 8, "max": 11, "label": "Yüksek Mortalite", "color": "orange", "description": "Tahmini mortalite %40–50. Çoklu organ disfonksiyonu, agresif tedavi gerektirir." },
+    { "min": 12, "max": 24, "label": "Çok Yüksek Mortalite", "color": "red", "description": "Tahmini mortalite >%80. Ciddi çoklu organ yetmezliği." }
+  ],
+  "clinicalNote": "SOFA skoru sepsis tanısında kullanılır: Enfeksiyon şüphesi + SOFA ≥2 puan artış = Sepsis (Sepsis-3 tanımı, 2016). qSOFA tarama aracıdır, SOFA tanı aracıdır.",
+  "source": "Vincent JL, et al. The SOFA score to describe organ dysfunction/failure. Intensive Care Med. 1996;22(7):707-710. Singer M, et al. Sepsis-3 Definitions. JAMA. 2016;315(8):801-810.",
+  "disclaimer": "Bu hesaplayıcı eğitim amaçlıdır. Klinik kararlar hasta değerlendirmesi ile verilmelidir."
+}

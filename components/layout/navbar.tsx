@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Sun, Moon, Menu, X, LogOut, User } from "lucide-react";
+import { Sun, Moon, Menu, X, LogOut, User, Shield } from "lucide-react";
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
@@ -43,7 +43,11 @@ export function Navbar({ user }: NavbarProps) {
   const router = useRouter();
   const supabase = createClient();
 
-  const links = user ? protectedLinks : publicLinks;
+  const links = user
+    ? user.role === "admin"
+      ? [...protectedLinks, { href: "/admin", label: "Admin" }]
+      : protectedLinks
+    : publicLinks;
 
   async function handleLogout() {
     await supabase.auth.signOut();

@@ -20,6 +20,7 @@ export function VideoForm({ isAdmin }: { isAdmin: boolean }) {
   const [form, setForm] = useState({
     title: "", description: "", category: "", difficulty: "1",
     video_url: "", duration: "", video_type: "", tags: "",
+    is_premium: false,
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
@@ -46,6 +47,7 @@ export function VideoForm({ isAdmin }: { isAdmin: boolean }) {
       video_url: form.video_url,
       duration: form.duration ? parseInt(form.duration) : null,
       video_type: form.video_type || null,
+      is_premium: form.is_premium,
       tags: tags.length > 0 ? tags : null,
       status: isAdmin ? "published" : "draft",
       published_at: isAdmin ? new Date().toISOString() : null,
@@ -56,7 +58,7 @@ export function VideoForm({ isAdmin }: { isAdmin: boolean }) {
       setError("Video oluşturulamadı.");
     } else {
       setSuccess(`Video ${isAdmin ? "yayınlandı" : "taslak olarak kaydedildi"}.`);
-      setForm({ title: "", description: "", category: "", difficulty: "1", video_url: "", duration: "", video_type: "", tags: "" });
+      setForm({ title: "", description: "", category: "", difficulty: "1", video_url: "", duration: "", video_type: "", tags: "", is_premium: false });
     }
   };
 
@@ -74,6 +76,26 @@ export function VideoForm({ isAdmin }: { isAdmin: boolean }) {
       </div>
 
       <FormInput label="Video URL" name="video_url" value={form.video_url} onChange={handleChange} required placeholder="YouTube linki veya doğrudan video URL" />
+
+      {/* Premium toggle */}
+      <label className="flex items-center gap-3 cursor-pointer">
+        <div className="relative">
+          <input
+            type="checkbox"
+            checked={form.is_premium}
+            onChange={(e) => setForm((prev) => ({ ...prev, is_premium: e.target.checked }))}
+            className="sr-only peer"
+          />
+          <div className="w-10 h-5 rounded-full bg-[var(--muted)] peer-checked:bg-amber-600 transition-colors" />
+          <div className="absolute left-0.5 top-0.5 w-4 h-4 rounded-full bg-white transition-transform peer-checked:translate-x-5" />
+        </div>
+        <span className="text-sm text-[var(--foreground)]">
+          Premium İçerik
+          <span className="text-xs text-[var(--muted-foreground)] ml-1">
+            (Unlisted YouTube — sadece platformdan erişilir)
+          </span>
+        </span>
+      </label>
       <FormInput label="Süre (saniye)" name="duration" value={form.duration} onChange={handleChange} type="number" />
 
       <FormTextarea label="Açıklama" name="description" value={form.description} onChange={handleChange} rows={4} />

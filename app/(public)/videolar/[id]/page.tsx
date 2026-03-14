@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock, Calendar, Tag, AlertTriangle, Video, Crown } from "lucide-react";
-import { createClient } from "@/lib/supabase/server";
+import { ArrowLeft, Clock, Calendar, Tag, AlertTriangle, Video } from "lucide-react";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { VideoEmbed } from "@/components/content/video-embed";
 
 interface PageProps {
@@ -54,32 +54,34 @@ function formatDuration(seconds: number): string {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const { data } = await supabase
     .from("videos")
     .select("title, description, category")
     .eq("id", id)
     .eq("status", "published")
+    .eq("is_premium", false)
     .single();
 
   if (!data) return { title: "Video Bulunamadı" };
 
   return {
     title: data.title,
-    description: data.description || `${data.category} kategorisinde video`,
+    description: data.description || `${data.category} kategorisinde eğitim videosu`,
   };
 }
 
-export default async function VideoDetailPage({ params }: PageProps) {
+export default async function PublicVideoDetailPage({ params }: PageProps) {
   const { id } = await params;
-  const supabase = await createClient();
+  const supabase = createAdminClient();
 
   const { data: video } = await supabase
     .from("videos")
     .select("*")
     .eq("id", id)
     .eq("status", "published")
+    .eq("is_premium", false)
     .single();
 
   if (!video) notFound();
@@ -88,7 +90,7 @@ export default async function VideoDetailPage({ params }: PageProps) {
     <div className="mx-auto max-w-4xl px-4 py-10">
       {/* Geri butonu */}
       <Link
-        href="/icerikler/videolar"
+        href="/videolar"
         className="inline-flex items-center gap-1 text-sm text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors mb-6"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -97,12 +99,6 @@ export default async function VideoDetailPage({ params }: PageProps) {
 
       {/* Meta bilgiler */}
       <div className="flex flex-wrap items-center gap-2 mb-4">
-        {video.is_premium && (
-          <span className="inline-flex items-center gap-1 rounded-full border border-amber-700/50 bg-amber-950/40 px-2.5 py-1 text-xs font-medium text-amber-400">
-            <Crown className="h-3 w-3" />
-            Premium
-          </span>
-        )}
         {video.video_type && (
           <span className="rounded-full border border-green-800/40 bg-green-950/30 px-2.5 py-1 text-xs text-green-400 font-medium">
             {VIDEO_TYPE_LABELS[video.video_type] || video.video_type}

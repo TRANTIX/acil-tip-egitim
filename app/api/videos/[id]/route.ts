@@ -45,7 +45,7 @@ export async function PATCH(
   }
 
   const body = await request.json();
-  const { title, description, category, difficulty, video_url, duration, video_type, tags, status } = body;
+  const { title, description, category, difficulty, video_url, duration, video_type, is_premium, tags, status } = body;
   const safeUpdate: Record<string, unknown> = {};
   if (title !== undefined) safeUpdate.title = title;
   if (description !== undefined) safeUpdate.description = description;
@@ -54,6 +54,7 @@ export async function PATCH(
   if (video_url !== undefined) safeUpdate.video_url = video_url;
   if (duration !== undefined) safeUpdate.duration = duration;
   if (video_type !== undefined) safeUpdate.video_type = video_type;
+  if (is_premium !== undefined) safeUpdate.is_premium = is_premium;
   if (tags !== undefined) safeUpdate.tags = tags;
   if (status !== undefined && profile.role === "admin") safeUpdate.status = status;
 
