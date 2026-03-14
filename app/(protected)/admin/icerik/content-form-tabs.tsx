@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { FileText, Headphones, Video, ImageIcon } from "lucide-react";
 import { ArticleForm } from "./article-form";
 import { PodcastForm } from "./podcast-form";
@@ -20,8 +21,19 @@ const TABS = [
 
 type TabKey = (typeof TABS)[number]["key"];
 
+const TAB_KEYS = TABS.map((t) => t.key) as unknown as readonly TabKey[];
+
 export function ContentFormTabs({ isAdmin }: Props) {
-  const [activeTab, setActiveTab] = useState<TabKey>("makale");
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get("tab");
+  const initialTab = TAB_KEYS.includes(tabParam as TabKey) ? (tabParam as TabKey) : "makale";
+  const [activeTab, setActiveTab] = useState<TabKey>(initialTab);
+
+  useEffect(() => {
+    if (tabParam && TAB_KEYS.includes(tabParam as TabKey)) {
+      setActiveTab(tabParam as TabKey);
+    }
+  }, [tabParam]);
 
   return (
     <div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { ContentFormTabs } from "./content-form-tabs";
@@ -26,7 +27,9 @@ export default async function AdminIcerikPage() {
       <p className="text-sm text-[var(--muted-foreground)] mb-8">
         Yeni makale, podcast, video veya atlas görseli ekleyin.
       </p>
-      <ContentFormTabs isAdmin={profile.role === "admin"} />
+      <Suspense fallback={<div className="text-[var(--muted-foreground)] text-sm">Yükleniyor...</div>}>
+        <ContentFormTabs isAdmin={profile.role === "admin"} />
+      </Suspense>
     </div>
   );
 }
