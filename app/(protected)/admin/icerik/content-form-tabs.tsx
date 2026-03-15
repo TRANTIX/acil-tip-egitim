@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { FileText, Headphones, Video, ImageIcon } from "lucide-react";
-import { ArticleForm } from "./article-form";
-import { PodcastForm } from "./podcast-form";
-import { VideoForm } from "./video-form";
-import { AtlasForm } from "./atlas-form";
+
+const ArticleForm = lazy(() => import("./article-form").then(m => ({ default: m.ArticleForm })));
+const PodcastForm = lazy(() => import("./podcast-form").then(m => ({ default: m.PodcastForm })));
+const VideoForm = lazy(() => import("./video-form").then(m => ({ default: m.VideoForm })));
+const AtlasForm = lazy(() => import("./atlas-form").then(m => ({ default: m.AtlasForm })));
 
 interface Props {
   isAdmin: boolean;
@@ -55,11 +56,13 @@ export function ContentFormTabs({ isAdmin }: Props) {
         ))}
       </div>
 
-      {/* Form içeriği */}
-      {activeTab === "makale" && <ArticleForm isAdmin={isAdmin} />}
-      {activeTab === "podcast" && <PodcastForm isAdmin={isAdmin} />}
-      {activeTab === "video" && <VideoForm isAdmin={isAdmin} />}
-      {activeTab === "atlas" && <AtlasForm isAdmin={isAdmin} />}
+      {/* Form içeriği — lazy loaded */}
+      <Suspense fallback={<div className="flex items-center justify-center py-12 text-sm text-[var(--muted-foreground)]">Form yükleniyor...</div>}>
+        {activeTab === "makale" && <ArticleForm isAdmin={isAdmin} />}
+        {activeTab === "podcast" && <PodcastForm isAdmin={isAdmin} />}
+        {activeTab === "video" && <VideoForm isAdmin={isAdmin} />}
+        {activeTab === "atlas" && <AtlasForm isAdmin={isAdmin} />}
+      </Suspense>
     </div>
   );
 }
