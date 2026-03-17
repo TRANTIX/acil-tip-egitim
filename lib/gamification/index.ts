@@ -12,6 +12,7 @@ export const XP_TABLE: Record<ActivityType, number> = {
   simulation: 25,
   debrief: 20,
   calculator: 5,
+  ai_mentor: 10,
 };
 
 // ==========================================

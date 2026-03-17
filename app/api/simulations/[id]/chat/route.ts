@@ -41,10 +41,10 @@ export async function POST(
     });
   }
 
-  // Rate limiting: oturum başına maksimum 50 mesaj
+  // 100 mesaj = 50 tur (user + assistant). Her tur 2 mesaj.
   const messageCount = (session.messages || []).length;
   if (messageCount >= 100) {
-    return new Response(JSON.stringify({ error: "Bu simülasyon için mesaj limitine ulaşıldı (maks 50 tur)." }), {
+    return new Response(JSON.stringify({ error: "Bu simülasyon için mesaj limitine ulaşıldı (maks 50 tur / 100 mesaj)." }), {
       status: 429,
       headers: { "Content-Type": "application/json" },
     });

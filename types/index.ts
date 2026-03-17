@@ -24,7 +24,8 @@ export type ActivityType =
   | "simulation"
   | "debrief"
   | "calculator"
-  | "atlas";
+  | "atlas"
+  | "ai_mentor";
 
 export interface Article {
   id: string;

@@ -1,5 +1,5 @@
 // AcilEM Service Worker — Offline Hesaplayıcılar, Kılavuzlar ve Push Notifications
-const CACHE_NAME = "acilem-v1";
+const CACHE_NAME = "acilem-v2";
 
 // Uygulama kabuğu + offline'da kesinlikle olması gereken sayfalar
 const PRECACHE_URLS = [
