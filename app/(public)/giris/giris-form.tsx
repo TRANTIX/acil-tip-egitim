@@ -8,10 +8,18 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+function isValidRedirect(path: string): boolean {
+  if (!path.startsWith("/")) return false;
+  if (path.startsWith("//")) return false;
+  if (path.includes("\\")) return false;
+  return true;
+}
+
 export function GirisForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect") || "/dashboard";
+  const rawRedirect = searchParams.get("redirect") || "/dashboard";
+  const redirect = isValidRedirect(rawRedirect) ? rawRedirect : "/dashboard";
   const supabase = createClient();
 
   const [email, setEmail] = useState("");

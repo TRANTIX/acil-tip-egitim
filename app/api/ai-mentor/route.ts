@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
 import { levelTitle, xpProgress } from "@/lib/gamification";
+import { sanitizeUserInput } from "@/lib/security";
 
 const anthropic = new Anthropic();
 
@@ -115,7 +116,7 @@ export async function POST() {
     .join(", ");
 
   const debriefSummary = (debriefs || [])
-    .map((d) => `${d.shift_date}: ${d.overall_learning || "öğrenme notu yok"}`)
+    .map((d) => `${d.shift_date}: ${sanitizeUserInput(d.overall_learning || "öğrenme notu yok")}`)
     .join("\n");
 
   const prompt = `Sen bir acil tıp eğitim mentörüsün. Bir asistanın son 30 günlük performans verisini analiz edip kişiselleştirilmiş haftalık çalışma planı ve öneriler sunacaksın.

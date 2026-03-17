@@ -50,23 +50,17 @@ export default function KayitPage() {
     });
 
     if (signUpError) {
-      setError("Kayıt sırasında bir hata oluştu: " + signUpError.message);
+      if (signUpError.message?.toLowerCase().includes("already registered")) {
+        setError("Bu e-posta adresi zaten kayıtlı.");
+      } else {
+        setError("Kayıt sırasında bir hata oluştu. Lütfen tekrar deneyin.");
+      }
+      console.error("Kayıt hatası:", signUpError);
       setLoading(false);
       return;
     }
 
     if (data.user) {
-      // Profil kaydı (trigger ile otomatik oluşur, ama manuel de ekleyebiliriz)
-      await supabase.from("profiles").upsert({
-        id: data.user.id,
-        full_name: form.fullName,
-        email: form.email,
-        institution: form.institution,
-        residency_year: parseInt(form.residencyYear),
-        role: "resident",
-        status: "pending",
-      });
-
       setStep("success");
     }
 

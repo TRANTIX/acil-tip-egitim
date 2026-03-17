@@ -19,6 +19,7 @@ export function MermaidChart({ chart }: MermaidChartProps) {
         const mermaid = (await import("mermaid")).default;
         mermaid.initialize({
           startOnLoad: false,
+          securityLevel: "strict",
           theme: "dark",
           themeVariables: {
             primaryColor: "#10b981",
@@ -48,6 +49,19 @@ export function MermaidChart({ chart }: MermaidChartProps) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(svg, "image/svg+xml");
         doc.querySelectorAll("script, foreignObject").forEach((el) => el.remove());
+        // Event handler attribute'larını temizle
+        doc.querySelectorAll("*").forEach((el) => {
+          Array.from(el.attributes).forEach((attr) => {
+            if (attr.name.startsWith("on")) el.removeAttribute(attr.name);
+          });
+        });
+        // javascript: href temizle
+        doc.querySelectorAll("[href]").forEach((el) => {
+          const href = el.getAttribute("href") || "";
+          if (href.toLowerCase().trim().startsWith("javascript:")) {
+            el.removeAttribute("href");
+          }
+        });
         containerRef.current.replaceChildren();
         const svgEl = doc.documentElement;
         containerRef.current.appendChild(document.importNode(svgEl, true));

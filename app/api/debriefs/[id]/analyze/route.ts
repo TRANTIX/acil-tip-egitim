@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { sanitizeUserInput } from "@/lib/security";
 
 const anthropic = new Anthropic();
 
@@ -58,9 +59,9 @@ Nöbet bilgileri:
 - Tarih: ${debrief.shift_date}
 - Lokasyon: ${locationMap[debrief.shift_location] || debrief.shift_location}
 - Süre: ${debrief.shift_duration ? debrief.shift_duration + " saat" : "belirtilmemiş"}
-- Genel öğrenme: ${debrief.overall_learning || "belirtilmemiş"}
-- Neyi değiştirirdi: ${debrief.what_would_change || "belirtilmemiş"}
-- Mentöre soru: ${debrief.mentor_question || "yok"}
+- Genel öğrenme: ${sanitizeUserInput(debrief.overall_learning || "belirtilmemiş")}
+- Neyi değiştirirdi: ${sanitizeUserInput(debrief.what_would_change || "belirtilmemiş")}
+- Mentöre soru: ${sanitizeUserInput(debrief.mentor_question || "yok")}
 
 Vakalar:
 ${caseSummary}

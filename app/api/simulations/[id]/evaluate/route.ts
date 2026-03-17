@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { safeJsonParse } from "@/lib/utils";
 
 const anthropic = new Anthropic();
 
@@ -33,7 +34,7 @@ export async function POST(
     return NextResponse.json({
       data: {
         score: session.score,
-        feedback: JSON.parse(session.feedback),
+        feedback: safeJsonParse(session.feedback, { error: "Geri bildirim okunamadı" }),
       },
     });
   }

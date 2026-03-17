@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
 import { PublicVideoListClient } from "./list-client";
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ const VIDEO_TYPES = [
 ];
 
 export default async function PublicVideolarPage() {
-  const supabase = createAdminClient();
+  const supabase = await createClient();
 
   const { data: videos } = await supabase
     .from("videos")

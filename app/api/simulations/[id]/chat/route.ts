@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import Anthropic from "@anthropic-ai/sdk";
+import { sanitizeUserInput } from "@/lib/security";
 
 const anthropic = new Anthropic();
 
@@ -78,8 +79,8 @@ export async function POST(
 
   const scenario = session.scenarios;
   const userContent = action
-    ? `[AKSİYON: ${action}]`
-    : message;
+    ? `[AKSİYON: ${sanitizeUserInput(action)}]`
+    : sanitizeUserInput(message);
 
   // Mevcut mesajları Claude formatına dönüştür
   const existingMessages = (session.messages || []).map(
