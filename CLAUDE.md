@@ -6,7 +6,7 @@ Türkiye acil tıp asistanları için ücretsiz eğitim platformu.
 3 ek modül: Nöbet Debrief, Gamification, Telegram Bot.
 
 ## Tech Stack
-- Next.js 15 (App Router) + TypeScript
+- Next.js 16 (App Router) + TypeScript
 - Tailwind CSS (koyu/açık tema) + next-themes
 - Supabase (PostgreSQL + Auth + Storage)
 - Claude API / @anthropic-ai/sdk (AI simülasyon)
@@ -30,19 +30,19 @@ Türkiye acil tıp asistanları için ücretsiz eğitim platformu.
 - npm run lint — Kod kontrolü
 
 ## Detaylı Dokümantasyon (İHTİYAÇ OLUNCA OKU)
-- @docs/architecture.md — Teknik mimari
-- @docs/database-schema.md — Tüm tablo şemaları
 - @docs/rules-medical.md — Tıbbi içerik kuralları
 - @docs/rules-technical.md — Teknik kurallar
-- @docs/module-calculators.md — Hesaplayıcı detayları
-- @docs/module-quiz.md — Quiz detayları
-- @docs/module-content.md — Eğitim içerikleri detayları
-- @docs/module-simulation.md — AI simülasyon detayları
-- @docs/module-procedures.md — Prosedür kılavuzları
-- @docs/module-debrief.md — Nöbet sonu debrief
-- @docs/module-gamification.md — Gamification
-- @docs/module-bot.md — Telegram bot
 - @docs/progress.md — Yapılacaklar listesi (GÜNCEL TUT!)
+- @docs/architecture.md — Teknik mimari (henüz oluşturulmadı)
+- @docs/database-schema.md — Tüm tablo şemaları (henüz oluşturulmadı)
+- @docs/module-calculators.md — Hesaplayıcı detayları (henüz oluşturulmadı)
+- @docs/module-quiz.md — Quiz detayları (henüz oluşturulmadı)
+- @docs/module-content.md — Eğitim içerikleri detayları (henüz oluşturulmadı)
+- @docs/module-simulation.md — AI simülasyon detayları (henüz oluşturulmadı)
+- @docs/module-procedures.md — Prosedür kılavuzları (henüz oluşturulmadı)
+- @docs/module-debrief.md — Nöbet sonu debrief (henüz oluşturulmadı)
+- @docs/module-gamification.md — Gamification (henüz oluşturulmadı)
+- @docs/module-bot.md — Telegram bot (henüz oluşturulmadı)
 
 ## Oturum Yönetimi
 - HER oturum başında docs/progress.md'yi oku, nerede kaldığını hatırla.
